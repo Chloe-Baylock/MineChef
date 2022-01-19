@@ -1,30 +1,39 @@
-Table users as U {
-    id int
-    username varchar
-    email varchar
-    hashed_password varchar
-    description text
-}
+# `users`
+| column name | data type | details |
+|-------------|-----------|---------|
+| id | int | primary key, not null |
+| username | varchar | unique, not null |
+| email | varchar | unique, not null |
+| hashed_password | varchar | not null |
+| description | text |  |
 
-Table posts as P {
-    id int
-    author_id int
-    title varchar
-    content text
-}
 
-Table votes as V {
-    id int
-    is_up bool
-    voter_id id
-    post_id id
-}
+# `posts`
+| column name | data type | details |
+|-------------|-----------|---------|
+| id | int | primary key, not null |
+| author_id | int | foreign key, not null |
+| title | varchar | not null |
+| content | text | not null |
 
-Table friends as F {
-    id int
-    friend_A_id int
-    friend_B_id int
-}
+
+# `votes`
+| column name | data type | details |
+|-------------|-----------|---------|
+| id | int | primary key, not null |
+| is_up | bool | not null |
+| voter_id | id | foreign key, not null |
+| post_id | id | foreign key, not null |
+
+
+# `friends`
+| column name | data type | details |
+|-------------|-----------|---------|
+| id | int | primary key, not null |
+| friend_A_id | int | foreign key, not null |
+| friend_B_id | int | foreign key, not null |
+| is_pending | bool | not null |
+
 
 Ref: U.id > P.author_id
 Ref: U.id > V.voter_id
@@ -33,3 +42,5 @@ Ref: P.id > V.post_id
 
 Ref: U.id > F.friend_A_id
 Ref: U.id > F.friend_B_id
+
+
