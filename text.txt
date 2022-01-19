@@ -1,0 +1,35 @@
+Table users as U {
+    id int
+    username varchar
+    email varchar
+    hashed_password varchar
+    description text
+}
+
+Table posts as P {
+    id int
+    author_id int
+    title varchar
+    content text
+}
+
+Table votes as V {
+    id int
+    is_up bool
+    voter_id id
+    post_id id
+}
+
+Table friends as F {
+    id int
+    friend_A_id int
+    friend_B_id int
+}
+
+Ref: U.id > P.author_id
+Ref: U.id > V.voter_id
+
+Ref: P.id > V.post_id
+
+Ref: U.id > F.friend_A_id
+Ref: U.id > F.friend_B_id
