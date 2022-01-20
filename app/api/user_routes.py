@@ -19,7 +19,7 @@ def user(id):
   user = User.query.get(id)
   return user.to_dict()
 
-@user_routes.route('/<int:userId>', methods=['EDIT'])
+@user_routes.route('/<int:userId>', methods=['PUT'])
 @login_required
 def edit_profile(userId):
   form = EditProfileForm
@@ -34,6 +34,6 @@ def edit_profile(userId):
     description = form.data['description']
     updated_user = User(user_id=current_user, username=username, email=email, pfp_url=pfp_url, description=description, updated_user=updated_user)
     return updated_user.to_dict()
-  else return "error with edit form"
+  else: return "error with edit form"
   
   

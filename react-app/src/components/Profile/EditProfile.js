@@ -1,46 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { editProfile } from '../../store/profile';
 import './Profile.css'
+
 
 function EditProfile(props) {
 
-    const [user, setUser] = useState({})
-    const { userId } = useParams();
 
-    const handleEdit = (e) => {
-      e.preventDefault();
-      console.log('handleEdit')
-      // more here
+  const dispatch = useDispatch()
+
+  const [user, setUser] = useState({})
+  const { userId } = useParams();
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    console.log('handleEdit')
+    dispatch(editProfile(user, userId))
+  }
+
+  useEffect(() => {
+    if (!userId) {
+      return;
     }
+    (async () => {
+      const response = await fetch(`/api/users/${userId}`);
+      const user = await response.json();
+      setUser(user);
+    })()
+  }, [userId])
 
-    useEffect(() => {
-        if (!userId) {
-            return;
-        }
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setUser(user);
-        })()
-    }, [userId])
+  // const handleEdit = () => {
+  //     return 'a'
+  // }
 
-    // const handleEdit = () => {
-    //     return 'a'
-    // }
-
-    return props.trigger? (
-        <>
-            <button
-              onClick={() => props.setTrigger(false)}
-            >Cancel</button>
-            <form>
-              <button
-                className="submit-edit"
-                type='submit'
-                onClick={() => handleEdit}
-              >Submit</button>
-            </form>
-            {/* <div className="info-container">
+  return props.trigger ? (
+    <>
+      <button
+        onClick={() => props.setTrigger(false)}
+      >Cancel</button>
+      <form>
+        <button
+          className="submit-edit"
+          type='submit'
+          onClick={() => handleEdit}
+        >Submit</button>
+      </form>
+      {/* <div className="info-container">
                 <button
                     className="edit-info"
                     onClick={setEditPopup(true)}
@@ -52,9 +58,9 @@ function EditProfile(props) {
                 <p><strong>Profile Picture:</strong> {user.pfp_url || 'none'}</p>
                 <p><strong>Description:</strong> {user.description || 'none'}</p>
             </div> */}
-        </>
-    ) : (
-      ""
-    )
+    </>
+  ) : (
+    ""
+  )
 }
 export default EditProfile;
