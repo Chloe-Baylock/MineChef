@@ -1,0 +1,21 @@
+.info-container {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+
+    width: 20%;
+    padding-left: 10px;
+    background-color: aquamarine;
+}
+
+.edit-info {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.submit-edit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
