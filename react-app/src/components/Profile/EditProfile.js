@@ -7,11 +7,21 @@ import './Profile.css'
 
 function EditProfile(props) {
 
+  const [user, setUser] = useState({})
+  let userId = 0;
 
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/api/users/current');
+      const cookies = await response.json();
+      console.log('profile cookies', cookies)
+    })()
+  })
+
+  // "ImNlODk1NmZmOGIwZTk4NmRlMTRlMGJiOTRiMjNiMDg1MGIyNDI1NmMi.Yenhog.5UAb5TWOG0y_afMle3fptmAr-xU"
+  // "ImYzNzg0ODZlYzE3NzQ0ZWNmNTI2NTViYWFkYjMyNjAxZGVlNDdlYTQi.Yenhog.Bomltn8ghyj7YUJk6tRjqFWilhc"
   const dispatch = useDispatch()
 
-  const [user, setUser] = useState({})
-  const { userId } = useParams();
 
   const handleEdit = (e) => {
     e.preventDefault();

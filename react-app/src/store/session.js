@@ -1,6 +1,12 @@
 // constants
+// const GET_USER = 'session/GET_USER';
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+
+// const getUser = (email) => ({
+//   type: GET_USER,
+//   payload: user
+// })
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -12,6 +18,10 @@ const removeUser = () => ({
 })
 
 const initialState = { user: null };
+
+// export const showUser = () => async dispatch => {
+  
+// }
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {

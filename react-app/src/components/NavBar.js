@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -6,6 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const NavBar = () => {
+
   return (
     <nav>
       <ul>
@@ -27,6 +27,11 @@ const NavBar = () => {
         <p>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
+          </NavLink>
+        </p>
+        <p>
+          <NavLink to={`/profile`} exact={true} activeClassName='active'>
+            Profile
           </NavLink>
         </p>
         <p>

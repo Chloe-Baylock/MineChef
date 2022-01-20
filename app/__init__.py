@@ -9,6 +9,8 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 
+from app.forms import LoginForm
+
 from .seeds import seed_commands
 
 from .config import Config
@@ -54,14 +56,23 @@ def https_redirect():
 
 @app.after_request
 def inject_csrf_token(response):
+  form = LoginForm()
+  response.set_cookie(
+    'csrf_token',
+    generate_csrf(),
+    secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
+    samesite='Strict' if os.environ.get(
+        'FLASK_ENV') == 'production' else None,
+    httponly=True)
+  if form["email"].data:
     response.set_cookie(
-        'csrf_token',
-        generate_csrf(),
-        secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-        samesite='Strict' if os.environ.get(
-            'FLASK_ENV') == 'production' else None,
-        httponly=True)
-    return response
+      'email',
+      form.data['email'],
+      secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
+      samesite='Strict' if os.environ.get(
+        'FLASK_ENV') == 'production' else None,
+    httponly=True)
+  return response
 
 
 @app.route('/', defaults={'path': ''})

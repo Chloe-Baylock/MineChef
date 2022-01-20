@@ -10,13 +10,10 @@ function Profile() {
   const [ editPopup, setEditPopup ] = useState(false);
 
   useEffect(() => {
-    if (!userId) {
-      return;
-    }
     (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
+      const response = await fetch(`/api/users/current`);
+      // const cookies = await response.json();
+      // setUser(cookies);
     })()
   }, [userId])
 
