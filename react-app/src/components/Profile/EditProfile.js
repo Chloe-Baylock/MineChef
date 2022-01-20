@@ -33,11 +33,13 @@ function EditProfile(props) {
             <button
               onClick={() => props.setTrigger(false)}
             >Cancel</button>
-            <button
-              className="submit-edit"
-              type='submit'
-              onClick={() => handleEdit}
-            >Submit</button>
+            <form>
+              <button
+                className="submit-edit"
+                type='submit'
+                onClick={() => handleEdit}
+              >Submit</button>
+            </form>
             {/* <div className="info-container">
                 <button
                     className="edit-info"

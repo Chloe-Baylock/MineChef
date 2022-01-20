@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import User
+from app.forms import EditProfileForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -21,7 +22,7 @@ def user(id):
 @user_routes.route('/<int:userId>', methods=['EDIT'])
 @login_required
 def edit_profile(userId):
-  # form = 
+  form = EditProfileForm
 
   form['csrf_token'].data = request.cookies['csrf_token']
 

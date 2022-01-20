@@ -34,7 +34,7 @@ function Profile() {
         <p><strong>User Id:</strong> {user.id}</p>
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Email:</strong> {user.email}</p>
+        <p><strong>hashed_password:</strong> {user.hashed_password}</p>
         <p><strong>Profile Picture:</strong> {user.pfp_url || 'none'}</p>
         <p><strong>Description:</strong> {user.description || 'none'}</p>
       </div>
