@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
     pfp_url = db.Column(db.String(255))
     description = db.Column(db.Text)
 
+    post = db.relationship('Post', back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password
