@@ -45,4 +45,11 @@ def edit_profile():
 # @user_routes.route('/current')
 # def show_current_user():
 
-  
+@user_routes.route('/<int:userId>/delete', methods=['DELETE'])
+@login_required
+def delete_user(userId):
+  user = User.query.get(userId)
+  db.session.query(User).filter(User.id == userId).delete()
+  db.session.commit()
+
+  return user.to_dict()

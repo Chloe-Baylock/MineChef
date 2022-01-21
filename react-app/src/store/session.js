@@ -1,7 +1,8 @@
 // constants
 const SET_USER = 'session/SET_USER';
+const UPDATE_USER = 'session/EDIT_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const UPDATE_USER = 'session/EDIT_USER'
+const DELETE_USER = 'session/DELETE_USER';
 
 
 const setUser = (user) => ({
@@ -15,7 +16,12 @@ const removeUser = () => ({
 
 const updateUser = (user_dict) => ({
   type: UPDATE_USER,
-  payload: {user: user_dict},
+  payload: { user: user_dict },
+})
+
+const deleteUser = (user) => ({
+  type: DELETE_USER,
+  payload: user
 })
 
 const initialState = { user: null };
@@ -31,7 +37,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -47,8 +53,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -89,7 +95,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -108,7 +114,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
   const response = await fetch('/api/users/profile', {
     method: "PUT",
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username,
       email,
@@ -117,20 +123,34 @@ export const editUser = (username, email, password, description, pfp_url) => asy
       pfp_url,
     })
   })
-    if (response.ok) {
-      const user_dict = await response.json();
-      dispatch(updateUser(user_dict))
-    }
+  if (response.ok) {
+    const user_dict = await response.json();
+    dispatch(updateUser(user_dict))
   }
+}
+
+export const destroyUser = (user) => async dispatch => {
+  const response = await fetch(`/api/users/${user.id}/delete`, {
+    method: "DELETE"
+  })
+  if (response.ok) {
+    const deleted_user = await response.json();
+    dispatch(deleteUser(deleted_user))
+  }
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
+    case UPDATE_USER:
+      return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
-    case UPDATE_USER:
-      return {user: action.payload}
+    case DELETE_USER:
+      const deleting = {...state};
+      delete deleting[action.payload.id]
+      return deleting;
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editUser} from '../../store/session'
+import { editUser, destroyUser} from '../../store/session'
 import './Profile.css'
 
 
@@ -24,8 +24,13 @@ function EditProfile(props) {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    console.log('handleEdit')
     dispatch(editUser(username, email, password, description, pfp_url))
+  }
+
+  const handleDelete = e => {
+    e.preventDefault()
+    console.log('handle delete');
+    dispatch(destroyUser(props.user))
   }
 
 
@@ -83,6 +88,12 @@ function EditProfile(props) {
           className="submit-edit"
         >Submit</button>
       </form>
+      <button
+        className='delete-account'
+        onClick={handleDelete}
+      >
+        Delete Account
+      </button>
     </>
   ) : (
     ""

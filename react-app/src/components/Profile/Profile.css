@@ -33,3 +33,7 @@
   right: 0;
   bottom: 0;
 }
+
+.delete-account {
+  background-color: red;
+}
