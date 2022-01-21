@@ -31,6 +31,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'hashed_password': self.password,
             'pfp_url': self.pfp_url,
             'description': self.description
         }

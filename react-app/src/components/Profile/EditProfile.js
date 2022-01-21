@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editUser} from '../../store/session'
 import './Profile.css'
@@ -8,11 +8,24 @@ function EditProfile(props) {
 
   const dispatch = useDispatch()
 
+  const [ username, setUsername ] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ hashed_password, setHashed_password ] = useState('')
+  const [ pfp_url, setPfp_url ] = useState('')
+  const [ description, setDescription ] = useState('')
+
+  useEffect(() => {
+    setUsername(props.user.username);
+    setEmail(props.user.email);
+    setHashed_password(props.user.hashed_password);
+    if (props.user.pfp_url) setPfp_url(props.user.pfp_url);
+    if (props.user.description) setDescription(props.user.description);
+  }, [props.user])
 
   const handleEdit = (e) => {
     e.preventDefault();
     console.log('handleEdit')
-    dispatch(editUser(props.username, props.email, props.password, props.description, props.pfp_url))
+    dispatch(editUser(username, email, hashed_password, description, pfp_url))
   }
 
 
@@ -33,42 +46,41 @@ function EditProfile(props) {
               name='username'
               type='text'
               placeholder='Username'
-              defaultValue={props.user.username}
-              onChange={e => e.target.value}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             ></input>
             <input
               name='email'
               type='text'
               placeholder='Email'
-              defaultValue={props.user.email}
-              onChange={e => e.target.value}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             ></input>
             <input
               name='password'
-              type='text'
+              type='password'
               placeholder='Password'
-              defaultValue='*******'
-              onChange={e => e.target.value}
+              value={hashed_password}
+              onChange={e => setHashed_password(e.target.value)}
             ></input>
             <input
               name='profilePicture'
               type='text'
               placeholder='ProfilePicture'
-              defaultValue={props.user.pfp_url}
-              onChange={e => e.target.value}
+              value={pfp_url}
+              onChange={e => setPfp_url(e.target.value)}
             ></input>
             <input
               name='description'
               type='text'
               placeholder='Description'
-              defaultValue={props.user.description}
-              onChange={e => e.target.value}
+              value={description}
+              onChange={e => setDescription(e.target.value)}
             ></input>
           </div>
         </div>
         <button
           className="submit-edit"
-          type='submit'
         >Submit</button>
       </form>
     </>
