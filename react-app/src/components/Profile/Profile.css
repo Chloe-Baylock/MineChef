@@ -1,17 +1,31 @@
 .info-container {
-    position: absolute;
-    top: 40%;
-    left: 10%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
 
-    width: 20%;
-    padding-left: 10px;
-    background-color: aquamarine;
+  width: 20%;
+  padding-left: 10px;
+  background-color: aquamarine;
 }
 
-.edit-info {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+.edit-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-form-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.popup-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: rgb(45, 219, 45);
+  font-weight: bold;
 }
 
 .submit-edit {

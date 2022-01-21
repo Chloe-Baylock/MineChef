@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User
+from app.models import db, User
 from app.forms import EditProfileForm
 
 user_routes = Blueprint('users', __name__)
@@ -19,22 +19,35 @@ def user(id):
   user = User.query.get(id)
   return user.to_dict()
 
-@user_routes.route('/<int:userId>', methods=['PUT'])
+@user_routes.route('/profile', methods=['PUT'])
 @login_required
-def edit_profile(userId):
+def edit_profile():
+  userId = current_user.id
+  user = User.query.get(userId)
+
   form = EditProfileForm()
 
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  if form.validate_on_submit():
-    username = form.data['username']
-    email = form.data['email']
-    hashed_password = form.data['hashed_password']
-    pfp_url = form.data['pfp_url']
-    description = form.data['description']
-    updated_user = User(user_id=current_user, username=username, email=email, pfp_url=pfp_url, description=description, updated_user=updated_user)
-    return updated_user.to_dict()
-  else: return "error with edit form"
+  user.username = form.data['username']
+  user.email = form.data['email']
+  user.hashed_password = form.data['hashed_password']
+  user.pfp_url = form.data['pfp_url']
+  user.description = form.data['description']
+
+  db.session.commit()
+  return user.to_dict()
+
+  # if form.validate_on_submit():
+  #   user.username = form.data['username']
+  #   user.email = form.data['email']
+  #   user.hashed_password = form.data['hashed_password']
+  #   user.pfp_url = form.data['pfp_url']
+  #   user.description = form.data['description']
+
+  #   db.session.commit()
+  #   return user.to_dict()
+  # else: return "error with edit form"
 
 # @user_routes.route('/current')
 # def show_current_user():

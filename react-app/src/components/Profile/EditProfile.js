@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { editProfile } from '../../store/profile';
+import { editUser} from '../../store/session'
 import './Profile.css'
 
 
 function EditProfile(props) {
-
-  const [user, setUser] = useState({})
-  let userId = 0;
-
 
   const dispatch = useDispatch()
 
@@ -17,45 +12,65 @@ function EditProfile(props) {
   const handleEdit = (e) => {
     e.preventDefault();
     console.log('handleEdit')
-    dispatch(editProfile(user, userId))
+    dispatch(editUser(props.username, props.email, props.password, props.description, props.pfp_url))
   }
 
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })()
-  }, [userId])
 
 
   return props.trigger ? (
     <>
-      <button
-        onClick={() => props.setTrigger(false)}
-      >Cancel</button>
-      <form>
+      <form onSubmit={handleEdit}>
+        <div className='popup-form-grid'>
+          <div className='popup-labels'>
+            <label htmlFor='username'>Username: </label>
+            <label htmlFor='email'>Email: </label>
+            <label htmlFor='password'>Password: </label>
+            <label htmlFor='profilePicture'>Profile Picture: </label>
+            <label htmlFor='description'>Description: </label>
+          </div>
+          <div className='popup-inputs'>
+            <input
+              name='username'
+              type='text'
+              placeholder='Username'
+              defaultValue={props.user.username}
+              onChange={e => e.target.value}
+            ></input>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              defaultValue={props.user.email}
+              onChange={e => e.target.value}
+            ></input>
+            <input
+              name='password'
+              type='text'
+              placeholder='Password'
+              defaultValue='*******'
+              onChange={e => e.target.value}
+            ></input>
+            <input
+              name='profilePicture'
+              type='text'
+              placeholder='ProfilePicture'
+              defaultValue={props.user.pfp_url}
+              onChange={e => e.target.value}
+            ></input>
+            <input
+              name='description'
+              type='text'
+              placeholder='Description'
+              defaultValue={props.user.description}
+              onChange={e => e.target.value}
+            ></input>
+          </div>
+        </div>
         <button
           className="submit-edit"
           type='submit'
-          onClick={() => handleEdit}
         >Submit</button>
       </form>
-      {/* <div className="info-container">
-                <button
-                    className="edit-info"
-                    onClick={setEditPopup(true)}
-                    >Edit</button>
-                <p><strong>User Id:</strong> {user.id}</p>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Profile Picture:</strong> {user.pfp_url || 'none'}</p>
-                <p><strong>Description:</strong> {user.description || 'none'}</p>
-            </div> */}
     </>
   ) : (
     ""

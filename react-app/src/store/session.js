@@ -2,11 +2,8 @@
 // const GET_USER = 'session/GET_USER';
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_USER = 'session/EDIT_USER'
 
-// const getUser = (email) => ({
-//   type: GET_USER,
-//   payload: user
-// })
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -17,11 +14,12 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+const updateUser = (user_dict) => ({
+  type: UPDATE_USER,
+  payload: {user: user_dict},
+})
 
-// export const showUser = () => async dispatch => {
-  
-// }
+const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -107,12 +105,33 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
+
+export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
+  const response = await fetch('/api/users/profile', {
+    method: "PUT",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+      description,
+      pfp_url,
+    })
+  })
+    if (response.ok) {
+      const user_dict = await response.json();
+      dispatch(updateUser(user_dict))
+    }
+  }
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case UPDATE_USER:
+      return {user: action.payload}
     default:
       return state;
   }
