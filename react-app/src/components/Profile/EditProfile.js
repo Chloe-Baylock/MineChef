@@ -10,14 +10,14 @@ function EditProfile(props) {
 
   const [ username, setUsername ] = useState('')
   const [ email, setEmail ] = useState('')
-  const [ hashed_password, setHashed_password ] = useState('')
+  const [ password, setPassword ] = useState('')
   const [ pfp_url, setPfp_url ] = useState('')
   const [ description, setDescription ] = useState('')
 
   useEffect(() => {
     setUsername(props.user.username);
     setEmail(props.user.email);
-    setHashed_password(props.user.hashed_password);
+    setPassword(props.user.password);
     if (props.user.pfp_url) setPfp_url(props.user.pfp_url);
     if (props.user.description) setDescription(props.user.description);
   }, [props.user])
@@ -25,7 +25,7 @@ function EditProfile(props) {
   const handleEdit = (e) => {
     e.preventDefault();
     console.log('handleEdit')
-    dispatch(editUser(username, email, hashed_password, description, pfp_url))
+    dispatch(editUser(username, email, password, description, pfp_url))
   }
 
 
@@ -60,8 +60,8 @@ function EditProfile(props) {
               name='password'
               type='password'
               placeholder='Password'
-              value={hashed_password}
-              onChange={e => setHashed_password(e.target.value)}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             ></input>
             <input
               name='profilePicture'

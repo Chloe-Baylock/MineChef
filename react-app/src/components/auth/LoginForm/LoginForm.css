@@ -76,7 +76,9 @@ label {
     margin-right: 5px;
 }
 
-
+.hide {
+  display: none;
+}
 /* input {
     grid-area: b;
     font-size: 25px;

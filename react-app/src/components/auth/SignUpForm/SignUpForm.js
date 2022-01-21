@@ -89,24 +89,20 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <div>
-        <label>pfp_url</label>
         <input
+          className='hide'
           type='text'
           name='pfp_url'
           onChange={e => setPfp_url(e.target.value)}
           value={pfp_url}
         ></input>
-      </div>
-      <div>
-        <label>description</label>
         <input
+          className='hide'
           type='text'
           name='description'
           onChange={e => setDescription(e.target.value)}
           value={description}
         ></input>
-      </div>
       <button type='submit'>Sign Up</button>
     </form>
   );

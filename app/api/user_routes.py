@@ -31,7 +31,7 @@ def edit_profile():
   if form.validate_on_submit():
     user.username = form.data['username']
     user.email = form.data['email']
-    user.hashed_password = form.data['hashed_password']
+    user.password = form.data['password']
     user.pfp_url = form.data['pfp_url']
     user.description = form.data['description']
 

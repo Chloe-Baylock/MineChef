@@ -105,14 +105,14 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 
-export const editUser = (username, email, hashed_password, description, pfp_url) => async dispatch => {
+export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       username,
       email,
-      hashed_password,
+      password,
       description,
       pfp_url,
     })
