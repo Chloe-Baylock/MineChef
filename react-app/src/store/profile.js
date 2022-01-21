@@ -2,7 +2,7 @@ const EDIT_PROFILE = 'session/EDIT_PROFILE';
 
 const edit_profile = (user) => ({
   type: EDIT_PROFILE,
-  payload: user
+  payload: profile
 })
 
 export const editProfile = (user, user_id) => async (dispatch) => {
@@ -18,5 +18,14 @@ export const editProfile = (user, user_id) => async (dispatch) => {
   else {
     console.log('           *********resonse NOT ok')
     return "Error with response edit profile.";
+  }
+}
+
+export default function profileReducer(state = {}, action) {
+  switch (action.type) {
+    case EDIT_PROFILE:
+      return { profile: action.payload }
+    default:
+      return state;
   }
 }
