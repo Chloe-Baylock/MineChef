@@ -8,13 +8,9 @@ function Profile() {
 
   const dispatch = useDispatch()
   // const [user, setUser] = useState({})
-  const [editPopup, setEditPopup] = useState(false);
+  const [ editPopup, setEditPopup ] = useState("Edit");
   // const [ currentUser, setCurrentUser ]
   const currentUser = useSelector(state => state.session.user)
-
-  // useEffect(() => {
-  //   dispatch(authenticate)
-  // }, [currentUser])
 
 
   return (
@@ -24,11 +20,10 @@ function Profile() {
           <button
             className="edit-info"
             onClick={(e) => {
-              if (!editPopup) e.target.innerText = 'Cancel'
-              else e.target.innerText = 'Edit'
-              setEditPopup(!editPopup);
+              if (editPopup === "Edit") setEditPopup("Cancel")
+              else setEditPopup("Edit");
             }}
-          >Edit</button>
+          >{editPopup}</button>
         </div>
         <div className='popup-div'>
           <EditProfile
@@ -41,8 +36,8 @@ function Profile() {
         </div>
         <div className='below-popup'>
           <p><strong>User Id:</strong> {currentUser.id}</p>
-          <p><strong>Username:</strong> {currentUser.username}</p>
-          <p><strong>Email:</strong> {currentUser.email}</p>
+          <p><strong>Username:</strong> {currentUser.username}<button>edit</button></p>
+          <p><strong>Email:</strong> {currentUser.email}<button>edit</button></p>
           <p><strong>password:</strong> {currentUser.password}</p>
           <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
           <p><strong>Description:</strong> {currentUser.description || 'none'}</p>

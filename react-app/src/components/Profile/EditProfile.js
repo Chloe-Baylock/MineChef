@@ -29,20 +29,21 @@ function EditProfile(props) {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    dispatch(editUser(username, email, password, description, pfp_url))
+    props.setTrigger("Edit");
+    dispatch(editUser(username, email, password, description, pfp_url));
   }
 
   const handleDelete = e => {
-    e.preventDefault()
+    e.preventDefault();
     console.log('handle delete');
-    dispatch(destroyUser(currentUser))
-    dispatch(logout())
-    history.push('/deleted')
+    dispatch(destroyUser(currentUser));
+    dispatch(logout());
+    history.push('/deleted');
   }
 
 
 
-  return props.trigger ? (
+  return props.trigger === "Cancel" ? (
     <>
       <form onSubmit={handleEdit}>
         <div className='popup-form-grid'>
