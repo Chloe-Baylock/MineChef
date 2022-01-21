@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { logout } from '../../store/session';
 import { editUser, destroyUser} from '../../store/session'
@@ -7,6 +7,8 @@ import './Profile.css'
 
 
 function EditProfile(props) {
+  
+  const currentUser = useSelector(state => state.session.user)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -18,12 +20,12 @@ function EditProfile(props) {
   const [ description, setDescription ] = useState('')
 
   useEffect(() => {
-    setUsername(props.user.username);
-    setEmail(props.user.email);
-    setPassword(props.user.password);
-    if (props.user.pfp_url) setPfp_url(props.user.pfp_url);
-    if (props.user.description) setDescription(props.user.description);
-  }, [props.user])
+    setUsername(currentUser.username);
+    setEmail(currentUser.email);
+    setPassword(currentUser.password);
+    if (currentUser.pfp_url) setPfp_url(currentUser.pfp_url);
+    if (currentUser.description) setDescription(currentUser.description);
+  }, [])
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ function EditProfile(props) {
   const handleDelete = e => {
     e.preventDefault()
     console.log('handle delete');
-    dispatch(destroyUser(props.user))
+    dispatch(destroyUser(currentUser))
     dispatch(logout())
     history.push('/deleted')
   }
@@ -56,35 +58,35 @@ function EditProfile(props) {
               name='username'
               type='text'
               placeholder='Username'
-              value={username}
+              value={username || ''}
               onChange={e => setUsername(e.target.value)}
             ></input>
             <input
               name='email'
               type='text'
               placeholder='Email'
-              value={email}
+              value={email || ''}
               onChange={e => setEmail(e.target.value)}
             ></input>
             <input
               name='password'
               type='password'
               placeholder='Password'
-              value={password}
+              value={password || ''}
               onChange={e => setPassword(e.target.value)}
             ></input>
             <input
               name='profilePicture'
               type='text'
               placeholder='ProfilePicture'
-              value={pfp_url}
+              value={pfp_url || ''}
               onChange={e => setPfp_url(e.target.value)}
             ></input>
             <input
               name='description'
               type='text'
               placeholder='Description'
-              value={description}
+              value={description || ''}
               onChange={e => setDescription(e.target.value)}
             ></input>
           </div>

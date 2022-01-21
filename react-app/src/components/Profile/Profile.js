@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticate } from '../../store/session';
 import EditProfile from './EditProfile';
 import './Profile.css'
 
 function Profile() {
 
-  const [user, setUser] = useState({})
+  const dispatch = useDispatch()
+  // const [user, setUser] = useState({})
   const [editPopup, setEditPopup] = useState(false);
+  // const [ currentUser, setCurrentUser ]
+  const currentUser = useSelector(state => state.session.user)
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/auth/`);
-      const data = await response.json();
-      console.log('******* data is', data);
-      setUser(data);
-    })()
-  }, [])
+  // useEffect(() => {
+  //   dispatch(authenticate)
+  // }, [currentUser])
 
 
   return (
@@ -34,18 +34,18 @@ function Profile() {
           <EditProfile
             trigger={editPopup}
             setTrigger={setEditPopup}
-            user={user}
+            // user={user}
 
 
           />
         </div>
         <div className='below-popup'>
-          <p><strong>User Id:</strong> {user.id}</p>
-          <p><strong>Username:</strong> {user.username}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>password:</strong> {user.password}</p>
-          <p><strong>Profile Picture:</strong> {user.pfp_url || 'none'}</p>
-          <p><strong>Description:</strong> {user.description || 'none'}</p>
+          <p><strong>User Id:</strong> {currentUser.id}</p>
+          <p><strong>Username:</strong> {currentUser.username}</p>
+          <p><strong>Email:</strong> {currentUser.email}</p>
+          <p><strong>password:</strong> {currentUser.password}</p>
+          <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
+          <p><strong>Description:</strong> {currentUser.description || 'none'}</p>
         </div>
       </div>
     </>
