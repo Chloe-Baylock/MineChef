@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Profile from './components/Profile/Profile'
+import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/profile' exact={true} >
           <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts' exact={true} >
+          <PostsPage />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
