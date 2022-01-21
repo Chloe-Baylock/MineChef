@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import User
 from app.forms import EditProfileForm
-import requests
 
 user_routes = Blueprint('users', __name__)
 
@@ -36,23 +35,8 @@ def edit_profile(userId):
     updated_user = User(user_id=current_user, username=username, email=email, pfp_url=pfp_url, description=description, updated_user=updated_user)
     return updated_user.to_dict()
   else: return "error with edit form"
-  
-@user_routes.route('/X')
-def show_X():
-  return "X"
 
-@user_routes.route('/current')
-def show_current_user():
-  a_session = requests.Session()
-  a_session.get('http://localhost:3000/api/users/X')
-  session_cookies = a_session.cookies
-  cookies_dictionary = session_cookies.get_dict()
-  print('               ******cookies_dict is', cookies_dictionary)
-  # r = requests.get('http://localhost:3000/api/users/X')
-  # for c in r.cookies:
-    # print('               ******cookies is', c)
-
-
-  return cookies_dictionary
+# @user_routes.route('/current')
+# def show_current_user():
 
   

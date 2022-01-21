@@ -64,14 +64,6 @@ def inject_csrf_token(response):
     samesite='Strict' if os.environ.get(
         'FLASK_ENV') == 'production' else None,
     httponly=True)
-  if form["email"].data:
-    response.set_cookie(
-      'email',
-      form.data['email'],
-      secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-      samesite='Strict' if os.environ.get(
-        'FLASK_ENV') == 'production' else None,
-    httponly=True)
   return response
 
 
