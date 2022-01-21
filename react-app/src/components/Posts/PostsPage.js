@@ -19,7 +19,7 @@ function PostsPage() {
       <h1>Posts</h1>
       <ul>
         {postsKeys && postsKeys.map(postKey => (
-          <li key={'posts[`${postKey}`].id'}>{posts[`${postKey}`].title}</li>
+          <li key={posts[`${postKey}`].id}>{posts[`${postKey}`].title}</li>
         ))}
       </ul>
     </div>

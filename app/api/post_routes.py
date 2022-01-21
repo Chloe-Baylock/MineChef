@@ -9,3 +9,5 @@ post_routes = Blueprint('posts', __name__)
 def posts():
   posts = Post.query.all()
   return {'posts': [post.to_dict for post in posts]}
+
+# @post_routes.route('/<int>')
