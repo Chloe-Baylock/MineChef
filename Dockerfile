@@ -4,7 +4,7 @@ WORKDIR /react-app
 COPY react-app/. .
 
 # You have to set this because it should be set during build time.
-ENV REACT_APP_BASE_URL=<Your-REACT_APP_BASE_URL-here>
+ENV REACT_APP_BASE_URL=https://minechef.herokuapp.com/
 
 # Build our React App
 RUN npm install
@@ -26,6 +26,7 @@ COPY --from=build-stage /react-app/build/* app/static/
 # Install Python Dependencies
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
+RUN pip install boto3
 
 # Run flask environment
 CMD gunicorn app:app

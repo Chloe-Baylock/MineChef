@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
+import LoginForm from './components/auth/LoginForm/LoginForm';
+import SignUpForm from './components/auth/SignUpForm/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Profile from './components/Profile/Profile'
+import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
+import DeletedPage from './components/deleted';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +43,15 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/profile' exact={true} >
+          <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts' exact={true} >
+          <PostsPage />
+        </ProtectedRoute>
+        <Route path='/deleted' exact={true} >
+          <DeletedPage />
+        </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>

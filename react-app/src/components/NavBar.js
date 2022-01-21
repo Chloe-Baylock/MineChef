@@ -1,35 +1,47 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
+const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
+
 const NavBar = () => {
+
   return (
     <nav>
       <ul>
-        <li>
+        <p>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            <img src={minewithahat} alt='minewithahat'></img>
           </NavLink>
-        </li>
-        <li>
+        </p>
+        <p>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
-        <li>
+        </p>
+        <p>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li>
-        <li>
+        </p>
+        <p>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
-        <li>
+        </p>
+        <p>
+          <NavLink to='/profile' exact={true} activeClassName='active'>
+            Profile
+          </NavLink>
+        </p>
+        <p>
+          <NavLink to='/posts' exact={true} activeClassName='active'>
+            Posts
+          </NavLink>
+        </p>
+        <p>
           <LogoutButton />
-        </li>
+        </p>
       </ul>
     </nav>
   );

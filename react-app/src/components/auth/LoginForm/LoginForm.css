@@ -1,0 +1,86 @@
+html {
+    background-color: rgb(245, 245, 245);
+}
+
+/* nav {
+    display: none;
+} */
+
+.cyan-box {
+    position: absolute;
+    left: 30%;
+    top: 10%;
+    width: 30vw;
+    height: 60vh;
+
+    background-color: aquamarine;
+}
+
+.head {
+    display: flex;
+    height: 20%;
+}
+
+.form-box {
+    height:80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.h1-div {
+    position: absolute;
+    width: 100%;
+    height: inherit;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.label-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: rgb(45, 219, 45);
+    /* color: white; */
+}
+
+.input-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: pink;
+}
+
+
+.form-button {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+label {
+    margin-top: 1px;
+    margin-right: 5px;
+}
+
+.hide {
+  display: none;
+}
+/* input {
+    grid-area: b;
+    font-size: 25px;
+    background-color: pink 
+} */
