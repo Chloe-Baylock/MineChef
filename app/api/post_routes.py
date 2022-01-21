@@ -10,4 +10,6 @@ def posts():
   posts = Post.query.all()
   return {'posts': [post.to_dict for post in posts]}
 
-# @post_routes.route('/<int>')
+# @post_routes.route('/<int:postId>', methods=["POST"])
+# @login_required
+# def post():
