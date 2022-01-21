@@ -9,6 +9,9 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [ pfp_url, setPfp_url ] = useState('')
+  const [ description, setDescription ] = useState('')
+
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -84,6 +87,24 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+        ></input>
+      </div>
+      <div>
+        <label>pfp_url</label>
+        <input
+          type='text'
+          name='pfp_url'
+          onChange={e => setPfp_url(e.target.value)}
+          value={pfp_url}
+        ></input>
+      </div>
+      <div>
+        <label>description</label>
+        <input
+          type='text'
+          name='description'
+          onChange={e => setDescription(e.target.value)}
+          value={description}
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
