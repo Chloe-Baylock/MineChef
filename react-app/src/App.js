@@ -10,6 +10,7 @@ import User from './components/User';
 import Profile from './components/Profile/Profile'
 import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
+import DeletedPage from './components/deleted';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         <ProtectedRoute path='/posts' exact={true} >
           <PostsPage />
         </ProtectedRoute>
+        <Route path='/deleted' exact={true} >
+          <DeletedPage />
+        </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
+import { logout } from '../../store/session';
 import { editUser, destroyUser} from '../../store/session'
 import './Profile.css'
 
@@ -7,6 +9,7 @@ import './Profile.css'
 function EditProfile(props) {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [ username, setUsername ] = useState('')
   const [ email, setEmail ] = useState('')
@@ -31,6 +34,8 @@ function EditProfile(props) {
     e.preventDefault()
     console.log('handle delete');
     dispatch(destroyUser(props.user))
+    dispatch(logout())
+    history.push('/deleted')
   }
 
 
