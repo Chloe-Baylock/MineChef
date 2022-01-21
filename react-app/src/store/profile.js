@@ -1,8 +1,8 @@
-const EDIT_PROFILE = 'session/EDIT_PROFILE';
+const EDIT_PROFILE = 'profile/EDIT_PROFILE';
 
 const edit_profile = (user) => ({
   type: EDIT_PROFILE,
-  payload: profile
+  payload: user
 })
 
 export const editProfile = (user, user_id) => async (dispatch) => {

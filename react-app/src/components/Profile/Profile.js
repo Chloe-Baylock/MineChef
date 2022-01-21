@@ -11,11 +11,11 @@ function Profile() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`/api/users/current`);
-      // const cookies = await response.json();
-      // setUser(cookies);
+      const response = await fetch(`/api/auth/`);
+      const data = await response.json();
+      console.log(            '******* data is', data);
     })()
-  }, [userId])
+  }, [])
 
   return (
     <>
