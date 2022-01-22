@@ -30,6 +30,19 @@ function EditProfile(props) {
     if (currentUser.description) setDescription(currentUser.description);
   }, [])
 
+  const editTypeButton = (e, classA) => {
+    if (props.edit === classA) {
+      props.setEdit('none')
+      e.target.style.backgroundColor=''
+    } else {
+      props.setEdit(classA)
+      const etb = document.getElementsByClassName('edit-type-button')
+      console.log('Array.from(etb)', Array.from(etb))
+      Array.from(etb).forEach(ele => ele.style.backgroundColor='')
+      e.target.style.backgroundColor='red'
+    } 
+  }
+
   // const handleEdit = (e) => {
   //   e.preventDefault();
   //   props.setTrigger("Edit");
@@ -47,30 +60,23 @@ function EditProfile(props) {
   return props.trigger === "Cancel" ? (
     <>
       <div>
+        <button
+          className='edit-type-button'
+          onClick={e => editTypeButton(e, 'username')}
+        >Change Username </button>
+        <button
+          className='edit-type-button'
+          onClick={e => editTypeButton(e, 'email')}
+        >Change Email </button>
+        <button
+          className='edit-type-button'
+          onClick={e => editTypeButton(e, 'password')}
+        >Change Password </button>
+      </div>
+      <div>
         {props.edit === 'username' && <EditUsername currentUser={currentUser}/>}
         {props.edit === 'email' && <EditEmail currentUser={currentUser}/>}
         {props.edit === 'password' && <EditPassword currentUser={currentUser}/>}
-        <button
-          onClick={() => {
-            if (props.edit === 'username') {
-              props.setEdit('none')
-            } else props.setEdit('username')
-          }} 
-        >Change Username </button>
-        <button
-          onClick={() => {
-            if (props.edit === 'email') {
-              props.setEdit('none')
-            } else props.setEdit('email')
-          }} 
-        >Change Email </button>
-        <button
-          onClick={() => {
-            if (props.edit === 'password') {
-              props.setEdit('none')
-            } else props.setEdit('password')
-          }} 
-        >Change Password </button>
       </div>
     </>
   ) : (
