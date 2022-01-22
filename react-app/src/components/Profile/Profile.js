@@ -36,8 +36,8 @@ function Profile() {
         </div>
         <div className='below-popup'>
           <p><strong>User Id:</strong> {currentUser.id}</p>
-          <p><strong>Username:</strong> {currentUser.username}<button>edit</button></p>
-          <p><strong>Email:</strong> {currentUser.email}<button>edit</button></p>
+          <p><strong>Username:</strong> {currentUser.username}</p>
+          <p><strong>Email:</strong> {currentUser.email}</p>
           <p><strong>password:</strong> {currentUser.password}</p>
           <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
           <p><strong>Description:</strong> {currentUser.description || 'none'}</p>
