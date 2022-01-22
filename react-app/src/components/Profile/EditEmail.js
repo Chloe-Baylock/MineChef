@@ -17,7 +17,7 @@ function EditEmail(props) {
       <form onSubmit={alterEmail}>
         <input
         name='email'
-        type='text'
+        type='email'
         placeholder='email'
         value={email || ''}
         onChange={e => setEmail(e.target.value)}

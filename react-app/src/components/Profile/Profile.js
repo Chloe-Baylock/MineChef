@@ -8,7 +8,8 @@ function Profile() {
 
   const dispatch = useDispatch()
   // const [user, setUser] = useState({})
-  const [ editPopup, setEditPopup ] = useState("Edit");
+  const [ editPopup, setEditPopup ] = useState("Edit Profile");
+  const [ edit, setEdit ] = useState("none");
   // const [ currentUser, setCurrentUser ]
   const currentUser = useSelector(state => state.session.user)
 
@@ -20,8 +21,11 @@ function Profile() {
           <button
             className="edit-info"
             onClick={(e) => {
-              if (editPopup === "Edit") setEditPopup("Cancel")
-              else setEditPopup("Edit");
+              if (editPopup === "Edit Profile") {
+                setEditPopup("Cancel")
+                setEdit('none')
+              } 
+              else setEditPopup("Edit Profile");
             }}
           >{editPopup}</button>
         </div>
@@ -29,9 +33,8 @@ function Profile() {
           <EditProfile
             trigger={editPopup}
             setTrigger={setEditPopup}
-            // user={user}
-
-
+            edit={edit}
+            setEdit={setEdit}
           />
         </div>
         <div className='below-popup'>

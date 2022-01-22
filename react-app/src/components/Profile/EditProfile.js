@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import { editUser, destroyUser } from '../../store/session';
 import EditUsername from './EditUsername';
 import EditEmail from './EditEmail';
+import EditPassword from './EditPassword';
 import './Profile.css';
 
 
@@ -29,11 +30,11 @@ function EditProfile(props) {
     if (currentUser.description) setDescription(currentUser.description);
   }, [])
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-    props.setTrigger("Edit");
-    dispatch(editUser(username, email, password, description, pfp_url));
-  }
+  // const handleEdit = (e) => {
+  //   e.preventDefault();
+  //   props.setTrigger("Edit");
+  //   dispatch(editUser(username, email, password, description, pfp_url));
+  // }
 
   const handleDelete = e => {
     e.preventDefault();
@@ -46,12 +47,30 @@ function EditProfile(props) {
   return props.trigger === "Cancel" ? (
     <>
       <div>
-        <EditUsername currentUser={currentUser}/>
-        <EditEmail currentUser={currentUser}/>
+        {props.edit === 'username' && <EditUsername currentUser={currentUser}/>}
+        {props.edit === 'email' && <EditEmail currentUser={currentUser}/>}
+        {props.edit === 'password' && <EditPassword currentUser={currentUser}/>}
         <button
+          onClick={() => {
+            if (props.edit === 'username') {
+              props.setEdit('none')
+            } else props.setEdit('username')
+          }} 
         >Change Username </button>
-        {/* <button onClick={changeEmail}>Change Email</button> */}
-        {/* <button onClick={changePassword}>Change Password</button> */}
+        <button
+          onClick={() => {
+            if (props.edit === 'email') {
+              props.setEdit('none')
+            } else props.setEdit('email')
+          }} 
+        >Change Email </button>
+        <button
+          onClick={() => {
+            if (props.edit === 'password') {
+              props.setEdit('none')
+            } else props.setEdit('password')
+          }} 
+        >Change Password </button>
       </div>
     </>
   ) : (

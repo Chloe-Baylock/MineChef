@@ -33,6 +33,7 @@ def edit_profile():
   x = list(change.keys())
   y = change[f'{x[0]}']
 
+
   if x[0] == 'username':
     user.username = y
   elif x[0] == 'email':

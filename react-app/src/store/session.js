@@ -143,12 +143,14 @@ export const signUp = (username, email, password) => async (dispatch) => {
 // }
 
 export const editUser = (obj) => async dispatch => {
-  const { username } = obj
+  const { username, email, password } = obj
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username,
+      email,
+      password,
     })
   })
   if (response.ok) {
