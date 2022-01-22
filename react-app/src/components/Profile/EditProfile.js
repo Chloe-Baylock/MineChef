@@ -37,7 +37,6 @@ function EditProfile(props) {
     } else {
       props.setEdit(classA)
       const etb = document.getElementsByClassName('edit-type-button')
-      console.log('Array.from(etb)', Array.from(etb))
       Array.from(etb).forEach(ele => ele.style.backgroundColor='')
       e.target.style.backgroundColor='red'
     } 
@@ -58,8 +57,8 @@ function EditProfile(props) {
   }
 
   return props.trigger === "Cancel" ? (
-    <>
-      <div>
+    <div className='editing-grid'>
+      <div className='edit-buttons-div'>
         <button
           className='edit-type-button'
           onClick={e => editTypeButton(e, 'username')}
@@ -74,11 +73,23 @@ function EditProfile(props) {
         >Change Password </button>
       </div>
       <div>
-        {props.edit === 'username' && <EditUsername currentUser={currentUser}/>}
-        {props.edit === 'email' && <EditEmail currentUser={currentUser}/>}
-        {props.edit === 'password' && <EditPassword currentUser={currentUser}/>}
+        {props.edit === 'username' && <EditUsername
+          trigger={props.trigger}
+          setTrigger={props.setTrigger}
+          currentUser={currentUser}
+        />}
+        {props.edit === 'email' && <EditEmail
+          etrigger={props.trigger}
+          setTrigger={props.setTrigger}
+          currentUser={currentUser}
+        />}
+        {props.edit === 'password' && <EditPassword 
+          trigger={props.trigger}
+          setTrigger={props.setTrigger}
+          currentUser={currentUser}
+        />}
       </div>
-    </>
+    </div>
   ) : (
     ""
   )

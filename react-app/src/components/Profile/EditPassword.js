@@ -5,6 +5,7 @@ import { editUser } from '../../store/session'
 function EditPassword(props) {
   const dispatch = useDispatch();
 
+  const [ trigger, setTrigger ] = useState(props.trigger)
   const [ password, setPassword ] = useState(props.currentUser.password)
 
   const alterpassword = e => {
@@ -22,7 +23,7 @@ function EditPassword(props) {
         value={password || ''}
         onChange={e => setPassword(e.target.value)}
         ></input>
-        <button>Submit</button>
+        <button onClick={() => props.setTrigger('Edit Profile')}>Submit</button>
       </form>
     </>
   )

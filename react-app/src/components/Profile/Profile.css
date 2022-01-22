@@ -28,6 +28,16 @@
   font-weight: bold;
 }
 
+.editing-grid {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
+.edit-buttons-div {
+  display: flex;
+  flex-direction: column;
+}
+
 .submit-edit {
   position: absolute;
   right: 0;

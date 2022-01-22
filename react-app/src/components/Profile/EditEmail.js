@@ -5,6 +5,7 @@ import { editUser } from '../../store/session'
 function EditEmail(props) {
   const dispatch = useDispatch();
 
+  const [ trigger, setTrigger ] = useState(props.trigger)
   const [ email, setEmail ] = useState(props.currentUser.email)
 
   const alterEmail = e => {
@@ -22,7 +23,8 @@ function EditEmail(props) {
         value={email || ''}
         onChange={e => setEmail(e.target.value)}
         ></input>
-        <button>Submit</button>
+        <button onClick={() => props.setTrigger('Edit Profile')}>Submit</button>
+
       </form>
     </>
   )

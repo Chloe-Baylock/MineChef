@@ -5,6 +5,7 @@ import { editUser } from '../../store/session'
 function EditUsername(props) {
   const dispatch = useDispatch();
 
+  const [ trigger, setTrigger ] = useState(props.trigger)
   const [ username, setUsername ] = useState(props.currentUser.username)
 
   const alterUsername = e => {
@@ -22,7 +23,7 @@ function EditUsername(props) {
         value={username || ''}
         onChange={e => setUsername(e.target.value)}
         ></input>
-        <button>Submit</button>
+        <button onClick={() => props.setTrigger('Edit Profile')}>Submit</button>
       </form>
     </>
   )
