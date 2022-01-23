@@ -5,12 +5,12 @@ import { editUser } from '../../store/session'
 function EditUsername(props) {
   const dispatch = useDispatch();
 
-  const [ trigger, setTrigger ] = useState(props.trigger)
   const [ username, setUsername ] = useState(props.currentUser.username)
 
   const alterUsername = e => {
     e.preventDefault();
-    dispatch(editUser({'username': username}))
+    dispatch(editUser({'username': username}));
+    props.setTrigger('Edit Profile');
   }
 
   return (
@@ -23,7 +23,7 @@ function EditUsername(props) {
         value={username || ''}
         onChange={e => setUsername(e.target.value)}
         ></input>
-        <button onClick={() => props.setTrigger('Edit Profile')}>Submit</button>
+        <button>Submit</button>
       </form>
     </>
   )
