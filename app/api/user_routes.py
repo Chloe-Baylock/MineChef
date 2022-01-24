@@ -38,6 +38,8 @@ def edit_profile():
     user.username = y
   elif x[0] == 'email':
     user.email = y
+  elif x[0] == 'password':
+    user.password = y
 
   db.session.commit()
   return user.to_dict()
