@@ -1,9 +1,14 @@
 // constants
+// const LOAD_USER = 'session/LOAD_USER'
 const SET_USER = 'session/SET_USER';
 const UPDATE_USER = 'session/EDIT_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const DELETE_USER = 'session/DELETE_USER';
 
+// const loadUser = user => ({
+//   type: LOAD_USER,
+//   payload: user
+// })
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -25,6 +30,14 @@ const deleteUser = (user) => ({
 })
 
 const initialState = { user: null };
+
+// export const getUser = () => async dispatch => {
+//   const response = await fetch('/api/auth/')
+//   if (response.ok) {
+//     const data = await response.json()
+//     dispatch(loadUser(data));
+//   }
+// }
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -111,7 +124,26 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 
-export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
+// export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
+//   const response = await fetch('/api/users/profile', {
+//     method: "PUT",
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({
+//       username,
+//       email,
+//       password,
+//       description,
+//       pfp_url,
+//     })
+//   })
+//   if (response.ok) {
+//     const user_dict = await response.json();
+//     dispatch(updateUser(user_dict))
+//   }
+// }
+
+export const editUser = (obj) => async dispatch => {
+  const { username, email, password } = obj
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -119,8 +151,6 @@ export const editUser = (username, email, password, description, pfp_url) => asy
       username,
       email,
       password,
-      description,
-      pfp_url,
     })
   })
   if (response.ok) {
@@ -144,7 +174,7 @@ export default function reducer(state = initialState, action) {
     case SET_USER:
       return { user: action.payload }
     case UPDATE_USER:
-      return { user: action.payload }
+      return action.payload
     case REMOVE_USER:
       return { user: null }
     case DELETE_USER:
