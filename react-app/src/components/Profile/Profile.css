@@ -1,3 +1,15 @@
+.pfp-image:hover {
+  cursor: pointer;
+}
+
+.pfp-image:hover .pfp-image-heart {
+  display: flex;
+}
+
+.pfp-image-heart {
+  z-index: 1;
+}
+
 .info-container {
   position: absolute;
   top: 40%;

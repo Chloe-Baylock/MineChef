@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authenticate } from '../../store/session';
 import EditProfile from './EditProfile';
 import './Profile.css'
+import { HeartIcon, UserIcon, ChatIcon } from "@heroicons/react/solid";
 
 function Profile() {
 
@@ -16,6 +16,10 @@ function Profile() {
 
   return (
     <>
+      <div className='image-wrapper'>
+        <img className='pfp-image' src="https://i.ibb.co/SsYtLQN/minewithahat.png"></img>
+        <p><HeartIcon className='pfp-image-heart' /></p>
+      </div>
       <div className="info-container">
         <div className='edit-button-container'>
           <button
