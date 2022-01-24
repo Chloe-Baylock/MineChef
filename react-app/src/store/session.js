@@ -1,6 +1,7 @@
 // constants
 // const LOAD_USER = 'session/LOAD_USER'
 const SET_USER = 'session/SET_USER';
+// const SET_PFP = 'session/SET_PFP'
 const UPDATE_USER = 'session/EDIT_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const DELETE_USER = 'session/DELETE_USER';
@@ -14,6 +15,11 @@ const setUser = (user) => ({
   type: SET_USER,
   payload: user
 });
+
+// const setPfp = user => ({
+//   type: SET_PFP,
+//   payload: user,
+// })
 
 const removeUser = () => ({
   type: REMOVE_USER,
@@ -124,27 +130,29 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 export const editUser = (obj) => async dispatch => {
-  const { username, email, password, pfp_url } = obj
-  console.log('editUser thunk')
-  const formData = new FormData();
-  formData.append('theImage', pfp_url)
+  const { username, email, password } = obj
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username,
-      email,
-      password,
-      pfp_url
-    }),
-    formData,
+        username,
+        email,
+        password,
+      }),
   })
   if (response.ok) {
     const user_dict = await response.json();
-    console.log('response.ok', response.ok)
     dispatch(updateUser(user_dict))
   }
 }
+
+// export const postImage = image => async dispatch => {
+//   formData.append("image", image)
+//   const response  = await fetch('/api/users/pfp', {
+//     method: "POST",
+//     body: formData,
+//   });
+// }
 
 export const destroyUser = (user) => async dispatch => {
   const response = await fetch(`/api/users/${user.id}/delete`, {

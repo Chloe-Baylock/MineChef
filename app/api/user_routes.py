@@ -21,6 +21,40 @@ def user(id):
   user = User.query.get(id)
   return user.to_dict()
 
+@user_routes.route('/pfp', methods=["POST"])
+@login_required
+def image():
+  if "image" not in request.files:
+    print('               ****** image not found')
+    return {"errors": "image required"}, 400
+  
+  image = request.files["image"]
+  print('        ***** image is', image)
+
+  if not allowed_file(image.filename):
+    return {"errors": "file type not permitted"}, 400
+
+  image.filename = get_unique_filename(image.filename)
+
+  upload = upload_file_to_s3(image)
+
+  print('               ***** 1')
+
+
+  if "url" not in upload:
+    # if the dictionary doesn't have a url key
+    # it means that there was an error when we tried to upload
+    # so we send back that error message
+    print('               ***** 2')
+
+    return upload, 400
+
+  url = upload["url"]
+
+  print('               ***** got this far.')
+  user = User.query.get(current_user.id)
+  return user.to_dict()
+
 @user_routes.route('/profile', methods=['PUT'])
 @login_required
 def edit_profile():
@@ -32,40 +66,39 @@ def edit_profile():
   x = list(change.keys())
   y = change[f'{x[0]}']
 
-
   if x[0] == 'username':
     user.username = y
   elif x[0] == 'email':
     user.email = y
   elif x[0] == 'password':
     user.password = y
-  elif x[0] == 'pfp_url':
-    print('             **** here')
-    print('             **** request is', request)
-    print('             **** request.files is', request.files)
-    if "image" not in request.files:
-      print('             **** 1')
-      return {"errors": "image required"}, 400
+  # elif x[0] == 'pfp_url':
+  #   print('             **** here')
+  #   print('             **** request is', request)
+  #   print('             **** request.files is', request.files)
+  #   if "pfp_url" not in request.files:
+  #     print('             **** 1')
+  #     return {"errors": "image required"}, 400
 
-    image = request.files["image"]
+  #   image = request.files["image"]
 
-    if not allowed_file(image.filename):
-      return {"errors": "file type not permitted"}, 400
+  #   if not allowed_file(image.filename):
+  #     return {"errors": "file type not permitted"}, 400
     
-    image.filename = get_unique_filename(image.filename)
+  #   image.filename = get_unique_filename(image.filename)
 
-    upload = upload_file_to_s3(image)
+  #   upload = upload_file_to_s3(image)
 
-    if "url" not in upload:
-      # if the dictionary doesn't have a url key
-      # it means that there was an error when we tried to upload
-      # so we send back that error message
-      return upload, 400
+  #   if "url" not in upload:
+  #     # if the dictionary doesn't have a url key
+  #     # it means that there was an error when we tried to upload
+  #     # so we send back that error message
+  #     return upload, 400
 
-    url = upload["url"]
-    user.pfp_url = url
-  else:
-    return ('             ****chloe wrote this error')
+  #   url = upload["url"]
+  #   user.pfp_url = url
+  # else:
+  #   return ('             ****chloe wrote this error')
 
   db.session.commit()
   return user.to_dict()

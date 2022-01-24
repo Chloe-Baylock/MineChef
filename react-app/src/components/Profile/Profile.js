@@ -22,36 +22,58 @@ function Profile() {
   //   return 'nope';
   // }
 
-  useEffect(() => {
-    console.log('in use effect')
-    if (image) {
-      console.log('image is', image);
-      console.log('uploadImage...');
-      dispatch(editUser({ 'pfp_url': image }))
-    }
-    else console.log('useEffect but no effect...');
-  }, [image])
+  // useEffect(() => {
+  //   console.log('in use effect')
+  //   if (image) {
+  //     console.log('image is', image);
+  //     console.log('uploadImage...');
+  //     dispatch(editUser({ 'pfp_url': image }))
+  //   }
+  //   else console.log('useEffect but no effect...');
+  // }, [image])
 
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
   };
 
+  const postImage = async (e) => {
+    e.preventDefault();
+
+    image || console.log("* Please upload an image.");
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const response = await fetch('/api/users/pfp', {
+      method: "POST",
+      body: formData,
+    });
+    if (response.ok) {
+      await response.json();
+      console.log('success')
+    }
+  }
+
   return (
     <>
       <div className="pfp-container">
-        <input
-          className="filey-thing"
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        />
-        <img
-          className="pfp-image"
-          src="https://i.ibb.co/SsYtLQN/minewithahat.png"
-          alt="pfp"
-        ></img>
-        <PencilIcon className="pen-icon" />
+        <form onSubmit={postImage}>
+          <input
+            className="filey-thing"
+            name='image'
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
+          <button>Submit</button>
+          <img
+            className="pfp-image"
+            src="https://i.ibb.co/SsYtLQN/minewithahat.png"
+            alt="pfp"
+          ></img>
+          <PencilIcon className="pen-icon" />
+        </form>
       </div>
 
       <div className="info-container">
