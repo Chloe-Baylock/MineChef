@@ -123,27 +123,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-
-// export const editUser = (username, email, password, description, pfp_url) => async dispatch => {
-//   const response = await fetch('/api/users/profile', {
-//     method: "PUT",
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({
-//       username,
-//       email,
-//       password,
-//       description,
-//       pfp_url,
-//     })
-//   })
-//   if (response.ok) {
-//     const user_dict = await response.json();
-//     dispatch(updateUser(user_dict))
-//   }
-// }
-
 export const editUser = (obj) => async dispatch => {
-  const { username, email, password } = obj
+  const { username, email, password, pfp_url } = obj
+  console.log('editUser thunk')
+  const formData = new FormData();
+  formData.append('theImage', pfp_url)
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -151,10 +135,13 @@ export const editUser = (obj) => async dispatch => {
       username,
       email,
       password,
-    })
+      pfp_url
+    }),
+    formData,
   })
   if (response.ok) {
     const user_dict = await response.json();
+    console.log('response.ok', response.ok)
     dispatch(updateUser(user_dict))
   }
 }

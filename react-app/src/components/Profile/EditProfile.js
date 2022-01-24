@@ -42,12 +42,6 @@ function EditProfile(props) {
     } 
   }
 
-  // const handleEdit = (e) => {
-  //   e.preventDefault();
-  //   props.setTrigger("Edit");
-  //   dispatch(editUser(username, email, password, description, pfp_url));
-  // }
-
   const handleDelete = e => {
     e.preventDefault();
     console.log('handle delete');

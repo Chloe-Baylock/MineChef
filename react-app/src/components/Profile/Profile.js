@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import './Profile.css'
 import { UserCircleIcon, PencilIcon } from "@heroicons/react/solid";
+import { editUser } from '../../store/session';
 
 function Profile() {
 
   const dispatch = useDispatch()
-  // const [user, setUser] = useState({})
-  const [editPopup, setEditPopup] = useState("Edit Profile");
-  const [edit, setEdit] = useState("none");
-  // const [ currentUser, setCurrentUser ]
+
   const currentUser = useSelector(state => state.session.user)
 
+  const [editPopup, setEditPopup] = useState("Edit Profile");
+  const [edit, setEdit] = useState("none");
+  const [pfp_url, setPfp_url] = useState(currentUser.pfp_url)
+  const [image, setImage] = useState(null);
+
+  // const uploadImage = () => {
+  //   console.log('uploadImage...');
+  //   // dispatch(editUser({ 'pfp_url': 'a' }))
+  //   return 'nope';
+  // }
+
+  useEffect(() => {
+    console.log('in use effect')
+    if (image) {
+      console.log('image is', image);
+      console.log('uploadImage...');
+      dispatch(editUser({ 'pfp_url': image }))
+    }
+    else console.log('useEffect but no effect...');
+  }, [image])
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
 
   return (
     <>
       <div className="pfp-container">
+        <input
+          className="filey-thing"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
         <img
           className="pfp-image"
           src="https://i.ibb.co/SsYtLQN/minewithahat.png"

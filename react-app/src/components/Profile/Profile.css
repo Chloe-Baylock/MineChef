@@ -8,7 +8,6 @@
 
 .pfp-container:hover {
   background-color: rgba(0, 0, 0, 0.37);
-  cursor: pointer;
 }
 
 .pfp-container:hover .pen-icon {
@@ -29,7 +28,15 @@
   color: white;
 }
 
-
+.filey-thing {
+  position: absolute;
+  width: 74px;
+  height: 91px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.0;
+}
 
 
 .info-container {
