@@ -1,14 +1,36 @@
-.pfp-image:hover {
+.pfp-container {
+  position: relative;
+  width: 74px;
+  height: 91px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.pfp-container:hover {
+  background-color: rgba(0, 0, 0, 0.37);
   cursor: pointer;
 }
 
-.pfp-image:hover .pfp-image-heart {
+.pfp-container:hover .pen-icon {
   display: flex;
+  left: 22px;
+  top: 35px;
 }
 
-.pfp-image-heart {
-  z-index: 1;
+.pfp-image {
+  mix-blend-mode: multiply;
+  border-radius: 50%;
 }
+
+.pen-icon {
+  position: absolute; 
+  display: none;
+  width: 32px;
+  color: white;
+}
+
+
+
 
 .info-container {
   position: absolute;
