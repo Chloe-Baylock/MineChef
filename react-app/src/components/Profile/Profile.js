@@ -17,8 +17,8 @@ function Profile() {
   return (
     <>
       <div className='image-wrapper'>
-        <img className='pfp-image' src="https://i.ibb.co/SsYtLQN/minewithahat.png"></img>
-        <p><HeartIcon className='pfp-image-heart' /></p>
+        {/* <img className='pfp-image' src="https://i.ibb.co/SsYtLQN/minewithahat.png"></img> */}
+        {/* <p><HeartIcon className='pfp-image-heart' /></p> */}
       </div>
       <div className="info-container">
         <div className='edit-button-container'>
