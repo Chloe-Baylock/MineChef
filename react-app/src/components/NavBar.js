@@ -41,29 +41,32 @@ const NavBar = () => {
               </p>
             </>
           )}
-          {/* <p>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </p> */}
-          <p>
-            <NavLink to='/profile' exact={true} activeClassName='active'>
-              Profile
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to='/posts' exact={true} activeClassName='active'>
-              Posts
-            </NavLink>
-          </p>
           {x && (
-            <p>
-              <LogoutButton />
-            </p>
+            <>
+              {/* <p>
+                <NavLink to='/users' exact={true} activeClassName='active'>
+                  Users
+                </NavLink>
+              </p> */}
+              <p>
+                <NavLink to='/profile' exact={true} activeClassName='active'>
+                  Profile
+                </NavLink>
+              </p>
+              <p>
+                <NavLink to='/posts' exact={true} activeClassName='active'>
+                  Posts
+                </NavLink>
+              </p>
+
+              <p>
+                <LogoutButton />
+              </p>
+            </>
           )}
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }
 
