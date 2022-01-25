@@ -42,8 +42,7 @@ function EditProfile(props) {
     } 
   }
 
-  const handleDelete = e => {
-    e.preventDefault();
+  const handleDelete = () => {
     console.log('handle delete');
     dispatch(destroyUser(currentUser));
     dispatch(logout());
@@ -65,6 +64,10 @@ function EditProfile(props) {
           className='edit-type-button'
           onClick={e => editTypeButton(e, 'password')}
         >Change Password </button>
+        <button
+          className='delete-account'
+          onClick={() => handleDelete()}
+        >Delete Account </button>
       </div>
       <div>
         {props.edit === 'username' && <EditUsername
