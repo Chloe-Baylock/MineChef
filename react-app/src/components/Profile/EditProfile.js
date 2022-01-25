@@ -33,13 +33,13 @@ function EditProfile(props) {
   const editTypeButton = (e, classA) => {
     if (props.edit === classA) {
       props.setEdit('none')
-      e.target.style.backgroundColor=''
+      e.target.style.backgroundColor = ''
     } else {
       props.setEdit(classA)
       const etb = document.getElementsByClassName('edit-type-button')
-      Array.from(etb).forEach(ele => ele.style.backgroundColor='')
-      e.target.style.backgroundColor='red'
-    } 
+      Array.from(etb).forEach(ele => ele.style.backgroundColor = '')
+      e.target.style.backgroundColor = 'red'
+    }
   }
 
   const handleDelete = () => {
@@ -65,9 +65,14 @@ function EditProfile(props) {
           onClick={e => editTypeButton(e, 'password')}
         >Change Password </button>
         <button
-          className='delete-account'
+          className='edit-type-button'
+          id='delete-account'
           onClick={() => handleDelete()}
         >Delete Account </button>
+      </div>
+      <div className='username-email'>
+        <p><strong>Username:</strong> {currentUser.username}</p>
+        <p><strong>Email:</strong> {currentUser.email}</p>
       </div>
       <div>
         {props.edit === 'username' && <EditUsername
@@ -78,7 +83,7 @@ function EditProfile(props) {
           setTrigger={props.setTrigger}
           currentUser={currentUser}
         />}
-        {props.edit === 'password' && <EditPassword 
+        {props.edit === 'password' && <EditPassword
           setTrigger={props.setTrigger}
           currentUser={currentUser}
         />}

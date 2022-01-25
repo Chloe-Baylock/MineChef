@@ -4,15 +4,14 @@
   grid-template-rows: 1fr 2fr;
   height: 80vh;
   width: 100vw;
-  position: absolute;
-  top: 103px;
-  left: 0;
 }
 
 .grid-area-1 {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
-  background-color: lightcyan;
+  /* background-color: lightcyan; */
+  /* background-color: lightgrey; */
+
 }
 
 .inner-grid-area-1 {
@@ -64,12 +63,29 @@
   display: none;
 }
 
+
+
+
+
+
 .grid-area-2 {
-  background-color: lightsalmon;
+  /* background-color: lightsalmon; */
+  background-color: lightgrey;
+
 }
 
+.edit-buttons-div {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
 .grid-area-3 {
-  background-color: rgb(221, 111, 221);
+  /* background-color: rgb(221, 111, 221); */
+  background-color: lightgrey;
 }
 
 .description-title {
@@ -77,7 +93,16 @@
   font-size: 40px;
 }
 
+.edit-type-button {
+  display:flex;
+  justify-content: flex-start;
+  width: 130px;
+  padding-left: 0px;
+}
 
+#delete-account {
+  background-color: red;
+}
 
 
 
@@ -127,6 +152,4 @@
   bottom: 0;
 }
 
-.delete-account {
-  background-color: red;
-} */
+*/

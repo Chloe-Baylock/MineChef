@@ -65,8 +65,29 @@ function Profile() {
         </div>
 
         <div className='grid-area-2'>
+          <div className="info-container">
+            <div className='edit-button-container'>
+              <button
+                className="edit-info"
+                onClick={(e) => {
+                  if (editPopup === "Edit Profile") {
+                    setEditPopup("Cancel")
+                    setEdit('none')
+                  }
+                  else setEditPopup("Edit Profile");
+                }}
+              >{editPopup}</button>
+            </div>
+            <div className='popup-div'>
+              <EditProfile
+                trigger={editPopup}
+                setTrigger={setEditPopup}
+                edit={edit}
+                setEdit={setEdit}
+              />
+            </div>
+          </div>
         </div>
-
         <div className='grid-area-3'>
           {editDesc === 'Cancel' && <EditDescription
             currentUser={currentUser}
@@ -93,53 +114,6 @@ function Profile() {
         <div className='posts-div'>
           <h1>Posts</h1>
         </div>
-
-        {/* <div className="info-container">
-          <div className='edit-button-container'>
-            <button
-              className="edit-info"
-              onClick={(e) => {
-                if (editPopup === "Edit Profile") {
-                  setEditPopup("Cancel")
-                  setEdit('none')
-                }
-                else setEditPopup("Edit Profile");
-              }}
-            >{editPopup}</button>
-          </div>
-          <div className='popup-div'>
-            <EditProfile
-              trigger={editPopup}
-              setTrigger={setEditPopup}
-              edit={edit}
-              setEdit={setEdit}
-            />
-          </div>
-          {editPopup !== 'Cancel' && <div className='below-popup'>
-            <p><strong>User Id:</strong> {currentUser.id}</p>
-            <p><strong>Username:</strong> {currentUser.username}</p>
-            <p><strong>Email:</strong> {currentUser.email}</p>
-            <p><strong>password:</strong> {currentUser.password}</p>
-            <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
-            {editDesc === 'Cancel' && <EditDescription
-              currentUser={currentUser}
-              setEditDesc={setEditDesc}
-            />
-            }
-            {editDesc === 'Edit' && (
-              <p>
-                <strong>Description:</strong> {
-                  currentUser.description || 'none'
-                }
-              </p>
-            )}
-            <button onClick={() => {
-              if (editDesc === 'Cancel') setEditDesc('Edit')
-              else setEditDesc('Cancel')
-            }}
-            >{editDesc}</button>
-          </div>}
-        </div> */}
       </div>
     </>
   )

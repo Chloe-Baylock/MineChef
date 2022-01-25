@@ -1,14 +1,12 @@
-html {
-  border-bottom: 3px solid black;
-  height: 100px;
+body {
+  margin: 0;
 }
 
-.nav-container {
-  position:absolute;
-  left: 0;
+.outer-nav {
   display: flex;
   width: 100vw;
   justify-content: space-between;
+  border-bottom: 3px solid black;
 }
 
 
