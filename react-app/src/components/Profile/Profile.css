@@ -1,14 +1,43 @@
-.pfp-image:hover {
-  cursor: pointer;
+.pfp-container {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 3px solid black;
+  cursor:pointer;
 }
 
-.pfp-image:hover .pfp-image-heart {
+.pfp-container:hover {
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.pfp-container:hover .pen-icon {
   display: flex;
+  left: 33px;
+  top: 33px;
 }
 
-.pfp-image-heart {
-  z-index: 1;
+.pfp-image {
+  mix-blend-mode: multiply;
+  border-radius: 50%;
+  width: 92px;
+  height: 92px;
 }
+
+.pen-icon {
+  position: absolute; 
+  display: none;
+  width: 32px;
+  color: white;
+}
+
+.filey-thing {
+  display: none;
+}
+
+
+
+
 
 .info-container {
   position: absolute;

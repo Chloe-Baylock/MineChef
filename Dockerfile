@@ -8,6 +8,7 @@ ENV REACT_APP_BASE_URL=https://minechef.herokuapp.com/
 
 # Build our React App
 RUN npm install
+RUN npm install @heroicons/react
 RUN npm run build
 
 FROM python:3.9

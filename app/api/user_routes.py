@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User
 from app.forms import EditProfileForm
+from app.s3_helpers import (
+  upload_file_to_s3, allowed_file, get_unique_filename)
 
 user_routes = Blueprint('users', __name__)
 
@@ -19,20 +21,52 @@ def user(id):
   user = User.query.get(id)
   return user.to_dict()
 
+@user_routes.route('/pfp', methods=["POST"])
+@login_required
+def image():
+  if "image" not in request.files:
+    print('               ****** image not found')
+    return {"errors": "image required"}, 400
+  
+  image = request.files["image"]
+  print('        ***** image is', image)
+
+  if not allowed_file(image.filename):
+    return {"errors": "file type not permitted"}, 400
+
+  image.filename = get_unique_filename(image.filename)
+
+  upload = upload_file_to_s3(image)
+
+  print('               ***** file.content_type', image.content_type)
+  print('               ***** 1')
+
+
+  if "url" not in upload:
+    # if the dictionary doesn't have a url key
+    # it means that there was an error when we tried to upload
+    # so we send back that error message
+    print('               ***** 2')
+    return upload, 400
+
+  url = upload["url"]
+
+  print('               ***** got this far.')
+  user = User.query.get(current_user.id)
+  user.pfp_url = url
+  db.session.commit()
+  return user.to_dict()
+
 @user_routes.route('/profile', methods=['PUT'])
 @login_required
 def edit_profile():
 
   userId = current_user.id
   user = User.query.get(userId)
-
-  # form = EditProfileForm()
-  # form['csrf_token'].data = request.cookies['csrf_token']
   
   change = request.get_json()
   x = list(change.keys())
   y = change[f'{x[0]}']
-
 
   if x[0] == 'username':
     user.username = y
@@ -40,6 +74,10 @@ def edit_profile():
     user.email = y
   elif x[0] == 'password':
     user.password = y
+  elif x[0] == 'description':
+    user.description = y
+  else:
+    return {'error': 'chloe wrote this error user_routes edit_profile'}
 
   db.session.commit()
   return user.to_dict()

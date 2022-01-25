@@ -42,14 +42,7 @@ function EditProfile(props) {
     } 
   }
 
-  // const handleEdit = (e) => {
-  //   e.preventDefault();
-  //   props.setTrigger("Edit");
-  //   dispatch(editUser(username, email, password, description, pfp_url));
-  // }
-
-  const handleDelete = e => {
-    e.preventDefault();
+  const handleDelete = () => {
     console.log('handle delete');
     dispatch(destroyUser(currentUser));
     dispatch(logout());
@@ -71,20 +64,21 @@ function EditProfile(props) {
           className='edit-type-button'
           onClick={e => editTypeButton(e, 'password')}
         >Change Password </button>
+        <button
+          className='delete-account'
+          onClick={() => handleDelete()}
+        >Delete Account </button>
       </div>
       <div>
         {props.edit === 'username' && <EditUsername
-          trigger={props.trigger}
           setTrigger={props.setTrigger}
           currentUser={currentUser}
         />}
         {props.edit === 'email' && <EditEmail
-          etrigger={props.trigger}
           setTrigger={props.setTrigger}
           currentUser={currentUser}
         />}
         {props.edit === 'password' && <EditPassword 
-          trigger={props.trigger}
           setTrigger={props.setTrigger}
           currentUser={currentUser}
         />}
@@ -93,69 +87,5 @@ function EditProfile(props) {
   ) : (
     ""
   )
-
-  // return props.trigger === "Cancel" ? (
-  //   <>
-  //     <form onSubmit={handleEdit}>
-  //       <div className='popup-form-grid'>
-  //         <div className='popup-labels'>
-  //           <label htmlFor='username'>Username: </label>
-  //           <label htmlFor='email'>Email: </label>
-  //           <label htmlFor='password'>Password: </label>
-  //           <label htmlFor='profilePicture'>Profile Picture: </label>
-  //           <label htmlFor='description'>Description: </label>
-  //         </div>
-  //         <div className='popup-inputs'>
-  //           <input
-  //             name='username'
-  //             type='text'
-  //             placeholder='Username'
-  //             value={username || ''}
-  //             onChange={e => setUsername(e.target.value)}
-  //           ></input>
-  //           <input
-  //             name='email'
-  //             type='text'
-  //             placeholder='Email'
-  //             value={email || ''}
-  //             onChange={e => setEmail(e.target.value)}
-  //           ></input>
-  //           <input
-  //             name='password'
-  //             type='password'
-  //             placeholder='Password'
-  //             value={password || ''}
-  //             onChange={e => setPassword(e.target.value)}
-  //           ></input>
-  //           <input
-  //             name='profilePicture'
-  //             type='text'
-  //             placeholder='ProfilePicture'
-  //             value={pfp_url || ''}
-  //             onChange={e => setPfp_url(e.target.value)}
-  //           ></input>
-  //           <input
-  //             name='description'
-  //             type='text'
-  //             placeholder='Description'
-  //             value={description || ''}
-  //             onChange={e => setDescription(e.target.value)}
-  //           ></input>
-  //         </div>
-  //       </div>
-  //       <button
-  //         className="submit-edit"
-  //       >Submit</button>
-  //     </form>
-  //     <button
-  //       className='delete-account'
-  //       onClick={handleDelete}
-  //     >
-  //       Delete Account
-  //     </button>
-  //   </>
-  // ) : (
-  //   ""
-  // )
 }
 export default EditProfile;
