@@ -24,25 +24,32 @@ function Profile() {
   //   return 'nope';
   // }
 
+  useEffect(() => {
+    if (image) {
+      console.log('uploading...')
+      dispatch(postImage(image));
+    } else console.log('use effect but no effect')
+  }, [image])
+
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
   };
 
-  const newImage = async (e) => {
-    e.preventDefault();
+  // const newImage = async (e) => {
+  //   e.preventDefault();
 
-    image || console.log("* Please upload an image.");
+  //   image || console.log("* Please upload an image.");
 
-    if (image) {
-      dispatch(postImage(image));
-    }
-  }
+  //   if (image) {
+  //     dispatch(postImage(image));
+  //   }
+  // }
 
   return (
     <>
       <div className="pfp-container">
-        <form onSubmit={newImage}>
+        {/* <form onSubmit={newImage}> */}
           <input
             className="filey-thing"
             name='image'
@@ -50,14 +57,14 @@ function Profile() {
             accept="image/*"
             onChange={updateImage}
           />
-          <button>Submit</button>
+          {/* <button className='pfp-submit'>Submit</button> */}
           <img
             className="pfp-image"
             src={thePfp}
             alt="pfp"
           ></img>
           <PencilIcon className="pen-icon" />
-        </form>
+        {/* </form> */}
       </div>
 
       <div className="info-container">

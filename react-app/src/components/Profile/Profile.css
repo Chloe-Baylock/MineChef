@@ -38,6 +38,9 @@
   opacity: 0.0;
 }
 
+.pfp-submit {
+  position: absolute;
+}
 
 .info-container {
   position: absolute;
