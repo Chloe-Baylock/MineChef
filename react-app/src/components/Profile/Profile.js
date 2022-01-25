@@ -11,6 +11,7 @@ function Profile() {
   const dispatch = useDispatch()
 
   const currentUser = useSelector(state => state.session.user)
+  const thePfp = useSelector(state => state.session.user.pfp_url)
 
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
@@ -22,16 +23,6 @@ function Profile() {
   //   // dispatch(editUser({ 'pfp_url': 'a' }))
   //   return 'nope';
   // }
-
-  // useEffect(() => {
-  //   console.log('in use effect')
-  //   if (image) {
-  //     console.log('image is', image);
-  //     console.log('uploadImage...');
-  //     dispatch(editUser({ 'pfp_url': image }))
-  //   }
-  //   else console.log('useEffect but no effect...');
-  // }, [image])
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -62,7 +53,7 @@ function Profile() {
           <button>Submit</button>
           <img
             className="pfp-image"
-            src="https://i.ibb.co/SsYtLQN/minewithahat.png"
+            src={thePfp}
             alt="pfp"
           ></img>
           <PencilIcon className="pen-icon" />
