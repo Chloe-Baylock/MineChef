@@ -20,12 +20,6 @@ function Profile() {
   const [image, setImage] = useState(null);
   const [editDesc, setEditDesc] = useState('Edit');
 
-  // const uploadImage = () => {
-  //   console.log('uploadImage...');
-  //   // dispatch(editUser({ 'pfp_url': 'a' }))
-  //   return 'nope';
-  // }
-
   useEffect(() => {
     if (image) {
       console.log('uploading...')
@@ -37,16 +31,6 @@ function Profile() {
     const file = e.target.files[0];
     setImage(file);
   };
-
-  // const newImage = async (e) => {
-  //   e.preventDefault();
-
-  //   image || console.log("* Please upload an image.");
-
-  //   if (image) {
-  //     dispatch(postImage(image));
-  //   }
-  // }
 
   return (
     <>

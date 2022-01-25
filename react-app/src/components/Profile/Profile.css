@@ -1,4 +1,5 @@
 .pfp-container {
+  display: none;
   position: relative;
   width: 92px;
   height: 92px;
