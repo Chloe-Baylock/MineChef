@@ -4,6 +4,7 @@ import EditProfile from './EditProfile';
 import './Profile.css'
 import { UserCircleIcon, PencilIcon } from "@heroicons/react/solid";
 import { editUser } from '../../store/session';
+import { postImage } from '../../store/session';
 
 function Profile() {
 
@@ -37,28 +38,20 @@ function Profile() {
     setImage(file);
   };
 
-  const postImage = async (e) => {
+  const newImage = async (e) => {
     e.preventDefault();
 
     image || console.log("* Please upload an image.");
 
-    const formData = new FormData();
-    formData.append("image", image);
-
-    const response = await fetch('/api/users/pfp', {
-      method: "POST",
-      body: formData,
-    });
-    if (response.ok) {
-      await response.json();
-      console.log('success')
+    if (image) {
+      dispatch(postImage(image));
     }
   }
 
   return (
     <>
       <div className="pfp-container">
-        <form onSubmit={postImage}>
+        <form onSubmit={newImage}>
           <input
             className="filey-thing"
             name='image'

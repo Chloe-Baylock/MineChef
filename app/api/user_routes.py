@@ -38,6 +38,7 @@ def image():
 
   upload = upload_file_to_s3(image)
 
+  print('               ***** file.content_type', image.content_type)
   print('               ***** 1')
 
 
@@ -46,13 +47,14 @@ def image():
     # it means that there was an error when we tried to upload
     # so we send back that error message
     print('               ***** 2')
-
     return upload, 400
 
   url = upload["url"]
 
   print('               ***** got this far.')
   user = User.query.get(current_user.id)
+  user.pfp_url = url
+  db.session.commit()
   return user.to_dict()
 
 @user_routes.route('/profile', methods=['PUT'])
