@@ -8,21 +8,23 @@
 
 .grid-area-1 {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 25% 1fr minmax(0, 2fr);
   background-color: lightgrey;
-}
-
-.inner-grid-area-1 {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-shrink: 2;
 }
 
 .inner-grid-area-2 {
-  padding-left: 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.white-area {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background-color: white;
 }
 
 .pfp-container {
@@ -107,8 +109,7 @@
 }
 
 .description-content-box > p {
-  margin-top: 2px;
-  margin-left: 7px;
+  margin: 2px 2px 0px 7px;
   overflow-wrap: break-word;
 }
 

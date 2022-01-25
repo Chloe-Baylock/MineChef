@@ -36,30 +36,33 @@ function Profile() {
     <>
       <div className='profile-page-grid'>
         <div className='grid-area-1'>
-          <div className='inner-grid-area-1'>
-            <div className="pfp-container"
-              onClick={() => {
-                let x = document.getElementById('testRun')
-                x.click();
-              }}>
-              <input
-                className="filey-thing"
-                id='testRun'
-                name='image'
-                type="file"
-                accept="image/*"
-                onChange={updateImage}
-              />
-              <img
-                className="pfp-image"
-                src={thePfp}
-                alt="pfp"
-              ></img>
-              <PencilIcon className="pen-icon" />
-            </div>
-          </div>
+          <div></div>
           <div className='inner-grid-area-2'>
-            <h1>{currentUser.username}</h1>
+            <div className='white-area'>
+              <div className="pfp-container"
+                onClick={() => {
+                  let x = document.getElementById('testRun')
+                  x.click();
+                }}>
+                <input
+                  className="filey-thing"
+                  id='testRun'
+                  name='image'
+                  type="file"
+                  accept="image/*"
+                  onChange={updateImage}
+                />
+                <img
+                  className="pfp-image"
+                  src={thePfp}
+                  alt="pfp"
+                ></img>
+                <PencilIcon className="pen-icon" />
+              </div>
+              <div>
+                <h1>{currentUser.username}</h1>
+              </div>
+            </div>
           </div>
           <div></div>
         </div>
