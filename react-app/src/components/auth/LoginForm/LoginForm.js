@@ -8,21 +8,21 @@ const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(username, password));
     if (data) {
       setErrors(data);
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -50,16 +50,16 @@ const LoginForm = () => {
               ))}
             </div>
             <div className='label-grid'>
-              <label htmlFor='email'>Email: </label>
+              <label htmlFor='username/email'>Username or Email: </label>
               <label htmlFor='password'>Password: </label>
             </div>
             <div className='input-grid'>
               <input
-                name='email'
+                name='username/email'
                 type='text'
-                placeholder='Email'
-                value={email}
-                onChange={updateEmail}
+                placeholder='Username'
+                value={username}
+                onChange={updateUsername}
               />
               <input
                 name='password'
