@@ -1,6 +1,33 @@
+.profile-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+  top: 103px;
+  left: 0;
+}
+
+.grid-area-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+}
+
+.inner-grid-area-1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.inner-grid-area-2 {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .pfp-container {
-  display: none;
-  position: relative;
   width: 92px;
   height: 92px;
   border-radius: 50%;
@@ -26,7 +53,7 @@
 }
 
 .pen-icon {
-  position: absolute; 
+  /* position: absolute;  */
   display: none;
   width: 32px;
   color: white;
@@ -36,11 +63,16 @@
   display: none;
 }
 
+/* button {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: 0;
+} */
 
 
 
 
-.info-container {
+/* .info-container {
   position: absolute;
   top: 40%;
   left: 10%;
@@ -88,4 +120,4 @@
 
 .delete-account {
   background-color: red;
-}
+} */

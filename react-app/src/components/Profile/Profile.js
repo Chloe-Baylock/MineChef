@@ -34,55 +34,41 @@ function Profile() {
 
   return (
     <>
-      <div className="pfp-container"
-        onClick={() => {
-          let x = document.getElementById('testRun')
-          x.click();
-        }}>
-        <input
-          className="filey-thing"
-          id='testRun'
-          name='image'
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        />
-        <img
-          className="pfp-image"
-          src={thePfp}
-          alt="pfp"
-        ></img>
-        <PencilIcon className="pen-icon" />
-      </div>
+      <div className='profile-page-grid'>
+        <div className='grid-area-1'>
+          <div className='inner-grid-area-1'>
+            <div className="pfp-container"
+              onClick={() => {
+                let x = document.getElementById('testRun')
+                x.click();
+              }}>
+              <input
+                className="filey-thing"
+                id='testRun'
+                name='image'
+                type="file"
+                accept="image/*"
+                onChange={updateImage}
+              />
+              <img
+                className="pfp-image"
+                src={thePfp}
+                alt="pfp"
+              ></img>
+              <PencilIcon className="pen-icon" />
+            </div>
+          </div>
+          <div className='inner-grid-area-2'>
+            <h1>{currentUser.username}</h1>
+          </div>
+          <div></div>
+        </div>
 
-      <div className="info-container">
-        <div className='edit-button-container'>
-          <button
-            className="edit-info"
-            onClick={(e) => {
-              if (editPopup === "Edit Profile") {
-                setEditPopup("Cancel")
-                setEdit('none')
-              }
-              else setEditPopup("Edit Profile");
-            }}
-          >{editPopup}</button>
+        <div>
         </div>
-        <div className='popup-div'>
-          <EditProfile
-            trigger={editPopup}
-            setTrigger={setEditPopup}
-            edit={edit}
-            setEdit={setEdit}
-          />
-        </div>
-        {editPopup !== 'Cancel' && <div className='below-popup'>
-          <p><strong>User Id:</strong> {currentUser.id}</p>
-          <p><strong>Username:</strong> {currentUser.username}</p>
-          <p><strong>Email:</strong> {currentUser.email}</p>
-          <p><strong>password:</strong> {currentUser.password}</p>
-          <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
-          {editDesc === 'Cancel' && <EditDescription 
+
+        <div className='description-div'>
+          {editDesc === 'Cancel' && <EditDescription
             currentUser={currentUser}
             setEditDesc={setEditDesc}
           />
@@ -99,7 +85,58 @@ function Profile() {
             else setEditDesc('Cancel')
           }}
           >{editDesc}</button>
-        </div>}
+        </div>
+
+        <div className='posts-div'>
+          <h1>Posts</h1>
+        </div>
+
+        {/* <div className="info-container">
+          <div className='edit-button-container'>
+            <button
+              className="edit-info"
+              onClick={(e) => {
+                if (editPopup === "Edit Profile") {
+                  setEditPopup("Cancel")
+                  setEdit('none')
+                }
+                else setEditPopup("Edit Profile");
+              }}
+            >{editPopup}</button>
+          </div>
+          <div className='popup-div'>
+            <EditProfile
+              trigger={editPopup}
+              setTrigger={setEditPopup}
+              edit={edit}
+              setEdit={setEdit}
+            />
+          </div>
+          {editPopup !== 'Cancel' && <div className='below-popup'>
+            <p><strong>User Id:</strong> {currentUser.id}</p>
+            <p><strong>Username:</strong> {currentUser.username}</p>
+            <p><strong>Email:</strong> {currentUser.email}</p>
+            <p><strong>password:</strong> {currentUser.password}</p>
+            <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
+            {editDesc === 'Cancel' && <EditDescription
+              currentUser={currentUser}
+              setEditDesc={setEditDesc}
+            />
+            }
+            {editDesc === 'Edit' && (
+              <p>
+                <strong>Description:</strong> {
+                  currentUser.description || 'none'
+                }
+              </p>
+            )}
+            <button onClick={() => {
+              if (editDesc === 'Cancel') setEditDesc('Edit')
+              else setEditDesc('Cancel')
+            }}
+            >{editDesc}</button>
+          </div>}
+        </div> */}
       </div>
     </>
   )

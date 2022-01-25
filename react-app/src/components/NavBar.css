@@ -4,6 +4,8 @@ html {
 }
 
 .nav-container {
+  position:absolute;
+  left: 0;
   display: flex;
   width: 100vw;
   justify-content: space-between;
