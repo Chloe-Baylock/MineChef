@@ -48,23 +48,25 @@ function Profile() {
 
   return (
     <>
-      <div className="pfp-container">
-        {/* <form onSubmit={newImage}> */}
-          <input
-            className="filey-thing"
-            name='image'
-            type="file"
-            accept="image/*"
-            onChange={updateImage}
-          />
-          {/* <button className='pfp-submit'>Submit</button> */}
-          <img
-            className="pfp-image"
-            src={thePfp}
-            alt="pfp"
-          ></img>
-          <PencilIcon className="pen-icon" />
-        {/* </form> */}
+      <div className="pfp-container"
+        onClick={() => {
+          let x = document.getElementById('testRun')
+          x.click();
+        }}>
+        <input
+          className="filey-thing"
+          id='testRun'
+          name='image'
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
+        <img
+          className="pfp-image"
+          src={thePfp}
+          alt="pfp"
+        ></img>
+        <PencilIcon className="pen-icon" />
       </div>
 
       <div className="info-container">

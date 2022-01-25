@@ -1,9 +1,10 @@
 .pfp-container {
   position: relative;
-  width: 74px;
-  height: 91px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   border: 3px solid black;
+  cursor:pointer;
 }
 
 .pfp-container:hover {
@@ -12,13 +13,15 @@
 
 .pfp-container:hover .pen-icon {
   display: flex;
-  left: 22px;
-  top: 35px;
+  left: 33px;
+  top: 33px;
 }
 
 .pfp-image {
   mix-blend-mode: multiply;
   border-radius: 50%;
+  width: 92px;
+  height: 92px;
 }
 
 .pen-icon {
@@ -29,18 +32,12 @@
 }
 
 .filey-thing {
-  position: absolute;
-  width: 74px;
-  height: 91px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0.0;
+  display: none;
 }
 
-.pfp-submit {
-  position: absolute;
-}
+
+
+
 
 .info-container {
   position: absolute;
