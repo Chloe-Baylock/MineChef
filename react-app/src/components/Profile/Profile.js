@@ -5,6 +5,7 @@ import './Profile.css'
 import { UserCircleIcon, PencilIcon } from "@heroicons/react/solid";
 import { editUser } from '../../store/session';
 import { postImage } from '../../store/session';
+import EditDescription from './EditDescription';
 
 function Profile() {
 
@@ -17,6 +18,7 @@ function Profile() {
   const [edit, setEdit] = useState("none");
   const [pfp_url, setPfp_url] = useState(currentUser.pfp_url)
   const [image, setImage] = useState(null);
+  const [editDesc, setEditDesc] = useState('Edit');
 
   // const uploadImage = () => {
   //   console.log('uploadImage...');
@@ -96,7 +98,23 @@ function Profile() {
           <p><strong>Email:</strong> {currentUser.email}</p>
           <p><strong>password:</strong> {currentUser.password}</p>
           <p><strong>Profile Picture:</strong> {currentUser.pfp_url || 'none'}</p>
-          <p><strong>Description:</strong> {currentUser.description || 'none'}</p>
+          {editDesc === 'Cancel' && <EditDescription 
+            currentUser={currentUser}
+            setEditDesc={setEditDesc}
+          />
+          }
+          {editDesc === 'Edit' && (
+            <p>
+              <strong>Description:</strong> {
+                currentUser.description || 'none'
+              }
+            </p>
+          )}
+          <button onClick={() => {
+            if (editDesc === 'Cancel') setEditDesc('Edit')
+            else setEditDesc('Cancel')
+          }}
+          >{editDesc}</button>
         </div>}
       </div>
     </>

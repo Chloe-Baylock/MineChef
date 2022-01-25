@@ -130,7 +130,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 export const editUser = (obj) => async dispatch => {
-  const { username, email, password } = obj
+  const { username, email, password, description } = obj
   const response = await fetch('/api/users/profile', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -138,6 +138,7 @@ export const editUser = (obj) => async dispatch => {
       username,
       email,
       password,
+      description,
     }),
   })
   if (response.ok) {
