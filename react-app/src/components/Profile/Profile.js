@@ -64,21 +64,24 @@ function Profile() {
           <div></div>
         </div>
 
-        <div>
+        <div className='grid-area-2'>
         </div>
 
-        <div className='description-div'>
+        <div className='grid-area-3'>
           {editDesc === 'Cancel' && <EditDescription
             currentUser={currentUser}
             setEditDesc={setEditDesc}
           />
           }
           {editDesc === 'Edit' && (
-            <p>
-              <strong>Description:</strong> {
-                currentUser.description || 'none'
-              }
-            </p>
+            <>
+              <p className='description-title'>
+                Description:
+              </p>
+              <p className='description-body'>
+                {currentUser.description || 'none'}
+              </p>
+            </>
           )}
           <button onClick={() => {
             if (editDesc === 'Cancel') setEditDesc('Edit')

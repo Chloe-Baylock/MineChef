@@ -12,6 +12,7 @@
 .grid-area-1 {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
+  background-color: lightcyan;
 }
 
 .inner-grid-area-1 {
@@ -63,11 +64,19 @@
   display: none;
 }
 
-/* button {
-  margin-right: 0;
-  padding-right: 0;
-  border-right: 0;
-} */
+.grid-area-2 {
+  background-color: lightsalmon;
+}
+
+.grid-area-3 {
+  background-color: rgb(221, 111, 221);
+}
+
+.description-title {
+  font-weight: bold;
+  font-size: 40px;
+}
+
 
 
 
