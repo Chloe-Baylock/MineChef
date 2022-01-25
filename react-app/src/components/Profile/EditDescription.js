@@ -16,13 +16,12 @@ function EditDescription(props) {
   return (
     <>
       <form onSubmit={alterDescription}>
-        <input
+        <textarea
         name='description'
-        type='textarea'
         placeholder='Description'
         value={description || ''}
         onChange={e => setDescription(e.target.value)}
-        ></input>
+        ></textarea>
         <button>Submit</button>
       </form>
     </>

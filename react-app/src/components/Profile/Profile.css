@@ -8,10 +8,8 @@
 
 .grid-area-1 {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  /* background-color: lightcyan; */
-  /* background-color: lightgrey; */
-
+  grid-template-columns: 2fr 1fr 2fr;
+  background-color: lightgrey;
 }
 
 .inner-grid-area-1 {
@@ -69,9 +67,7 @@
 
 
 .grid-area-2 {
-  /* background-color: lightsalmon; */
   background-color: lightgrey;
-
 }
 
 .edit-buttons-div {
@@ -84,13 +80,36 @@
 
 
 .grid-area-3 {
-  /* background-color: rgb(221, 111, 221); */
+  display: flex;
+  justify-content: center;
   background-color: lightgrey;
+}
+
+.box-in-grid-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 50%;
+  background-color: lightskyblue;
 }
 
 .description-title {
   font-weight: bold;
   font-size: 40px;
+  border-bottom: 2px solid black;
+}
+
+.description-content-box {
+  width: 25vw;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.description-content-box > p {
+  margin-top: 2px;
+  margin-left: 7px;
+  overflow-wrap: break-word;
 }
 
 .edit-type-button {

@@ -89,26 +89,30 @@ function Profile() {
           </div>
         </div>
         <div className='grid-area-3'>
-          {editDesc === 'Cancel' && <EditDescription
-            currentUser={currentUser}
-            setEditDesc={setEditDesc}
-          />
-          }
-          {editDesc === 'Edit' && (
-            <>
-              <p className='description-title'>
-                Description:
-              </p>
-              <p className='description-body'>
-                {currentUser.description || 'none'}
-              </p>
-            </>
-          )}
-          <button onClick={() => {
-            if (editDesc === 'Cancel') setEditDesc('Edit')
-            else setEditDesc('Cancel')
-          }}
-          >{editDesc}</button>
+          <div className='box-in-grid-3'>
+            <p className='description-title'>
+              Description:
+            </p>
+            <div className='description-content-box'>
+              {editDesc === 'Cancel' && <EditDescription
+                currentUser={currentUser}
+                setEditDesc={setEditDesc}
+              />
+              }
+              {editDesc === 'Edit' && (
+                <>
+                  <p className='description-body'>
+                    {currentUser.description || 'none'}
+                  </p>
+                </>
+              )}
+              <button onClick={() => {
+                if (editDesc === 'Cancel') setEditDesc('Edit')
+                else setEditDesc('Cancel')
+              }}
+              >{editDesc}</button>
+            </div>
+          </div>
         </div>
 
         <div className='posts-div'>
