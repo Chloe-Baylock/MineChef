@@ -13,9 +13,10 @@ const makePost = post => ({
 
 export const getAllPosts = () => async dispatch => {
   const response = await fetch('/api/posts');
-
+  console.log('get all posts thunk')
+  console.log('response is', response.ok)
   if (response.ok) {
-    const posts = response.json()
+    const posts = await response.json()
     dispatch(loadPosts(posts));
   }
 }

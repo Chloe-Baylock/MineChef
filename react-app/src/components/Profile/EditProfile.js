@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
@@ -15,20 +15,6 @@ function EditProfile(props) {
 
   const dispatch = useDispatch()
   const history = useHistory()
-
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [pfp_url, setPfp_url] = useState('')
-  const [description, setDescription] = useState('')
-
-  useEffect(() => {
-    setUsername(currentUser.username);
-    setEmail(currentUser.email);
-    setPassword(currentUser.password);
-    if (currentUser.pfp_url) setPfp_url(currentUser.pfp_url);
-    if (currentUser.description) setDescription(currentUser.description);
-  }, [])
 
   const editTypeButton = (e, classA) => {
     if (props.edit === classA) {
