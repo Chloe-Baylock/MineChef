@@ -1,5 +1,33 @@
+.profile-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  height: 80vh;
+  width: 100vw;
+}
+
+.grid-area-1 {
+  display: grid;
+  grid-template-columns: 25% 1fr minmax(0, 2fr);
+  background-color: lightgrey;
+  flex-shrink: 2;
+}
+
+.inner-grid-area-2 {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.white-area {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background-color: white;
+}
+
 .pfp-container {
-  position: relative;
   width: 92px;
   height: 92px;
   border-radius: 50%;
@@ -25,7 +53,7 @@
 }
 
 .pen-icon {
-  position: absolute; 
+  /* position: absolute;  */
   display: none;
   width: 32px;
   color: white;
@@ -39,39 +67,9 @@
 
 
 
-.info-container {
-  position: absolute;
-  top: 40%;
-  left: 10%;
 
-  width: 20%;
-  padding-left: 10px;
-  background-color: aquamarine;
-}
-
-.edit-button-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-form-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.popup-labels {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
-  background-color: rgb(45, 219, 45);
-  font-weight: bold;
-}
-
-.editing-grid {
-  display: grid;
-  grid-template-columns: 200px auto;
+.grid-area-2 {
+  background-color: lightgrey;
 }
 
 .edit-buttons-div {
@@ -79,12 +77,77 @@
   flex-direction: column;
 }
 
-.submit-edit {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.edit-button-container {
+  display:flex;
+  justify-content: flex-end;
 }
 
-.delete-account {
+.edit-info-button {
+  background-color: rgb(160, 160, 160);
+  border: none;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+  margin-top: 1px;
+  margin-right: 1px;
+  z-index: 15;
+  border-radius: 5px;
+}
+
+.edit-info-button:hover {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
+}
+
+.cog-icon {
+  width: 32px;
+  padding: 4px;
+}
+
+
+
+
+
+.grid-area-3 {
+  display: flex;
+  justify-content: center;
+  background-color: lightgrey;
+}
+
+.box-in-grid-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 50%;
+  background-color: lightskyblue;
+}
+
+.description-title {
+  font-weight: bold;
+  font-size: 40px;
+  border-bottom: 2px solid black;
+}
+
+.description-content-box {
+  width: 25vw;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.description-content-box > p {
+  margin: 2px 2px 0px 7px;
+  overflow-wrap: break-word;
+}
+
+.edit-type-button {
+  display:flex;
+  justify-content: flex-start;
+  width: 130px;
+  padding-left: 0px;
+}
+
+#delete-account {
   background-color: red;
+}
+
+.grid-area-4 {
+  background-color: lightgray;
 }
