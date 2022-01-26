@@ -32,6 +32,22 @@ def post():
   else:
     return {'errors': 'chloe wrote this error, posts/new route'}, 401
 
+@post_routes.route('/<int:postId>/edit', methods=["PUT"])
+@login_required
+def editPost(postId):
+  form = PostForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  post = Post.query.get(postId)
+  
+  if form.validate_on_submit():
+    post.title=form.data['title'] or 'Untitled',
+    post.content=form.data['content'],
+  
+    db.session.commit()
+    return post.to_dict()
+  else:
+    return {'errors': 'chloe wrote this error, posts/new route'}, 401
+
 @post_routes.route('/<int:postId>/delete', methods=["DELETE"])
 @login_required
 def deletePost(postId):
