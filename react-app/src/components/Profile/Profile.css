@@ -13,6 +13,10 @@
   flex-shrink: 2;
 }
 
+.grid-1-username {
+  margin-left: 5px;
+}
+
 .inner-grid-area-2 {
   display: flex;
   align-items: center;

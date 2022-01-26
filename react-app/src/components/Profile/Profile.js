@@ -59,7 +59,7 @@ function Profile() {
                 ></img>
                 <PencilIcon className="pen-icon" />
               </div>
-              <div>
+              <div className='grid-1-username'>
                 <h1>{currentUser.username}</h1>
               </div>
             </div>

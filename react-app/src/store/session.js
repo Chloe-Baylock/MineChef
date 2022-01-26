@@ -1,15 +1,9 @@
 // constants
-// const LOAD_USER = 'session/LOAD_USER'
 const SET_USER = 'session/SET_USER';
 const SET_PFP = 'session/SET_PFP'
 const UPDATE_USER = 'session/EDIT_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const DELETE_USER = 'session/DELETE_USER';
-
-// const loadUser = user => ({
-//   type: LOAD_USER,
-//   payload: user
-// })
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -36,14 +30,6 @@ const deleteUser = (user) => ({
 })
 
 const initialState = { user: null };
-
-// export const getUser = () => async dispatch => {
-//   const response = await fetch('/api/auth/')
-//   if (response.ok) {
-//     const data = await response.json()
-//     dispatch(loadUser(data));
-//   }
-// }
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
