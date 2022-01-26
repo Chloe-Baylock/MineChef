@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import './Profile.css'
 import { CogIcon, PencilIcon } from "@heroicons/react/solid";
-import { editUser } from '../../store/session';
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
 
@@ -16,7 +15,6 @@ function Profile() {
 
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
-  const [pfp_url, setPfp_url] = useState(currentUser.pfp_url)
   const [image, setImage] = useState(null);
   const [editDesc, setEditDesc] = useState('Edit');
 
@@ -25,7 +23,7 @@ function Profile() {
       console.log('uploading...')
       dispatch(postImage(image));
     } else console.log('use effect but no effect')
-  }, [image])
+  }, [dispatch, image])
 
   const updateImage = (e) => {
     const file = e.target.files[0];

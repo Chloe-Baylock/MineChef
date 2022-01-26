@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { postPost } from '../../store/posts';
 
 const PostPage = () => {
   const dispatch = useDispatch();
 
-  const [author_id, setAuthor_id] = useState();
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
 
   const onPost = e => {
     e.preventDefault();
-    console.log('posting');
     dispatch(postPost(title, content))
   }
 

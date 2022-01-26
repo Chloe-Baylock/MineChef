@@ -11,18 +11,19 @@ function PostsPage() {
   useEffect(() => {
     (async () => {
       console.log('in use effect')
-      await dispatch(getAllPosts)
+      let allPosts = await dispatch(getAllPosts())
+      setPosts(allPosts);
     })()
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
       <h1>Posts</h1>
-      {/* <ul>
-        {Object.keys(posts) && Object.keys(posts) .map(postKey => (
+      <ul>
+        {posts && Object.keys(posts).map(postKey => (
           <li key={posts[`${postKey}`].id}>{posts[`${postKey}`].title}</li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   )
 }

@@ -17,6 +17,7 @@ export const getAllPosts = () => async dispatch => {
   console.log('response is', response.ok)
   if (response.ok) {
     const posts = await response.json()
+    console.log('posts is', posts)
     dispatch(loadPosts(posts));
   }
 }
@@ -40,7 +41,7 @@ export const postPost = (title, content) => async dispatch => {
 export default function postsReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_POSTS:
-      return action.payload;
+      return action.payload.posts;
     case MAKE_POST:
       return {posts: action.payload, ...state};
     default:
