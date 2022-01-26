@@ -19,6 +19,7 @@ export const getAllPosts = () => async dispatch => {
     const posts = await response.json()
     console.log('posts is', posts)
     dispatch(loadPosts(posts));
+    return posts.posts;
   }
 }
 
@@ -34,6 +35,7 @@ export const postPost = (title, content) => async dispatch => {
     const post = await response.json()
     console.log('post is', post)
     dispatch(makePost(post))
+    return post;
   } else console.log('response not okay')
 }
 
