@@ -77,6 +77,30 @@
   flex-direction: column;
 }
 
+.edit-button-container {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.edit-info-button {
+  background-color: rgb(160, 160, 160);
+  border: none;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+  margin-top: 1px;
+  margin-right: 1px;
+  z-index: 15;
+  border-radius: 5px;
+}
+
+.edit-info-button:hover {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
+}
+
+.cog-icon {
+  width: 32px;
+  padding: 4px;
+}
+
 
 
 
@@ -124,52 +148,6 @@
   background-color: red;
 }
 
-
-
-/* .info-container {
-  position: absolute;
-  top: 40%;
-  left: 10%;
-
-  width: 20%;
-  padding-left: 10px;
-  background-color: aquamarine;
+.grid-area-4 {
+  background-color: lightgray;
 }
-
-.edit-button-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-form-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.popup-labels {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
-  background-color: rgb(45, 219, 45);
-  font-weight: bold;
-}
-
-.editing-grid {
-  display: grid;
-  grid-template-columns: 200px auto;
-}
-
-.edit-buttons-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.submit-edit {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-*/

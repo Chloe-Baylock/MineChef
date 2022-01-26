@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import './Profile.css'
-import { UserCircleIcon, PencilIcon } from "@heroicons/react/solid";
+import { CogIcon, PencilIcon } from "@heroicons/react/solid";
 import { editUser } from '../../store/session';
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
@@ -71,15 +71,19 @@ function Profile() {
           <div className="info-container">
             <div className='edit-button-container'>
               <button
-                className="edit-info"
-                onClick={(e) => {
+                className="edit-info-button"
+                onMouseDown={e => e.currentTarget.style.backgroundColor = 'rgb(140, 140, 140)'}
+                onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgb(150, 150, 150)'}
+                onMouseUp={e => e.currentTarget.style.backgroundColor = 'rgb(160, 160, 160)'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgb(160, 160, 160)'}
+                onClick={() => {
                   if (editPopup === "Edit Profile") {
                     setEditPopup("Cancel")
                     setEdit('none')
                   }
                   else setEditPopup("Edit Profile");
                 }}
-              >{editPopup}</button>
+              ><CogIcon className='cog-icon' /></button>
             </div>
             <div className='popup-div'>
               <EditProfile
@@ -118,8 +122,10 @@ function Profile() {
           </div>
         </div>
 
-        <div className='posts-div'>
-          <h1>Posts</h1>
+        <div className='grid-area-4'>
+          <div className='posts-div'>
+            <h1>Posts</h1>
+          </div>
         </div>
       </div>
     </>
