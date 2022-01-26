@@ -32,8 +32,10 @@ def post():
   else:
     return {'errors': 'chloe wrote this error, posts/new route'}, 401
 
-
-
-# @post_routes.route('/<int:postId>', methods=["POST"])
-# @login_required
-# def post():
+@post_routes.route('/<int:postId>/delete', methods=["DELETE"])
+@login_required
+def deletePost(postId):
+  post = Post.query.get(postId)
+  db.session.query(Post).filter(Post.id == postId).delete()
+  db.session.commit()
+  return post.to_dict()
