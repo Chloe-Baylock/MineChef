@@ -1,78 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getAllPosts, destroyPost } from '../../store/posts';
-import EditPost from './EditPost'
+// import { useDispatch } from 'react-redux';
+// import { getAllPosts, destroyPost } from '../../store/posts';
+// import EditPost from './EditPost'
+import ShowPosts from './ShowPosts'
+
 function PostsPage() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const [posts, setPosts] = useState('')
-  const [users, setUsers] = useState('')
-  const [trigger, setTrigger] = useState(-2)
-  const [flicker, setFlicker] = useState(false)
-  const [editButton, setEditButton] = useState('Edit')
+  // const [posts, setPosts] = useState('')
+  // const [users, setUsers] = useState('')
+  // const [trigger, setTrigger] = useState(-2)
+  // const [flicker, setFlicker] = useState(false)
+  // const [editButton, setEditButton] = useState('Edit')
 
-  const deletePost = async post => {
-    console.log('deleting post', post.id)
-    await dispatch(destroyPost(post));
-    setFlicker(!flicker)
-  }
+  // const deletePost = async post => {
+  //   console.log('deleting post', post.id)
+  //   await dispatch(destroyPost(post));
+  //   setFlicker(!flicker)
+  // }
 
-  useEffect(() => {
-    const fetchData = async function () {
-      if (!users) {
-        const response = await fetch('/api/users/');
-        const data = await response.json();
-        const setto = data.users
-        setUsers(setto);
-      }
-      const allPosts = await dispatch(getAllPosts());
-      setPosts(allPosts);
-    }
-    fetchData();
-  }, [dispatch, flicker])
+  // useEffect(() => {
+  //   const fetchData = async function () {
+  //     if (!users) {
+  //       const response = await fetch('/api/users/');
+  //       const data = await response.json();
+  //       const setto = data.users
+  //       setUsers(setto);
+  //     }
+  //     const allPosts = await dispatch(getAllPosts());
+  //     setPosts(allPosts);
+  //   }
+  //   fetchData();
+  // }, [dispatch, flicker])
 
-  const retEdit = post => {
-    if (editButton.postId === post.id) return true
-    else return false;
-  }
+  // const retEdit = post => {
+  //   if (editButton.postId === post.id) return true
+  //   else return false;
+  // }
 
   return (
     <div>
       <h1>Posts</h1>
       <ul>
-        {posts && posts.map(post =>  (
-          <li key={post.id}>{post.title}
-            by {users.filter(user => user.id === post.author_id)[0].username}
-            {+trigger === post.id && (
-              <EditPost
-                post={post}
-                setEditButton={setEditButton}
-                setTrigger={setTrigger}
-                flicker={flicker}
-                setFlicker={setFlicker}
-              />)}
-            <button id={post.id}
-              onClick={e => {
-                console.log('post.id is', post.id)
-                if (retEdit(post)) {
-                  setEditButton('Edit')
-                  setTrigger(-4);
-                }
-                else if (editButton === 'Edit') {
-                  setEditButton({ postId: post.id })
-                  setTrigger(e.target.id);
-                }
-                else {
-                  setEditButton({ postId: post.id })
-                  setTrigger(e.target.id);
-                }
-              }}
-            >{retEdit(post) && 'Cancel' || 'Edit'}</button>
-            <button
-              onClick={() => deletePost(post)}
-            >Delete</button></li>
-        ))}
+        <ShowPosts />
       </ul>
     </div>
   )

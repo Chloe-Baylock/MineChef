@@ -5,6 +5,7 @@ import './Profile.css'
 import { CogIcon, PencilIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
+import ShowPosts from '../Posts/ShowPosts';
 
 function Profile() {
 
@@ -123,6 +124,7 @@ function Profile() {
         <div className='grid-area-4'>
           <div className='posts-div'>
             <h1>Posts</h1>
+            <ShowPosts />
           </div>
         </div>
       </div>
