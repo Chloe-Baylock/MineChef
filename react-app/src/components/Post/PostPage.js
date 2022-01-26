@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../../store/session';
+import { postPost } from '../../store/posts';
 
-const PostForm = () => {
+const PostPage = () => {
+  const dispatch = useDispatch();
+
   const [author_id, setAuthor_id] = useState();
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
 
-  const onPost = async e => {
+  const onPost = e => {
     e.preventDefault();
-    // dispatch
+    console.log('posting');
+    dispatch(postPost(title, content))
   }
 
   return (
@@ -18,7 +21,7 @@ const PostForm = () => {
       <form onSubmit={onPost}>
         <div className='labels-class'>
           <label htmlFor='title'>Title </label>
-          <label htmlFor='title'> Content </label>
+          <label htmlFor='content'> Content </label>
         </div>
         <div className='inputs-class'>
           <input
@@ -26,9 +29,21 @@ const PostForm = () => {
             type='text'
             placeholder='Title'
             value={title}
+            onChange={e => setTitle(e.target.value)}
+          ></input>
+          <input
+            name='content'
+            type='text'
+            placeholder='Content'
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            ></input>
+          <button>Submit</button>
         </div>
       </form>
     </div>
   )
 
 }
+
+export default PostPage

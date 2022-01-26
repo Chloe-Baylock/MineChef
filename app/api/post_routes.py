@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Post
+from app.models import db, Post
 from app.forms import PostForm
 
 post_routes = Blueprint('posts', __name__)
@@ -17,11 +17,15 @@ def post():
   form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  print('                       ***********in route')
+  print('                       ***********form.data is', form.data)
+
   if form.validate_on_submit():
+    print('                       ***********valid form')
     userId = current_user.id
-    user = User.query.get(userId)
 
     post = Post(
+      author_id = userId,
       title=form.data['title'] or 'Untitled',
       content=form.data['content'],
     )
