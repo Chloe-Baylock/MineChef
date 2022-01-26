@@ -7,27 +7,27 @@ function PostsPage() {
 
   const [ posts, setPosts ] = useState('')
   const [ users, setUsers ] = useState('')
-  const [ aa, setaa] = useState(true)
+  const [ flicker, setFlicker] = useState(false)
 
-  const deletePost = post => {
+  const deletePost = async post => {
     console.log('deleting post', post.id)
-    dispatch(destroyPost(post));
-    setaa(false)
+    await dispatch(destroyPost(post));
+    setFlicker(!flicker)
   }
 
   useEffect(() => {
     const fetchData = async function() {
-      const response = await fetch('/api/users/');
-      const data = await response.json();
-      const setto = data.users
-      
-      setUsers(setto);
+      if (!users) {
+        const response = await fetch('/api/users/');
+        const data = await response.json();
+        const setto = data.users
+        setUsers(setto);
+      }
       const allPosts = await dispatch(getAllPosts());
       setPosts(allPosts);
     }
     fetchData();
-    setaa(true)
-  }, [dispatch, aa])
+  }, [dispatch, flicker])
 
 
   return (
