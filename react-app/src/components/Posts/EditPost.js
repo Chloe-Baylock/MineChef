@@ -16,6 +16,7 @@ function EditPost(props) {
     await dispatch(updatePost(props.post.id, title, content));
     props.setFlicker(!props.flicker);
     props.setTrigger(-5);
+    props.setEditButton('Edit');
   }
 
   return (
