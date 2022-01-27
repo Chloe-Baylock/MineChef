@@ -40,8 +40,9 @@ function ShowPosts(props) {
     <>
       <ul>
         {posts && posts.map(post =>  (
-          <li key={post.id}>{post.title}
-            by {users.filter(user => user.id === post.author_id)[0].username}
+          <li key={post.id}>{post.title
+            } by {
+            users.filter(user => user.id === post.author_id)[0].username}
             {+trigger === post.id && (
               <EditPost
                 post={post}

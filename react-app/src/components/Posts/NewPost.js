@@ -19,8 +19,8 @@ const NewPost = (props) => {
     <div>
       <form onSubmit={onPost}>
         <div className='labels-class'>
-          <label htmlFor='title'>Title </label>
-          <label htmlFor='content'> Content </label>
+          {/* <label htmlFor='title'>Title </label> */}
+          {/* <label htmlFor='content'> Content </label> */}
         </div>
         <div className='inputs-class'>
           <input
@@ -30,13 +30,12 @@ const NewPost = (props) => {
             value={title}
             onChange={e => setTitle(e.target.value)}
           ></input>
-          <input
+          <textarea
             name='content'
-            type='text'
             placeholder='Content'
             value={content}
             onChange={e => setContent(e.target.value)}
-            ></input>
+            ></textarea>
           <button>Submit</button>
         </div>
       </form>
