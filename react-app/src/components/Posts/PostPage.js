@@ -15,7 +15,7 @@ function PostPage() {
       setPost(allPosts.filter(post => post.id === +postId)[0])
     }
     fetchData();
-  }, [dispatch])
+  }, [dispatch, postId])
 
   return (
     <>

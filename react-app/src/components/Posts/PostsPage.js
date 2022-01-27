@@ -12,6 +12,7 @@ function PostsPage() {
       <h1>Posts <button onClick={() => setPostPopup(!postPopup)}>+</button></h1>
       {postPopup && (<NewPost
         setPostPopup={setPostPopup}
+        flicker={flicker}
         setFlicker={setFlicker}
       />)}
       <ul>
