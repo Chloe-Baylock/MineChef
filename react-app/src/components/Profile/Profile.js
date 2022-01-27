@@ -20,6 +20,7 @@ function Profile() {
   const [editDesc, setEditDesc] = useState('Edit');
   const [postPopup, setPostPopup] = useState(false);
   const [flicker, setFlicker] = useState(false)
+  const inProfile = true;
 
   useEffect(() => {
     if (image) {
@@ -134,6 +135,7 @@ function Profile() {
             <ShowPosts
               flicker={flicker}
               setFlicker={setFlicker}
+              inProfile={inProfile}  
             />
           </div>
         </div>

@@ -159,7 +159,9 @@
 
 
 
-
+.user-does-not-own-post {
+  display:none;
+}
 
 .inputs-class {
   display: flex;
