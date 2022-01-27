@@ -11,6 +11,7 @@ function EditUsername(props) {
     e.preventDefault();
     dispatch(editUser({'username': username}));
     props.setTrigger('Edit Profile');
+    props.setFlicker(!props.flicker);
   }
 
   return (

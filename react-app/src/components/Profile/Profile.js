@@ -15,6 +15,7 @@ function Profile(props) {
   const currentUser = useSelector(state => state.session.user)
 
   const [owner, setOwner] = useState(props.profileForId || 'profilePage')
+  const [userA, setUserA] = useState('')
   const [pfp_url, setPfp_url] = useState('')
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
@@ -25,6 +26,13 @@ function Profile(props) {
   const inProfile = true;
 
   useEffect(() => {
+    const fetchUser = async () => {
+      console.log('currentUser is', currentUser)
+      const response = await fetch(`/api/users/${currentUser.id}`);
+      const gettingUser = await response.json();
+      setUserA(gettingUser);
+    }
+    fetchUser()
     if (image) {
       const fetchImage = async () => {
         const url = await dispatch(postImage(image));
@@ -37,7 +45,7 @@ function Profile(props) {
       }
       if (owner === 'profilePage') {
         setOwner(currentUser);
-      } else {
+      } else if (typeof ownerId === "Number") {
         const fetchData = async function () {
           const ownerId = owner;
           const response = await fetch(`/api/users/${ownerId}`);
@@ -47,7 +55,7 @@ function Profile(props) {
         fetchData()
       }
     }
-  }, [dispatch, image])
+  }, [dispatch, flicker, image])
 
   const updateImage = e => {
     if (owner.id === currentUser.id) {
@@ -81,20 +89,20 @@ function Profile(props) {
                   accept="image/*"
                   onChange={updateImage}
                 />
-                {(pfp_url === '' && owner.pfp_url === '') && (
+                {(pfp_url === '' && userA.pfp_url === '') && (
                   <UserCircleIcon className='user-circle-icon' />
                 )}
-                {(pfp_url !== '' || owner.pfp_url !== '') && (
+                {(pfp_url !== '' || userA.pfp_url !== '') && (
                   <img
                     className="pfp-image"
-                    src={pfp_url || owner.pfp_url}
+                    src={pfp_url || userA.pfp_url}
                     alt="pfp"
                   ></img>
                 )}
                 <PencilIcon className="pen-icon" />
               </div>
               <div className='grid-1-username'>
-                <h1>{owner.username}</h1>
+                <h1>{userA.username}</h1>
               </div>
             </div>
           </div>
@@ -125,6 +133,8 @@ function Profile(props) {
                 setTrigger={setEditPopup}
                 edit={edit}
                 setEdit={setEdit}
+                flicker={flicker}
+                setFlicker={setFlicker}
               />
             </div>
           </div>
@@ -137,6 +147,8 @@ function Profile(props) {
             </p>
             <div className='description-content-box'>
               {editDesc === 'Cancel' && <EditDescription
+                flicker={flicker}
+                setFlicker={setFlicker}
                 owner={owner}
                 setEditDesc={setEditDesc}
               />
@@ -144,7 +156,7 @@ function Profile(props) {
               {editDesc === 'Edit' && (
                 <>
                   <p className='description-body'>
-                    {owner.description || 'none'}
+                    {userA.description || 'none'}
                   </p>
                 </>
               )}
