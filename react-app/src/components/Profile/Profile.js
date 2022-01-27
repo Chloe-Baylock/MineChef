@@ -161,13 +161,18 @@ function Profile(props) {
 
         <div className='grid-area-4'>
           <div className='posts-div'>
-            <h1>Posts <button onClick={() => setPostPopup(!postPopup)}>+</button></h1>
+            <h1>{owner.username}'s posts <button
+              className={showOrHide('new-post-button')}
+              onClick={() => setPostPopup(!postPopup)}
+            >+</button>
+            </h1>
             {postPopup && (
               <NewPost
                 setPostPopup={setPostPopup}
                 setFlicker={setFlicker}
               />)}
             <ShowPosts
+              owner={owner}
               flicker={flicker}
               setFlicker={setFlicker}
               inProfile={inProfile}
