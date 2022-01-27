@@ -100,6 +100,10 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
 }
 
+.hide-edit-info-button {
+  display: none;
+}
+
 .cog-icon {
   width: 32px;
   padding: 4px;

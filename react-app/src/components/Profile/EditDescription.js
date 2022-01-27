@@ -5,7 +5,7 @@ import { editUser } from '../../store/session'
 function EditDescription(props) {
   const dispatch = useDispatch();
 
-  const [ description, setDescription ] = useState(props.currentUser.description)
+  const [ description, setDescription ] = useState(props.owner.description)
 
   const alterDescription = e => {
     e.preventDefault();
