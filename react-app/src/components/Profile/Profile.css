@@ -43,10 +43,15 @@
   background-color: rgba(0, 0, 0, 0.37);
 }
 
+.hide-pfp-container {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
 .pfp-container:hover .pen-icon {
   display: flex;
-  left: 33px;
-  top: 33px;
 }
 
 .pfp-image {
@@ -61,12 +66,19 @@
   display: none;
   width: 32px;
   color: white;
+  transform: translate(30px, -65px);
 }
 
 .filey-thing {
   display: none;
 }
 
+.user-circle-icon {
+  position: absolute;
+  width: 120px;
+  transform: translate(-14px, -15px);
+  color: rgb(26, 26, 26);
+}
 
 
 
@@ -98,6 +110,10 @@
 
 .edit-info-button:hover {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hide-edit-info-button {
+  display: none;
 }
 
 .cog-icon {
@@ -141,6 +157,12 @@
   overflow-wrap: break-word;
 }
 
+.hide-edit-desc-button {
+  display: none;
+}
+
+
+
 .edit-type-button {
   display:flex;
   justify-content: flex-start;
@@ -152,12 +174,20 @@
   background-color: red;
 }
 
+
+
+
+
+
+
+
 .grid-area-4 {
   background-color: lightgray;
 }
 
-
-
+.hide-new-post-button {
+  display: none;
+}
 
 .user-does-not-own-post {
   display:none;

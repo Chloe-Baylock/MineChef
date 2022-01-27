@@ -29,7 +29,6 @@ function EditProfile(props) {
   }
 
   const handleDelete = () => {
-    console.log('handle delete');
     dispatch(destroyUser(currentUser));
     dispatch(logout());
     history.push('/deleted');

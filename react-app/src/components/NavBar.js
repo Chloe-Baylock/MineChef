@@ -43,11 +43,11 @@ const NavBar = () => {
             )}
             {x && (
               <>
-                {/* <p>
+                <p>
                 <NavLink to='/users' exact={true} activeClassName='active'>
                   Users
                 </NavLink>
-              </p> */}
+              </p>
                 <p>
                   <NavLink to='/profile' exact={true} activeClassName='active'>
                     Profile

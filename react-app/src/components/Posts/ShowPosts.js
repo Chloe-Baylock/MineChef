@@ -45,38 +45,40 @@ function ShowPosts(props) {
   return (
     <>
       <ul>
-        {posts && posts.map(post =>  (
-          <li key={post.id}>{post.title
+        {posts && posts.map(post => {
+          if (props.inProfile && post.author_id !== props.owner.id) return '';
+          else return (
+            <li key={post.id}>{post.title
             } by {
-            users.filter(user => user.id === post.author_id)[0].username}
-            {+trigger === post.id && (
-              <EditPost
-                post={post}
-                setEditButton={setEditButton}
-                setTrigger={setTrigger}
-                flicker={props.flicker}
-                setFlicker={props.setFlicker}
-              />)}
-            <button className={isRightUser(post)} id={post.id}
-              onClick={e => {
-                if (retEdit(post)) {
-                  setEditButton('Edit')
-                  setTrigger(-4);
-                }
-                else if (editButton === 'Edit') {
-                  setEditButton({ postId: post.id })
-                  setTrigger(e.target.id);
-                }
-                else {
-                  setEditButton({ postId: post.id })
-                  setTrigger(e.target.id);
-                }
-              }}
-            >{retEdit(post) && 'Cancel' || 'Edit'}</button>
-            <button className={isRightUser(post)}
-              onClick={() => deletePost(post)}
-            >Delete</button></li>
-        ))}
+                users.filter(user => user.id === post.author_id)[0].username}
+              {+trigger === post.id && (
+                <EditPost
+                  post={post}
+                  setEditButton={setEditButton}
+                  setTrigger={setTrigger}
+                  flicker={props.flicker}
+                  setFlicker={props.setFlicker}
+                />)}
+              <button className={isRightUser(post)} id={post.id}
+                onClick={e => {
+                  if (retEdit(post)) {
+                    setEditButton('Edit')
+                    setTrigger(-4);
+                  }
+                  else if (editButton === 'Edit') {
+                    setEditButton({ postId: post.id })
+                    setTrigger(e.target.id);
+                  }
+                  else {
+                    setEditButton({ postId: post.id })
+                    setTrigger(e.target.id);
+                  }
+                }}
+              >{retEdit(post) && 'Cancel' || 'Edit'}</button>
+              <button className={isRightUser(post)}
+                onClick={() => deletePost(post)}
+              >Delete</button></li>
+          )})}
       </ul>
     </>
   )
