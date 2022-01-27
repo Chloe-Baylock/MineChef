@@ -7,6 +7,7 @@ body {
   width: 100vw;
   justify-content: space-between;
   border-bottom: 3px solid black;
+  background-color: rgb(245, 245, 245);
 }
 
 

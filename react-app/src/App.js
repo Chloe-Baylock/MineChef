@@ -12,6 +12,7 @@ import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
 import DeletedPage from './components/deleted';
 import PostPage from './components/Posts/PostPage';
+import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
           <DeletedPage />
         </Route>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
       {/* <Footer /> */}
