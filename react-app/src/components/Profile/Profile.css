@@ -145,6 +145,12 @@
   overflow-wrap: break-word;
 }
 
+.hide-edit-desc-button {
+  display: none;
+}
+
+
+
 .edit-type-button {
   display:flex;
   justify-content: flex-start;

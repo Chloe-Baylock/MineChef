@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import EditProfile from './EditProfile';
 import './Profile.css'
 import { CogIcon, PencilIcon } from "@heroicons/react/solid";
@@ -11,12 +10,12 @@ import ShowPosts from '../Posts/ShowPosts';
 
 function Profile(props) {
 
-  const history = useHistory()
   const dispatch = useDispatch()
 
   const currentUser = useSelector(state => state.session.user)
 
-  const [owner, setOwner] = useState(props.profileForId || '@TRUE')
+  const [owner, setOwner] = useState(props.profileForId || 'profilePage')
+  const [pfp_url, setPfp_url] = useState('')
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
@@ -27,34 +26,37 @@ function Profile(props) {
 
   useEffect(() => {
     if (image) {
-      console.log('uploading...')
-      dispatch(postImage(image));
+      const fetchImage = async () => {
+        const url = await dispatch(postImage(image));
+        setPfp_url(url);
+      }
+      fetchImage()
     } else {
-      if (owner === '@TRUE') {
-        console.log('push history')
-        window.history.pushState('page2', 'Title', '/page2.php');
+      if (+owner === currentUser.id) {
+        window.history.pushState('', window.title, '/profile');
+      }
+      if (owner === 'profilePage') {
+        setOwner(currentUser);
       } else {
-        console.log('props.profileForId is', props.profileForId)
-        console.log('currentUser.id is', currentUser.id)
+        const fetchData = async function () {
+          const ownerId = owner;
+          const response = await fetch(`/api/users/${ownerId}`);
+          const setto = await response.json();
+          setOwner(setto);
+        }
+        fetchData()
       }
-      const fetchData = async function () {
-        const ownerId = owner;
-        const response = await fetch(`/api/users/${ownerId}`);
-        const setto = await response.json();
-        setOwner(setto); 
-      }
-      fetchData()
     }
   }, [dispatch, image])
 
-  const updateImage = (e) => {
+  const updateImage = e => {
     const file = e.target.files[0];
     setImage(file);
   };
 
-  const showCog = () => {
-    if (owner.id === currentUser.id) return 'edit-info-button';
-    else return 'hide-edit-info-button';
+  const showOrHide = (cName) => {
+    if (owner.id === currentUser.id) return cName;
+    else return `hide-${cName}`;
   }
 
   return (
@@ -79,7 +81,7 @@ function Profile(props) {
                 />
                 <img
                   className="pfp-image"
-                  src={owner.pfp_url}
+                  src={pfp_url || owner.pfp_url}
                   alt="pfp"
                 ></img>
                 <PencilIcon className="pen-icon" />
@@ -96,7 +98,7 @@ function Profile(props) {
           <div className="info-container">
             <div className='edit-button-container'>
               <button
-                className={showCog()}
+                className={showOrHide('edit-info-button')}
                 onMouseDown={e => e.currentTarget.style.backgroundColor = 'rgb(140, 140, 140)'}
                 onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgb(150, 150, 150)'}
                 onMouseUp={e => e.currentTarget.style.backgroundColor = 'rgb(160, 160, 160)'}
@@ -120,6 +122,7 @@ function Profile(props) {
             </div>
           </div>
         </div>
+
         <div className='grid-area-3'>
           <div className='box-in-grid-3'>
             <p className='description-title'>
@@ -138,7 +141,9 @@ function Profile(props) {
                   </p>
                 </>
               )}
-              <button onClick={() => {
+              <button
+                className={showOrHide('edit-desc-button')}
+                onClick={() => {
                 if (editDesc === 'Cancel') setEditDesc('Edit')
                 else setEditDesc('Cancel')
               }}

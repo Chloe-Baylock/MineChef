@@ -143,8 +143,8 @@ export const postImage = image => async dispatch => {
   });
   if (response.ok) {
     const user = await response.json();
-    console.log('user is', user)
     dispatch(setPfp(user))
+    return user.pfp_url;
   }
 }
 

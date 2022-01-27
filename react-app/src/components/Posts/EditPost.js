@@ -12,7 +12,6 @@ function EditPost(props) {
 
   const editPost = async e => {
     e.preventDefault();
-    console.log('editing post', props.post.id);
     await dispatch(updatePost(props.post.id, title, content));
     props.setFlicker(!props.flicker);
     props.setTrigger(-5);

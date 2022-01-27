@@ -24,11 +24,9 @@ def user(id):
 @login_required
 def image():
   if "image" not in request.files:
-    print('               ****** image not found')
     return {"errors": "image required"}, 400
   
   image = request.files["image"]
-  print('        ***** image is', image)
 
   if not allowed_file(image.filename):
     return {"errors": "file type not permitted"}, 400
@@ -37,20 +35,16 @@ def image():
 
   upload = upload_file_to_s3(image)
 
-  print('               ***** file.content_type', image.content_type)
-  print('               ***** 1')
 
 
   if "url" not in upload:
     # if the dictionary doesn't have a url key
     # it means that there was an error when we tried to upload
     # so we send back that error message
-    print('               ***** 2')
     return upload, 400
 
   url = upload["url"]
 
-  print('               ***** got this far.')
   user = User.query.get(current_user.id)
   user.pfp_url = url
   db.session.commit()
