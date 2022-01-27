@@ -43,6 +43,13 @@
   background-color: rgba(0, 0, 0, 0.37);
 }
 
+.hide-pfp-container {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
 .pfp-container:hover .pen-icon {
   display: flex;
   left: 33px;
@@ -67,6 +74,12 @@
   display: none;
 }
 
+.user-circle-icon {
+  position: absolute;
+  width: 120px;
+  transform: translate(-14px, -15px);
+  color: rgb(26, 26, 26);
+}
 
 
 

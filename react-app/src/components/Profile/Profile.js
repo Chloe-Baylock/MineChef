@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import './Profile.css'
-import { CogIcon, PencilIcon } from "@heroicons/react/solid";
+import { CogIcon, PencilIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
@@ -50,8 +50,10 @@ function Profile(props) {
   }, [dispatch, image])
 
   const updateImage = e => {
-    const file = e.target.files[0];
-    setImage(file);
+    if (owner.id === currentUser.id) {
+      const file = e.target.files[0];
+      setImage(file);
+    }
   };
 
   const showOrHide = (cName) => {
@@ -66,24 +68,29 @@ function Profile(props) {
           <div></div>
           <div className='inner-grid-area-2'>
             <div className='white-area'>
-              <div className="pfp-container"
+              <div className={showOrHide('pfp-container')}
                 onClick={() => {
                   let x = document.getElementById('testRun')
                   x.click();
                 }}>
                 <input
-                  className="filey-thing"
+                  className={'filey-thing'}
                   id='testRun'
                   name='image'
-                  type="file"
+                  type={showOrHide('file')}
                   accept="image/*"
                   onChange={updateImage}
                 />
-                <img
-                  className="pfp-image"
-                  src={pfp_url || owner.pfp_url}
-                  alt="pfp"
-                ></img>
+                {pfp_url === '' && owner.pfp_url === '' && (
+                  <UserCircleIcon className='user-circle-icon' />
+                )}
+                {pfp_url !== '' || owner.pfp_url !== '' && (
+                  <img
+                    className="pfp-image"
+                    src={pfp_url || owner.pfp_url}
+                    alt="pfp"
+                  ></img>
+                )}
                 <PencilIcon className="pen-icon" />
               </div>
               <div className='grid-1-username'>
@@ -144,9 +151,9 @@ function Profile(props) {
               <button
                 className={showOrHide('edit-desc-button')}
                 onClick={() => {
-                if (editDesc === 'Cancel') setEditDesc('Edit')
-                else setEditDesc('Cancel')
-              }}
+                  if (editDesc === 'Cancel') setEditDesc('Edit')
+                  else setEditDesc('Cancel')
+                }}
               >{editDesc}</button>
             </div>
           </div>
