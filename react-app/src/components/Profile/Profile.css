@@ -13,6 +13,10 @@
   flex-shrink: 2;
 }
 
+.grid-1-username {
+  margin-left: 5px;
+}
+
 .inner-grid-area-2 {
   display: flex;
   align-items: center;
@@ -150,4 +154,16 @@
 
 .grid-area-4 {
   background-color: lightgray;
+}
+
+
+
+
+.user-does-not-own-post {
+  display:none;
+}
+
+.inputs-class {
+  display: flex;
+  align-items: flex-start;
 }

@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import ShowPosts from './ShowPosts'
+import NewPost from './NewPost';
 
 function PostsPage() {
 
-  const [posts, setPosts] = useState({})
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/posts`);
-      const allPosts = await response.json();
-      setPosts(allPosts);
-    })()
-  }, [])
-
-  const postsKeys = Object.keys(posts);
+  const [postPopup, setPostPopup] = useState(false);
+  const [flicker, setFlicker] = useState(false);
 
   return (
     <div>
-      <h1>Posts</h1>
+      <h1>Posts <button onClick={() => setPostPopup(!postPopup)}>+</button></h1>
+      {postPopup && (<NewPost
+        setPostPopup={setPostPopup}
+        setFlicker={setFlicker}
+      />)}
       <ul>
-        {postsKeys && postsKeys.map(postKey => (
-          <li key={posts[`${postKey}`].id}>{posts[`${postKey}`].title}</li>
-        ))}
+        <ShowPosts
+          flicker={flicker}
+          setFlicker={setFlicker}
+        />
       </ul>
     </div>
   )
