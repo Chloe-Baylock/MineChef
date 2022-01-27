@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getAllPosts, destroyPost } from '../../store/posts';
 import EditPost from './EditPost'
 
 function ShowPosts(props) {
+
+  const history = useHistory()
 
   const currentUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
@@ -48,9 +51,18 @@ function ShowPosts(props) {
         {posts && posts.map(post => {
           if (props.inProfile && post.author_id !== props.owner.id) return '';
           else return (
-            <li key={post.id}>{post.title
-            } by {
-                users.filter(user => user.id === post.author_id)[0].username}
+            <li className='li-of-post' key={post.id}>
+              <p
+                className='post-component'
+                onClick={() => history.push(`/posts/${post.id}`)}
+              >{post.title}</p>
+              <p className='word-by'>by</p>
+              <p
+                className='author-component'
+                onClick={() => history.push(`/users/${post.author_id}`)}
+              >{
+                  users.filter(user => user.id === post.author_id)[0].username}
+              </p>
               {+trigger === post.id && (
                 <EditPost
                   post={post}
@@ -78,7 +90,8 @@ function ShowPosts(props) {
               <button className={isRightUser(post)}
                 onClick={() => deletePost(post)}
               >Delete</button></li>
-          )})}
+          )
+        })}
       </ul>
     </>
   )

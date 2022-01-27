@@ -9,9 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Profile from './components/Profile/Profile'
 import PostsPage from './components/Posts/PostsPage';
-import PostPage from './components/Posts/NewPost'
 import { authenticate } from './store/session';
 import DeletedPage from './components/deleted';
+import PostPage from './components/Posts/PostPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,7 +50,7 @@ function App() {
         <ProtectedRoute path='/posts' exact={true} >
           <PostsPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/posts/new' exact={true} >
+        <ProtectedRoute path='/posts/:postId' exact={true} >
           <PostPage />
         </ProtectedRoute>
         <Route path='/deleted' exact={true} >
