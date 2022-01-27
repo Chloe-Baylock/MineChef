@@ -12,6 +12,7 @@ import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
 import DeletedPage from './components/deleted';
 import PostPage from './components/Posts/PostPage';
+// import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
