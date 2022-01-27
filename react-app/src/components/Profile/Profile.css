@@ -197,3 +197,27 @@
   display: flex;
   align-items: flex-start;
 }
+
+.li-of-post {
+  display: flex;
+  align-items: flex-end;
+}
+
+.post-component {
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.word-by {
+  padding-right: 5px;
+  padding-bottom: 1px;
+}
+
+.author-component {
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
