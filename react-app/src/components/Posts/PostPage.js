@@ -7,23 +7,21 @@ import { useParams } from 'react-router-dom';
 function PostPage() {
   const dispatch = useDispatch();
   const { postId } = useParams();
-  const [posts, setPosts] = useState('')
+  const [post, setPost] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
       const allPosts = await dispatch(getAllPosts());
-      setPosts(allPosts);
+      setPost(allPosts.filter(post => post.id === +postId)[0])
     }
     fetchData();
-  }, [])
+  }, [dispatch])
 
   return (
     <>
-      {posts && posts.map(post => { if (post.id === +postId) return (
-        <p>
-          {post.content}
-        </p>
-      )})}
+      <p>
+        {post.content}
+      </p>
     </>
   )
 }
