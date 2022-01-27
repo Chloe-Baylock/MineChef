@@ -5,7 +5,7 @@ import NewPost from './NewPost';
 function PostsPage() {
 
   const [postPopup, setPostPopup] = useState(false);
-  const [flicker, setFlicker] = useState(false)
+  const [flicker, setFlicker] = useState(false);
 
   return (
     <div>

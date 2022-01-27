@@ -5,6 +5,7 @@ import './Profile.css'
 import { CogIcon, PencilIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
+import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
 
 function Profile() {
@@ -13,11 +14,12 @@ function Profile() {
 
   const currentUser = useSelector(state => state.session.user)
   const thePfp = useSelector(state => state.session.user.pfp_url)
-
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
   const [editDesc, setEditDesc] = useState('Edit');
+  const [postPopup, setPostPopup] = useState(false);
+  const [flicker, setFlicker] = useState(false)
 
   useEffect(() => {
     if (image) {
@@ -123,8 +125,16 @@ function Profile() {
 
         <div className='grid-area-4'>
           <div className='posts-div'>
-            <h1>Posts</h1>
-            <ShowPosts />
+            <h1>Posts <button onClick={() => setPostPopup(!postPopup)}>+</button></h1>
+            {postPopup && (
+              <NewPost
+                setPostPopup={setPostPopup}
+                setFlicker={setFlicker}
+              />)}
+            <ShowPosts
+              flicker={flicker}
+              setFlicker={setFlicker}
+            />
           </div>
         </div>
       </div>
