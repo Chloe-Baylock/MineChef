@@ -52,8 +52,6 @@
 
 .pfp-container:hover .pen-icon {
   display: flex;
-  left: 33px;
-  top: 33px;
 }
 
 .pfp-image {
@@ -68,6 +66,7 @@
   display: none;
   width: 32px;
   color: white;
+  transform: translate(30px, -65px);
 }
 
 .filey-thing {
