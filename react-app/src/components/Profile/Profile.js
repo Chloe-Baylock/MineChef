@@ -81,10 +81,10 @@ function Profile(props) {
                   accept="image/*"
                   onChange={updateImage}
                 />
-                {pfp_url === '' && owner.pfp_url === '' && (
+                {(pfp_url === '' && owner.pfp_url === '') && (
                   <UserCircleIcon className='user-circle-icon' />
                 )}
-                {pfp_url !== '' || owner.pfp_url !== '' && (
+                {(pfp_url !== '' || owner.pfp_url !== '') && (
                   <img
                     className="pfp-image"
                     src={pfp_url || owner.pfp_url}
