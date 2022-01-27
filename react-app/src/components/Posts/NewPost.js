@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postPost } from '../../store/posts';
 
-const PostPage = () => {
+const NewPost = (props) => {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
-  const onPost = e => {
+  const onPost = async e => {
     e.preventDefault();
-    dispatch(postPost(title, content))
+    await dispatch(postPost(title, content));
+    props.setFlicker(!props.flicker);
+    props.setPostPopup(false);
   }
 
   return (
@@ -43,4 +45,4 @@ const PostPage = () => {
 
 }
 
-export default PostPage
+export default NewPost

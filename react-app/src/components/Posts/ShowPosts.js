@@ -3,19 +3,18 @@ import { useDispatch } from 'react-redux';
 import { getAllPosts, destroyPost } from '../../store/posts';
 import EditPost from './EditPost'
 
-function ShowPosts() {
+function ShowPosts(props) {
 
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState('')
   const [users, setUsers] = useState('')
   const [trigger, setTrigger] = useState(-2)
-  const [flicker, setFlicker] = useState(false)
   const [editButton, setEditButton] = useState('Edit')
 
   const deletePost = async post => {
     await dispatch(destroyPost(post));
-    setFlicker(!flicker)
+    props.setFlicker(!props.flicker)
   }
 
   useEffect(() => {
@@ -30,7 +29,7 @@ function ShowPosts() {
       setPosts(allPosts);
     }
     fetchData();
-  }, [dispatch, flicker])
+  }, [dispatch, props.flicker])
 
   const retEdit = post => {
     if (editButton.postId === post.id) return true
@@ -48,8 +47,8 @@ function ShowPosts() {
                 post={post}
                 setEditButton={setEditButton}
                 setTrigger={setTrigger}
-                flicker={flicker}
-                setFlicker={setFlicker}
+                flicker={props.flicker}
+                setFlicker={props.setFlicker}
               />)}
             <button id={post.id}
               onClick={e => {
