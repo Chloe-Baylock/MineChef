@@ -7,10 +7,11 @@ function EditDescription(props) {
 
   const [ description, setDescription ] = useState(props.owner.description)
 
-  const alterDescription = e => {
+  const alterDescription = async e => {
     e.preventDefault();
-    dispatch(editUser({'description': description}));
-    props.setEditDesc('Edit')
+    await dispatch(editUser({'description': description}));
+    props.setEditDesc('Edit');
+    props.setFlicker(!props.flicker);
   }
 
   return (

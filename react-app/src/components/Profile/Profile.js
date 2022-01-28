@@ -15,7 +15,8 @@ function Profile(props) {
   const currentUser = useSelector(state => state.session.user)
 
   const [owner, setOwner] = useState(props.profileForId || 'profilePage')
-  const [pfp_url, setPfp_url] = useState('')
+  // const [userA, setUserA] = useState('')
+  // const [pfp_url, setPfp_url] = useState('')
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
@@ -25,29 +26,32 @@ function Profile(props) {
   const inProfile = true;
 
   useEffect(() => {
-    if (image) {
-      const fetchImage = async () => {
-        const url = await dispatch(postImage(image));
-        setPfp_url(url);
-      }
-      fetchImage()
-    } else {
-      if (+owner === currentUser.id) {
-        window.history.pushState('', window.title, '/profile');
-      }
-      if (owner === 'profilePage') {
-        setOwner(currentUser);
+    const fetchUser = async () => {
+      if (owner.id || owner === 'profilePage' || +owner === currentUser.id) {
+        // window.history.pushState('', window.title, '/profile');
+        const response = await fetch(`/api/users/${currentUser.id}`);
+        const gettingUser = await response.json();
+        setOwner(gettingUser);
       } else {
-        const fetchData = async function () {
-          const ownerId = owner;
-          const response = await fetch(`/api/users/${ownerId}`);
-          const setto = await response.json();
-          setOwner(setto);
-        }
-        fetchData()
+        const response = await fetch(`/api/users/${+owner}`);
+        const gettingUser = await response.json();
+        setOwner(gettingUser);
       }
     }
+    fetchUser()
+  }, [dispatch, owner, flicker])
+
+  useEffect(() => {
+    if (image) {
+      const fetchImage = async () => {
+        await dispatch(postImage(image));
+        setFlicker(!flicker)
+      }
+      fetchImage()
+    }
   }, [dispatch, image])
+
+
 
   const updateImage = e => {
     if (owner.id === currentUser.id) {
@@ -59,6 +63,11 @@ function Profile(props) {
   const showOrHide = (cName) => {
     if (owner.id === currentUser.id) return cName;
     else return `hide-${cName}`;
+  }
+
+  const stylePen = () => {
+    if (owner.pfp_url === '') return {transform: "translate(100%, 100%)"}
+    else return {transform: "translate(30px, -65px)"}
   }
 
   return (
@@ -81,17 +90,17 @@ function Profile(props) {
                   accept="image/*"
                   onChange={updateImage}
                 />
-                {(pfp_url === '' && owner.pfp_url === '') && (
+                {owner.pfp_url === '' && (
                   <UserCircleIcon className='user-circle-icon' />
                 )}
-                {(pfp_url !== '' || owner.pfp_url !== '') && (
+                {owner.pfp_url !== '' && (
                   <img
                     className="pfp-image"
-                    src={pfp_url || owner.pfp_url}
+                    src={owner.pfp_url}
                     alt="pfp"
                   ></img>
                 )}
-                <PencilIcon className="pen-icon" />
+                <PencilIcon className='pen-icon' style={stylePen()}/>
               </div>
               <div className='grid-1-username'>
                 <h1>{owner.username}</h1>
@@ -125,6 +134,8 @@ function Profile(props) {
                 setTrigger={setEditPopup}
                 edit={edit}
                 setEdit={setEdit}
+                flicker={flicker}
+                setFlicker={setFlicker}
               />
             </div>
           </div>
@@ -137,6 +148,8 @@ function Profile(props) {
             </p>
             <div className='description-content-box'>
               {editDesc === 'Cancel' && <EditDescription
+                flicker={flicker}
+                setFlicker={setFlicker}
                 owner={owner}
                 setEditDesc={setEditDesc}
               />
@@ -169,6 +182,7 @@ function Profile(props) {
             {postPopup && (
               <NewPost
                 setPostPopup={setPostPopup}
+                flicker={flicker}
                 setFlicker={setFlicker}
               />)}
             <ShowPosts

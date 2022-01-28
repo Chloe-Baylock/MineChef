@@ -28,12 +28,13 @@ function ShowPosts(props) {
         const data = await response.json();
         const setto = data.users
         setUsers(setto);
+      } else {
+        const allPosts = await dispatch(getAllPosts());
+        setPosts(allPosts);
       }
-      const allPosts = await dispatch(getAllPosts());
-      setPosts(allPosts);
     }
     fetchData();
-  }, [dispatch, props.flicker])
+  }, [dispatch, users, props.flicker])
 
   const retEdit = post => {
     if (editButton.postId === post.id) return true
@@ -86,7 +87,7 @@ function ShowPosts(props) {
                     setTrigger(e.target.id);
                   }
                 }}
-              >{retEdit(post) && 'Cancel' || 'Edit'}</button>
+              >{(retEdit(post) && 'Cancel') || 'Edit'}</button>
               <button className={isRightUser(post)}
                 onClick={() => deletePost(post)}
               >Delete</button></li>

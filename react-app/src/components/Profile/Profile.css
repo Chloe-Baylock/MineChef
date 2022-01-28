@@ -1,9 +1,13 @@
 .profile-page-grid {
+  /* position: absolute; */
+  /* top:0px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 100px, 1fr 2fr;
+  /* height: 100vh; */
   height: 80vh;
   width: 100vw;
+  /* z-index: -1; */
 }
 
 .grid-area-1 {
@@ -54,6 +58,10 @@
   display: flex;
 }
 
+/* .pfp-container:hover .hide-pen-icon {
+  display: flex;
+} */
+
 .pfp-image {
   mix-blend-mode: multiply;
   border-radius: 50%;
@@ -62,12 +70,20 @@
 }
 
 .pen-icon {
-  /* position: absolute;  */
+  position:absolute;
   display: none;
   width: 32px;
   color: white;
   transform: translate(30px, -65px);
 }
+
+/* .hide-pen-icon {
+  position:absolute;
+  display: none;
+  width: 32px;
+  color: white;
+  transform: translate(100%, 100%);
+} */
 
 .filey-thing {
   display: none;
@@ -129,6 +145,7 @@
   display: flex;
   justify-content: center;
   background-color: lightgrey;
+  border-bottom: 1px solid black;
 }
 
 .box-in-grid-3 {
@@ -176,12 +193,8 @@
 
 
 
-
-
-
-
-
 .grid-area-4 {
+  border-bottom: 1px solid black;
   background-color: lightgray;
 }
 

@@ -72,6 +72,8 @@ function EditProfile(props) {
           {props.edit === 'username' && <EditUsername
             setTrigger={props.setTrigger}
             currentUser={currentUser}
+            flicker={props.flicker}
+            setFlicker={props.setFlicker}
           />}
         </div>
         <div className='edit-email'>

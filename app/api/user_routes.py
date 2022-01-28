@@ -79,7 +79,12 @@ def edit_profile():
 @login_required
 def delete_user(userId):
   user = User.query.get(userId)
-  db.session.query(User).filter(User.id == userId).delete()
+  # db.session.query(User).filter(User.id == userId).delete()
+
+  userToDelete = db.session.query(User).filter(User.id == userId).first()
+  db.session.delete(userToDelete)
+
+  # db.session.delete(imageToDelete)
   db.session.commit()
 
   return user.to_dict()
