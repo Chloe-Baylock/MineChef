@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ShowPosts from './ShowPosts'
 import NewPost from './NewPost';
 import { PlusIcon } from "@heroicons/react/solid";
+import ButtonComp from '../ButtonComponent/ButtonComp';
 
 function PostsPage() {
 
@@ -10,22 +11,35 @@ function PostsPage() {
 
   return (
     <>
-      {/* <img className='bg-image' src='https://minechef.s3.amazonaws.com/ce9b4922c9854a61a9cd3b3240039557.png' /> */}
       <div className='space-fill'></div>
       <div className='container-div'>
         <div className='filled-div'>
-          <h1 className='post-h1-class'>Posts <PlusIcon className='plus-circle-icon' onClick={() => setPostPopup(!postPopup)}/></h1>
-          {postPopup && (<NewPost
-            setPostPopup={setPostPopup}
-            flicker={flicker}
-            setFlicker={setFlicker}
-          />)}
-          <ul>
-            <ShowPosts
+          <div className='post-top-part'>
+            <h1>Posts</h1>
+            <button
+              id='plus-button'
+              className='button-comp'
+              onClick={() => {
+                console.log('clicked')
+                setPostPopup(!postPopup)
+              }}
+            >
+              <PlusIcon className='plus-icon' />
+            </button>
+          </div>
+          <div className='centering-div'>
+            {postPopup && (<NewPost
+              setPostPopup={setPostPopup}
               flicker={flicker}
               setFlicker={setFlicker}
-            />
-          </ul>
+            />)}
+            <ul>
+              <ShowPosts
+                flicker={flicker}
+                setFlicker={setFlicker}
+              />
+            </ul>
+          </div>
         </div>
       </div>
     </>
