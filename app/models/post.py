@@ -8,7 +8,7 @@ class Post(db.Model):
   title = db.Column(db.String(255))
   content = db.Column(db.Text, nullable=False)
 
-  user = db.relationship('User', back_populates="post", cascade="all, delete")
+  user = db.relationship('User', back_populates="post")
 
   def to_dict(self):
     return {
