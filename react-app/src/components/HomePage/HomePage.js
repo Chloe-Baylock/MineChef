@@ -1,5 +1,4 @@
 import React from 'react';
-import { createStoreHook } from 'react-redux';
 // import './cook.png'
 
 function HomePage() {
@@ -7,7 +6,7 @@ function HomePage() {
 
   return (
     <div>
-      <img src={`${process.env.PUBLIC_URL}/cook.png`} />
+      {/* <img src={`${process.env.PUBLIC_URL}/cook.png`} /> */}
     </div>
   )
 }

@@ -58,6 +58,10 @@
   display: flex;
 }
 
+/* .pfp-container:hover .hide-pen-icon {
+  display: flex;
+} */
+
 .pfp-image {
   mix-blend-mode: multiply;
   border-radius: 50%;
@@ -66,12 +70,20 @@
 }
 
 .pen-icon {
-  /* position: absolute;  */
+  position:absolute;
   display: none;
   width: 32px;
   color: white;
   transform: translate(30px, -65px);
 }
+
+/* .hide-pen-icon {
+  position:absolute;
+  display: none;
+  width: 32px;
+  color: white;
+  transform: translate(100%, 100%);
+} */
 
 .filey-thing {
   display: none;

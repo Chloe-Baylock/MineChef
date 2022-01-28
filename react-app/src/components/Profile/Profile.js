@@ -16,7 +16,7 @@ function Profile(props) {
 
   const [owner, setOwner] = useState(props.profileForId || 'profilePage')
   // const [userA, setUserA] = useState('')
-  const [pfp_url, setPfp_url] = useState('')
+  // const [pfp_url, setPfp_url] = useState('')
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
@@ -39,7 +39,7 @@ function Profile(props) {
       }
     }
     fetchUser()
-  }, [dispatch, flicker])
+  }, [dispatch, owner, flicker])
 
   useEffect(() => {
     if (image) {
@@ -65,6 +65,11 @@ function Profile(props) {
     else return `hide-${cName}`;
   }
 
+  const stylePen = () => {
+    if (owner.pfp_url === '') return {transform: "translate(100%, 100%)"}
+    else return {transform: "translate(30px, -65px)"}
+  }
+
   return (
     <>
       <div className='profile-page-grid'>
@@ -85,17 +90,17 @@ function Profile(props) {
                   accept="image/*"
                   onChange={updateImage}
                 />
-                {(pfp_url === '' && owner.pfp_url === '') && (
+                {owner.pfp_url === '' && (
                   <UserCircleIcon className='user-circle-icon' />
                 )}
-                {(pfp_url !== '' || owner.pfp_url !== '') && (
+                {owner.pfp_url !== '' && (
                   <img
                     className="pfp-image"
-                    src={pfp_url || owner.pfp_url}
+                    src={owner.pfp_url}
                     alt="pfp"
                   ></img>
                 )}
-                <PencilIcon className="pen-icon" />
+                <PencilIcon className='pen-icon' style={stylePen()}/>
               </div>
               <div className='grid-1-username'>
                 <h1>{owner.username}</h1>
