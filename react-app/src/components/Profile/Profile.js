@@ -39,7 +39,7 @@ function Profile(props) {
       }
     }
     fetchUser()
-  }, [dispatch, owner, flicker])
+  }, [dispatch, flicker])
 
   useEffect(() => {
     if (image) {

@@ -57,13 +57,17 @@ function ShowPosts(props) {
                 className='post-component'
                 onClick={() => history.push(`/posts/${post.id}`)}
               >{post.title}</p>
-              <p className='word-by'>by</p>
-              <p
-                className='author-component'
-                onClick={() => history.push(`/users/${post.author_id}`)}
-              >{
-                  users.filter(user => user.id === post.author_id)[0].username}
-              </p>
+              {!props.inProfile && (
+                <>
+                  <p className='word-by'>by</p>
+                  <p
+                    className='author-component'
+                    onClick={() => history.push(`/users/${post.author_id}`)}
+                  >{
+                      users.filter(user => user.id === post.author_id)[0].username}
+                  </p>
+                </>
+              )}
               {+trigger === post.id && (
                 <EditPost
                   post={post}
