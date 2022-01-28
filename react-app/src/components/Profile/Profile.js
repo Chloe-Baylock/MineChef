@@ -45,7 +45,7 @@ function Profile(props) {
     if (image) {
       const fetchImage = async () => {
         await dispatch(postImage(image));
-        setFlicker(!flicker)
+        setFlicker(!flicker);
       }
       fetchImage()
     }

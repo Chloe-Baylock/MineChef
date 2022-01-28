@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getAllPosts, destroyPost } from '../../store/posts';
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 import EditPost from './EditPost'
 
 function ShowPosts(props) {
@@ -48,55 +49,62 @@ function ShowPosts(props) {
 
   return (
     <>
-      <ul>
+      <ul className='posts-ul'>
         {posts && posts.map(post => {
           if (props.inProfile && post.author_id !== props.owner.id) return '';
           else return (
             <li className='li-of-post' key={post.id}>
-              <p
-                className='post-component'
-                onClick={() => history.push(`/posts/${post.id}`)}
-              >{post.title}</p>
-              {!props.inProfile && (
-                <>
-                  <p className='word-by'>by</p>
-                  <p
-                    className='author-component'
-                    onClick={() => history.push(`/users/${post.author_id}`)}
-                  >{
-                      users.filter(user => user.id === post.author_id)[0].username}
-                  </p>
-                </>
-              )}
-              {+trigger === post.id && (
-                <EditPost
-                  post={post}
-                  setEditButton={setEditButton}
-                  setTrigger={setTrigger}
-                  flicker={props.flicker}
-                  setFlicker={props.setFlicker}
-                />)}
-              <button className={isRightUser(post)} id={post.id}
-                onClick={e => {
-                  if (retEdit(post)) {
-                    setEditButton('Edit')
-                    setTrigger(-4);
-                  }
-                  else if (editButton === 'Edit') {
-                    setEditButton({ postId: post.id })
-                    setTrigger(e.target.id);
-                  }
-                  else {
-                    setEditButton({ postId: post.id })
-                    setTrigger(e.target.id);
-                  }
-                }}
-              >{(retEdit(post) && 'Cancel') || 'Edit'}</button>
-              <button className={isRightUser(post)}
-                onClick={() => deletePost(post)}
-              >Delete</button></li>
+              <div>
+                <p
+                  className='post-component'
+                  onClick={() => history.push(`/posts/${post.id}`)}
+                >{post.title}</p>
+                {!props.inProfile && (
+                  <>
+                    <p className='word-by'>by</p>
+                    <p
+                      className='author-component'
+                      onClick={() => history.push(`/users/${post.author_id}`)}
+                    >{
+                        users.filter(user => user.id === post.author_id)[0].username}
+                    </p>
+                  </>
+                )}
+                {+trigger === post.id && (
+                  <EditPost
+                    className='edit-post'
+                    post={post}
+                    setEditButton={setEditButton}
+                    setTrigger={setTrigger}
+                    flicker={props.flicker}
+                    setFlicker={props.setFlicker}
+                  />)}
+              </div>
+              <div className='edit-delete-post-buttons'>
+                <PencilIcon className={isRightUser(post)} id={post.id}
+                  onClick={e => {
+                    if (retEdit(post)) {
+                      setEditButton('Edit')
+                      setTrigger(-4);
+                    }
+                    else if (editButton === 'Edit') {
+                      setEditButton({ postId: post.id })
+                      setTrigger(e.currentTarget.id);
+                    }
+                    else {
+                      setEditButton({ postId: post.id })
+                      setTrigger(e.currentTarget.id);
+                    }
+                  }}
+                />
+                <TrashIcon className={isRightUser(post)}
+                  onClick={() => deletePost(post)}
+                />
+              </div>
+            </li>
           )
         })}
+        <p className='border-top'></p>
       </ul>
     </>
   )
