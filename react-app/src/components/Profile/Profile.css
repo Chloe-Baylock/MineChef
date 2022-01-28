@@ -287,5 +287,10 @@
 
 .edit-delete-post-buttons {
   display: flex;
-  
+}
+
+
+
+.happy-div {
+  display: flex;
 }
