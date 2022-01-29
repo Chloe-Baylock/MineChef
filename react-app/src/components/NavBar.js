@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { LogoutIcon } from "@heroicons/react/solid";
-import { login, logout } from '../store/session';
+import { login, logout, signUp } from '../store/session';
 
 import './NavBar.css'
 
@@ -20,10 +20,18 @@ const NavBar = () => {
   };
 
   const onDemo = async () => {
-    const dUsername = 'Demo'
-    const dPassword = 'password'
+    let dUsername = 'Demo';
+    let dPassword = 'password';
 
-    dispatch(login(dUsername, dPassword))
+    let errors = await dispatch(login(dUsername, dPassword))
+    if (errors) {
+      console.log('in data conditional');
+      let num = Math.floor(Math.random() * 10000);
+      let dUsername = `Demo${num}`;
+      let dEmail = `Demo${num}@aa.io`;
+      let dPassword = 'password';
+      dispatch(signUp(dUsername, dEmail, dPassword))
+    }
   }
 
   let x = false;
