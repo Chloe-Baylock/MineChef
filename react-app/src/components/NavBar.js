@@ -38,37 +38,56 @@ const NavBar = () => {
         <div className='nav-right-side'>
           {x || (
             <>
-              <p>
-                <NavLink className='noDecorate' to='/login' exact={true} activeClassName='active'>
-                  Login
-                </NavLink>
-              </p>
-              <p>
-                <NavLink className='noDecorate' to='/sign-up' exact={true} activeClassName='active'>
-                  Sign Up
-                </NavLink>
-              </p>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-login').click()}
+              >
+                <p>
+                  <NavLink id='slash-login' className='noDecorate' to='/login' exact={true} activeClassName='active'>
+                    Login
+                  </NavLink>
+                </p>
+              </button>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-sign-up').click()}
+              >
+                <p>
+                  <NavLink id='slash-sign-up' className='noDecorate' to='/sign-up' exact={true} activeClassName='active'>
+                    Sign Up
+                  </NavLink>
+                </p>
+              </button>
             </>
           )}
           {x && (
             <>
-              <button className='nav-button-comp'>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-users').click()}
+              >
                 <p>
-                  <NavLink className='noDecorate' to='/users' exact={true} activeClassName='active'>
+                  <NavLink id='slash-users' className='noDecorate' to='/users' exact={true} activeClassName='active'>
                     Users
                   </NavLink>
                 </p>
               </button>
-              <button className='nav-button-comp'>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-profile').click()}
+              >
                 <p>
-                  <NavLink className='noDecorate' to='/profile' exact={true} activeClassName='active'>
+                  <NavLink id='slash-profile' className='noDecorate' to='/profile' exact={true} activeClassName='active'>
                     Profile
                   </NavLink>
                 </p>
               </button>
-              <button className='nav-button-comp'>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-posts').click()}
+              >
                 <p>
-                  <NavLink className='noDecorate' to='/posts' exact={true} activeClassName='active'>
+                  <NavLink id='slash-posts' className='noDecorate' to='/posts' exact={true} activeClassName='active'>
                     Posts
                   </NavLink>
                 </p>
