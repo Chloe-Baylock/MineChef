@@ -64,26 +64,26 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className='cover-nav'></div>
-      <div className='flex-area'>
-        <div className='box'>
-          <div className='box-top'>
-            <div className='mine-with-a-hat'>
+      <div className='login-page-cover-nav'></div>
+      <div className='login-page-flex-area'>
+        <div className='login-page-box'>
+          <div className='login-page-box-top'>
+            <div className='login-page-mine-with-a-hat'>
               <img src={minewithahat} alt='minewithahat'></img>
             </div>
-            <div className='h1-div'>
+            <div className='login-page-h1-div'>
               <h1>MineChef</h1>
             </div>
           </div>
-          <div className='box-bot'>
-            <div className='login-errors-div'>
+          <div className='login-page-box-bot'>
+            <div className='login-page-errors-div'>
               {errors.map((error, ind) => (
                 <li key={ind}>{error}</li>
               ))}
             </div>
-            <div className='form-box'>
+            <div className='login-page-form-box'>
               <form onSubmit={onLogin}>
-                <div className='input-flex'>
+                <div className='login-page-input-flex'>
                   <input
                     autoFocus={true}
                     name='username/email'
@@ -100,7 +100,7 @@ const LoginForm = () => {
                     onChange={updatePassword}
                   />
                 </div>
-                <button className='button-comp' id='login-form-submit' type='submit'>Log In</button>
+                <button className='button-comp' id='login-page-form-submit' type='submit'>Log In</button>
               </form>
             </div>
             <div className='login-page-other-buttons'>
