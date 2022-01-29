@@ -13,12 +13,24 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onLogin = async (e) => {
+  const onLogin = async e => {
     e.preventDefault();
-    const data = await dispatch(login(username, password));
-    if (data) {
-      setErrors(data);
+
+    const errArr = [];
+    username || errArr.push('* Please enter a username or email');
+    password || errArr.push('* Please enter your password');
+
+    if(errArr.length === 0) {
+      const data = await dispatch(login(username, password));
+      if (data) {
+        data[0][0]==='u' && errArr.push('* User or email not found');
+        data[0][0]==='p' && errArr.push('* Incorrect Password');
+        setErrors(errArr);
+      }
+    } else {
+      setErrors(errArr);
     }
+
   };
 
   const updateUsername = (e) => {
@@ -34,46 +46,50 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='cyan-box'>
-      <div className='head'>
-        <img src={minewithahat} alt='minewithahat'></img>
-        <div className='h1-div'>
-          <h1>MineChef</h1>
-        </div>
-      </div>
-      <div className='form-box'>
-        <form onSubmit={onLogin}>
-          <div className='grid'>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
+    <>
+      <div className='cover-nav'></div>
+      <div className='flex-area'>
+        <div className='box'>
+          <div className='box-top'>
+            <div className='mine-with-a-hat'>
+              <img src={minewithahat} alt='minewithahat'></img>
             </div>
-            <div className='label-grid'>
-              <label htmlFor='username/email'>Username or Email: </label>
-              <label htmlFor='password'>Password: </label>
-            </div>
-            <div className='input-grid'>
-              <input
-                name='username/email'
-                type='text'
-                placeholder='Username'
-                value={username}
-                onChange={updateUsername}
-              />
-              <input
-                name='password'
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={updatePassword}
-              />
+            <div className='h1-div'>
+              <h1>MineChef</h1>
             </div>
           </div>
-          <button className='button-comp' id='form-button' type='submit'>Login</button>
-        </form>
+          <div className='box-bot'>
+            <div className='login-errors-div'>
+              {errors.map((error, ind) => (
+                <li key={ind}>{error}</li>
+              ))}
+            </div>
+            <div className='form-box'>
+              <form onSubmit={onLogin}>
+                <div className='input-flex'>
+                  <input
+                    autoFocus={true}
+                    name='username/email'
+                    type='text'
+                    placeholder='Username or Email'
+                    value={username}
+                    onChange={updateUsername}
+                  />
+                  <input
+                    name='password'
+                    type='password'
+                    placeholder='Password'
+                    value={password}
+                    onChange={updatePassword}
+                  />
+                </div>
+                <button className='button-comp' id='form-button' type='submit'>Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

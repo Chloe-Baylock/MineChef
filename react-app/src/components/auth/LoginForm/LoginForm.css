@@ -1,34 +1,88 @@
-html {
-    background-color: rgb(245, 245, 245);
+.cover-nav {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100px;
+  width: 100vw;
+  background-color: gray;
+  z-index: 100;
 }
 
-/* nav {
-    display: none;
+.flex-area {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 100vw;
+  height: 500px;
+}
+
+.box {
+  width: 400px;
+  background-color: rgb(156, 156, 156);
+}
+
+.box-top {
+  display: grid;
+  grid-template-columns: 125px 275px;
+  background-color: rgb(245, 245, 245);
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  height: 100px;
+}
+
+.mine-with-a-hat {
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.h1-div {
+  display:flex;
+  align-items: center;
+}
+
+/* .box-bot {
+  transform: scale(1.5);
 } */
 
-.cyan-box {
-    position: absolute;
-    left: 30%;
-    top: 10%;
-    width: 30vw;
-    height: 60vh;
-
-    background-color: aquamarine;
+.login-errors-div {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: pink;
+  font-weight: bold;
+  font-size: 25px;
+  list-style: none;
 }
 
-.head {
-    display: flex;
-    height: 20%;
-}
 
 .form-box {
-    height:80%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding-top: 100px;
+  height: 300px;
 }
+
+.input-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-flex input {
+  width: 300px;
+  border-radius: .25rem;
+  border: none;
+  background-color: rgb(220, 220, 220);
+  margin-bottom: 4px;
+  box-shadow: 0px 0px 3px black;
+
+  font-size: 30px;
+}
+
+/* .input-flex input:hover {
+  border: 1px solid black;
+} */
+
+
+/*
 
 .grid {
     display: grid;
@@ -49,21 +103,27 @@ h1 {
     margin: 0;
 }
 
-.label-grid {
+.label-flex {
     display: flex;
     flex-direction: column;
+    padding: .5rem;
+    width: 250px;
+    font-size: 30px;
     align-items: flex-end;
     background-color: rgb(45, 219, 45);
-    /* color: white; */
 }
 
-.input-grid {
+.input-flex {
     display: flex;
     flex-direction: column;
+    padding: .5rem;
     align-items: flex-start;
     background-color: pink;
-}
+  }
 
+input {
+  font-size: 30px;
+}
 
 #form-button {
     position: absolute;
@@ -90,7 +150,7 @@ label {
 
 .hide {
   display: none;
-}
+} */
 /* input {
     grid-area: b;
     font-size: 25px;
