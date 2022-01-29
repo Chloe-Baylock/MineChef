@@ -103,7 +103,7 @@ const SignUpForm = () => {
           onChange={e => setDescription(e.target.value)}
           value={description}
         ></input>
-      <button type='submit'>Sign Up</button>
+      <button className='button-comp' type='submit'>Sign Up</button>
     </form>
   );
 };

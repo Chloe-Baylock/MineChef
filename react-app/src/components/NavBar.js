@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { LogoutIcon } from "@heroicons/react/solid";
-import { logout } from '../store/session';
+import { login, logout } from '../store/session';
 
 import './NavBar.css'
 
@@ -18,6 +18,13 @@ const NavBar = () => {
   const onLogout = async () => {
     await dispatch(logout());
   };
+
+  const onDemo = async () => {
+    const dUsername = 'Demo'
+    const dPassword = 'password'
+
+    dispatch(login(dUsername, dPassword))
+  }
 
   let x = false;
   if (currentUser) x = true
@@ -38,6 +45,11 @@ const NavBar = () => {
         <div className='nav-right-side'>
           {x || (
             <>
+            <button className='nav-button-comp' onClick={() => onDemo()}>
+                <p>
+                  Demo
+                </p>
+              </button>
               <button
                 className='nav-button-comp'
                 onClick={() => document.getElementById('slash-login').click()}
