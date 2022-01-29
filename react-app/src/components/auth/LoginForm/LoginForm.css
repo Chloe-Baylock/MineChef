@@ -65,10 +65,22 @@ h1 {
 }
 
 
-.form-button {
+#form-button {
     position: absolute;
     bottom: 5px;
     left: 5px;
+}
+
+.button-comp {
+  border-radius: 1rem;
+  margin-left: 5px;
+  transform: translateY(2px);
+}
+
+.button-comp:hover {
+  cursor: pointer;
+  background-color: rgb(206, 214, 195);
+  box-shadow: 0px 2px 30px rgb(206, 214, 195);
 }
 
 label {

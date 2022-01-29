@@ -42,3 +42,37 @@ p {
 .chevron-down-icon {
   width: 10px;
 }
+
+.nav-button-comp {
+  border-radius: 1rem;
+  margin-left: 5px;
+  transform: translate(-3px, -3px);
+  height: 25px;
+}
+
+.nav-button-comp:hover {
+  cursor: pointer;
+  background-color: rgb(206, 214, 195);
+  box-shadow: 0px 2px 30px rgb(206, 214, 195);
+}
+
+.nav-button-comp:hover .noDecorate {
+  color: rgb(22, 189, 22);
+}
+
+.nav-button-comp:hover .logout-icon {
+  color: rgb(225, 58, 231);
+}
+
+.noDecorate {
+  text-decoration: none;
+}
+
+.logout-icon {
+  width: 24px;
+  transform: translateY(7px);
+}
+
+.move-up-pls {
+  transform: translateY(-10px);
+}

@@ -1,13 +1,14 @@
+html {
+  height: 100vh;
+  background-color: rgb(79, 228, 166);
+}
+
 .profile-page-grid {
-  /* position: absolute; */
-  /* top:0px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100px, 1fr 2fr;
-  /* height: 100vh; */
   height: 80vh;
   width: 100vw;
-  /* z-index: -1; */
 }
 
 .grid-area-1 {
@@ -58,10 +59,6 @@
   display: flex;
 }
 
-/* .pfp-container:hover .hide-pen-icon {
-  display: flex;
-} */
-
 .pfp-image {
   mix-blend-mode: multiply;
   border-radius: 50%;
@@ -76,14 +73,6 @@
   color: white;
   transform: translate(30px, -65px);
 }
-
-/* .hide-pen-icon {
-  position:absolute;
-  display: none;
-  width: 32px;
-  color: white;
-  transform: translate(100%, 100%);
-} */
 
 .filey-thing {
   display: none;
@@ -202,18 +191,41 @@
   display: none;
 }
 
-.user-does-not-own-post {
+.user-owns-post, .user-does-not-own-post {
   display:none;
+  width: 23px;
+  cursor: pointer;
 }
 
 .inputs-class {
   display: flex;
   align-items: flex-start;
+  margin-top: 5px;
+}
+.inputs-class > input, textarea{
+  margin-right: 5px;
 }
 
 .li-of-post {
   display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
+  width: 264px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  background-color: white;
+  padding-left: 5px;
+  margin-bottom: 2px;
+  margin-right: 4px;
+  height: 23px;
+}
+
+.li-of-post:hover .user-owns-post{
+  display: flex;
+  color: rgb(0, 184, 184);
+}
+
+.li-of-post + div {
+  border-bottom: 1px solid black;
 }
 
 .post-component {
@@ -221,11 +233,26 @@
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+  max-height: 24px;
+  max-width: 255px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.post-component:hover, .author-component:hover {
+  color: rgb(0, 0, 255);
+  text-decoration: underline;
+}
+
+.li-of-post:hover .post-component {
+  max-width: 210px;
 }
 
 .word-by {
   padding-right: 5px;
   padding-bottom: 1px;
+  transform: translateY(3px);
 }
 
 .author-component {
@@ -233,4 +260,131 @@
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+}
+
+
+.edit-post-form-div {
+  display: flex;
+  position: relative;
+  height: 24px;
+  transform: translate(269px, -24px);
+  z-index: 1;
+}
+
+.edit-post-form-div input, button {
+  margin-right: 4px;
+}
+
+.check-button {
+  background-color: lime;
+}
+
+.x-button {
+  background-color: red;
+}
+
+.check-icon, .x-icon {
+  width: 20px;
+}
+
+.edit-delete-post-buttons {
+  display: flex;
+}
+
+/* .page-area {
+  position:absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  border: 1px solid red;
+} */
+
+.space-fill {
+  height: 15vh;
+  width: 100vw;
+  background-color: chartreuse;
+}
+
+/* .post-h1-class {
+  display: flex;
+  align-items: center;
+} */
+
+.container-div {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100px;
+  background-color: lime;
+}
+
+.filled-div {
+  /* height:100%; */
+  width: 650px;
+  transform: scale(1.5)
+}
+
+.post-top-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: brown;
+  box-shadow: 0px 0px 3px brown;
+}
+
+ul {
+  padding: 0px;
+}
+
+.happy-div {
+  display: flex;
+}
+
+.button-comp {
+  border-radius: 1rem;
+  margin-left: 5px;
+  transform: translateY(2px);
+}
+
+.button-comp:hover {
+  cursor: pointer;
+  background-color: rgb(206, 214, 195);
+  box-shadow: 0px 2px 30px rgb(206, 214, 195);
+}
+
+.plus-icon {
+  width: 24px;
+  cursor: pointer;
+  color: rgb(56, 151, 206);
+  transform: translate(-7.5px, -2px)
+}
+
+#plus-button {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+}
+
+.centering-div {
+  /* box-shadow: 0 0 3px black; */
+  box-shadow: 0 0px 3px rgb(149, 149, 149);
+  background-color: rgb(149, 149, 149);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errors-fill {
+  position: absolute;
+  width: 500px;
+  height: 50px;
+  background-color: cadetblue;
+  transform: translate(270px, -50px);
+}
+
+.errors-for-edit-post {
+  transform: translateX(180px);
+  color: rgb(255, 67, 214)
 }

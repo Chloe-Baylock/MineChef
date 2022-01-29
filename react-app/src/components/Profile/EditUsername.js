@@ -7,9 +7,9 @@ function EditUsername(props) {
 
   const [ username, setUsername ] = useState(props.currentUser.username)
 
-  const alterUsername = e => {
+  const alterUsername = async e => {
     e.preventDefault();
-    dispatch(editUser({'username': username}));
+    await dispatch(editUser({'username': username}));
     props.setTrigger('Edit Profile');
     props.setFlicker(!props.flicker);
   }

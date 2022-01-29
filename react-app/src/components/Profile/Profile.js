@@ -39,13 +39,13 @@ function Profile(props) {
       }
     }
     fetchUser()
-  }, [dispatch, owner, flicker])
+  }, [dispatch, flicker])
 
   useEffect(() => {
     if (image) {
       const fetchImage = async () => {
         await dispatch(postImage(image));
-        setFlicker(!flicker)
+        setFlicker(!flicker);
       }
       fetchImage()
     }
