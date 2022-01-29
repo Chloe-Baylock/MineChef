@@ -36,7 +36,7 @@ const NewPost = (props) => {
             value={content}
             onChange={e => setContent(e.target.value)}
             ></textarea>
-          <button>Submit</button>
+          <button className='button-comp'>Submit</button>
         </div>
       </form>
     </div>

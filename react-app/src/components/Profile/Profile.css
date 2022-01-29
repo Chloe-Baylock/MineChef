@@ -336,8 +336,6 @@ ul {
 }
 
 .button-comp {
-  height: 25px;
-  width: 25px;
   border-radius: 1rem;
   margin-left: 5px;
   transform: translateY(2px);
@@ -358,6 +356,8 @@ ul {
 
 #plus-button {
   border-radius: 50%;
+  height: 25px;
+  width: 25px;
 }
 
 .centering-div {
