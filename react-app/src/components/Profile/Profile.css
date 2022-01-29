@@ -265,8 +265,10 @@ html {
 
 .edit-post-form-div {
   display: flex;
+  position: relative;
   height: 24px;
   transform: translate(269px, -24px);
+  z-index: 1;
 }
 
 .edit-post-form-div input, button {
@@ -372,4 +374,17 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.errors-fill {
+  position: absolute;
+  width: 500px;
+  height: 50px;
+  background-color: cadetblue;
+  transform: translate(270px, -50px);
+}
+
+.errors-for-edit-post {
+  transform: translateX(180px);
+  color: rgb(255, 67, 214)
 }
