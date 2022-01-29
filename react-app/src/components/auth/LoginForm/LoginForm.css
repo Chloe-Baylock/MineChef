@@ -5,7 +5,6 @@
   height: 100px;
   width: 100vw;
   background-color: gray;
-  z-index: 100;
 }
 
 .flex-area {
@@ -19,6 +18,7 @@
 .box {
   width: 400px;
   background-color: rgb(156, 156, 156);
+  border-radius: .5rem;
 }
 
 .box-top {
@@ -40,10 +40,6 @@
   align-items: center;
 }
 
-/* .box-bot {
-  transform: scale(1.5);
-} */
-
 .login-errors-div {
   position: absolute;
   margin-top: 10px;
@@ -57,7 +53,7 @@
 
 .form-box {
   padding-top: 100px;
-  height: 300px;
+  height: 255px;
 }
 
 .input-flex {
@@ -76,6 +72,29 @@
 
   font-size: 30px;
 }
+
+#login-form-submit {
+  font-size: 40px;
+  margin-top: 15px;
+  margin-left: 230px;
+  background-color: rgb(87, 243, 87);
+}
+
+.login-page-other-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#login-page-sign-up {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+#login-page-demo {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
 
 /* .input-flex input:hover {
   border: 1px solid black;

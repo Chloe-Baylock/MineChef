@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../../store/session';
+import { Redirect, useHistory } from 'react-router-dom';
+import { login, signUp } from '../../../store/session';
 import './LoginForm.css'
 
 const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const LoginForm = () => {
+  const history = useHistory();
+
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,11 +22,11 @@ const LoginForm = () => {
     username || errArr.push('* Please enter a username or email');
     password || errArr.push('* Please enter your password');
 
-    if(errArr.length === 0) {
+    if (errArr.length === 0) {
       const data = await dispatch(login(username, password));
       if (data) {
-        data[0][0]==='u' && errArr.push('* User or email not found');
-        data[0][0]==='p' && errArr.push('* Incorrect Password');
+        data[0][0] === 'u' && errArr.push('* User or email not found');
+        data[0][0] === 'p' && errArr.push('* Incorrect Password');
         setErrors(errArr);
       }
     } else {
@@ -32,6 +34,21 @@ const LoginForm = () => {
     }
 
   };
+
+  const onDemo = async () => {
+    let dUsername = 'Demo';
+    let dPassword = 'password';
+
+    let errors = await dispatch(login(dUsername, dPassword))
+    if (errors) {
+      console.log('in data conditional');
+      let num = Math.floor(Math.random() * 10000);
+      let dUsername = `Demo${num}`;
+      let dEmail = `Demo${num}@aa.io`;
+      let dPassword = 'password';
+      dispatch(signUp(dUsername, dEmail, dPassword))
+    }
+  }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -83,8 +100,20 @@ const LoginForm = () => {
                     onChange={updatePassword}
                   />
                 </div>
-                <button className='button-comp' id='form-button' type='submit'>Login</button>
+                <button className='button-comp' id='login-form-submit' type='submit'>Log In</button>
               </form>
+            </div>
+            <div className='login-page-other-buttons'>
+              <button
+                id='login-page-sign-up'
+                className='button-comp'
+                onClick={() => history.push('/sign-up')}
+              >Sign Up</button>
+              <button
+                id='login-page-demo'
+                className='button-comp'
+                onClick={() => onDemo()}
+              >Demo</button>
             </div>
           </div>
         </div>

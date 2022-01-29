@@ -19,20 +19,20 @@ const NavBar = () => {
     await dispatch(logout());
   };
 
-  const onDemo = async () => {
-    let dUsername = 'Demo';
-    let dPassword = 'password';
+  // const onDemo = async () => {
+  //   let dUsername = 'Demo';
+  //   let dPassword = 'password';
 
-    let errors = await dispatch(login(dUsername, dPassword))
-    if (errors) {
-      console.log('in data conditional');
-      let num = Math.floor(Math.random() * 10000);
-      let dUsername = `Demo${num}`;
-      let dEmail = `Demo${num}@aa.io`;
-      let dPassword = 'password';
-      dispatch(signUp(dUsername, dEmail, dPassword))
-    }
-  }
+  //   let errors = await dispatch(login(dUsername, dPassword))
+  //   if (errors) {
+  //     console.log('in data conditional');
+  //     let num = Math.floor(Math.random() * 10000);
+  //     let dUsername = `Demo${num}`;
+  //     let dEmail = `Demo${num}@aa.io`;
+  //     let dPassword = 'password';
+  //     dispatch(signUp(dUsername, dEmail, dPassword))
+  //   }
+  // }
 
   let x = false;
   if (currentUser) x = true
@@ -53,7 +53,7 @@ const NavBar = () => {
         <div className='nav-right-side'>
           {x || (
             <>
-            <button className='nav-button-comp' onClick={() => onDemo()}>
+            {/* <button className='nav-button-comp' onClick={() => onDemo()}>
                 <p>
                   Demo
                 </p>
@@ -67,7 +67,7 @@ const NavBar = () => {
                     Login
                   </NavLink>
                 </p>
-              </button>
+              </button> */}
               <button
                 className='nav-button-comp'
                 onClick={() => document.getElementById('slash-sign-up').click()}
