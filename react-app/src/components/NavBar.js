@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { LogoutIcon } from "@heroicons/react/solid";
 import { logout } from '../store/session';
 
@@ -9,10 +9,11 @@ import './NavBar.css'
 const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+  const history = useHistory();
 
   const currentUser = useSelector(state => state.session.user)
 
-  const dispatch = useDispatch()
 
   const onLogout = async () => {
     await dispatch(logout());
