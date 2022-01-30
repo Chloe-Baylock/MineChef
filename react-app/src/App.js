@@ -11,7 +11,7 @@ import Profile from './components/Profile/Profile'
 import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
 import DeletedPage from './components/deleted';
-import PostPage from './components/Posts/PostPage';
+import PostPage from './components/Posts/PostPage/PostPage';
 import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 

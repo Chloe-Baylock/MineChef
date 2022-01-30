@@ -1,0 +1,44 @@
+.post-page-below-nav {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - 98px);
+  background-color: gray;
+}
+
+.post-page-centered-fill {
+  background-color: rgb(221, 221, 221);
+  width: 750px;
+}
+
+.post-page-top-part {
+  display: inline-block;
+  font-family: 'Roboto', Sans-Serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.post-page-title-h1 {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.post-page-author-p {
+  padding-left: 2px;
+}
+
+.post-page-author-p:hover {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-page-content {
+  padding: 15px;
+  font-size: 20px;
+  font-family: 'Roboto', Sans-Serif;
+}
