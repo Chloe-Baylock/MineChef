@@ -1,14 +1,9 @@
 import React from 'react';
-// import './cook.png'
+import { Redirect } from 'react-router-dom';
 
 function HomePage() {
 
-
-  return (
-    <div>
-      <img className='bg-image' src='https://minechef.s3.amazonaws.com/ce9b4922c9854a61a9cd3b3240039557.png' />
-    </div>
-  )
+  return (<Redirect to='/profile'/>)
 }
 
 export default HomePage;
