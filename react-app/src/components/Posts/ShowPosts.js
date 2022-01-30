@@ -53,8 +53,8 @@ function ShowPosts(props) {
         {posts && posts.map(post => {
           if (props.inProfile && post.author_id !== props.owner.id) return '';
           else return (
-            <div className='happy-div'>
-              <li className='li-of-post' key={post.id}>
+            <div className='happy-div' key={post.id}>
+              <li className='li-of-post'>
                 <div>
                   <p
                     className='post-component'
