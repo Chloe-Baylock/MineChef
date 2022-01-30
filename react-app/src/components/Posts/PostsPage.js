@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ShowPosts from './ShowPosts'
 import NewPost from './NewPost';
 import { PlusIcon } from "@heroicons/react/solid";
+import '../Profile/Profile.css';
 
 function PostsPage() {
 

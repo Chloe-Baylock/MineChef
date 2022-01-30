@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
-import { CogIcon, PencilIcon, UserCircleIcon } from "@heroicons/react/solid";
+import { CogIcon, PencilIcon, UserCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
 import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
@@ -146,7 +146,7 @@ function Profile(props) {
         </div>
 
 
-        <div className='profile-grid-area-4'>
+        {/* <div className='profile-posts'>
           <div className='posts-div'>
             <h1>{owner.username}'s posts <button
               className={showOrHide('profile-new-post-button')}
@@ -166,7 +166,40 @@ function Profile(props) {
               inProfile={inProfile}
             />
           </div>
-        </div>
+        </div> */}
+
+        {/* <div className='full-below-nav'> */}
+          {/* <div className='space-fill' /> */}
+          <div className='container-div'>
+            <div className='filled-div'>
+              <div className='profile-top-part'>
+                <h1>Posts</h1>
+                <button
+                  id='plus-button'
+                  className='button-comp'
+                  onClick={() => {
+                    setPostPopup(!postPopup)
+                  }}
+                >
+                  <PlusIcon className='plus-icon' />
+                </button>
+              </div>
+              <div className='centering-div'>
+                {postPopup && (<NewPost
+                  setPostPopup={setPostPopup}
+                  flicker={flicker}
+                  setFlicker={setFlicker}
+                />)}
+                <ul>
+                  <ShowPosts
+                    flicker={flicker}
+                    setFlicker={setFlicker}
+                  />
+                </ul>
+              </div>
+            </div>
+          </div>
+        {/* </div> */}
 
 
         <div className="profile-info-container">
