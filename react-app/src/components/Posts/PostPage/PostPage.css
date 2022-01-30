@@ -8,6 +8,10 @@
     url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
 }
 
+.post-page-centered-fill {
+  background-color: rgb(221, 221, 221);
+  width: 750px;
+}
 
 .post-page-top-part {
   display: inline-block;
@@ -79,4 +83,5 @@
   padding: 15px;
   font-size: 20px;
   font-family: 'Roboto', Sans-Serif;
+  white-space: pre-wrap;
 }

@@ -75,7 +75,7 @@ function PostPage() {
                 <PencilIcon
                   className={isRightUser(post)}
                   id='post-page-pencil'
-                  onClick={e => {
+                  onClick={() => {
                     if (retEdit(post)) {
                       setEditButton('Edit');
                       setTrigger(-4);

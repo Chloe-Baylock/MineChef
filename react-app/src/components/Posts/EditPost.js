@@ -55,7 +55,7 @@ function EditPost(props) {
             onChange={e => setTitle(e.target.value)}
           ></input>
           <textarea
-          className='elevate'
+            className='elevate'
             name='content'
             value={content}
             onChange={e => setContent(e.target.value)}
