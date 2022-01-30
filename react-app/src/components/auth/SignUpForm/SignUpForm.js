@@ -67,7 +67,7 @@ const SignUpForm = () => {
 
   return (
     <div className='sign-up-page-color'>
-      <div className='sign-up-page-fill-space'></div>
+      <div className='sign-up-page-fill-space' />
       <div className='sign-up-page-flex-area'>
         <div className='sign-up-page-box'>
           <div className='sign-up-page-box-top'>
@@ -109,13 +109,29 @@ const SignUpForm = () => {
                     onChange={updateEmail}
                   />
                 </div>
-                  {/* <input
+                <div className='sign-up-page-form-group'>
+                  <label className='sign-up-page-form-label' htmlFor='password'>Password</label>
+                  <input
+                    className='sign-up-page-form-input'
                     name='password'
                     type='password'
-                    placeholder='Password'
                     value={password}
                     onChange={updatePassword}
-                  /> */}
+                  />
+                </div>
+                <div className='sign-up-page-form-group'>
+                  <label className='sign-up-page-form-label' htmlFor='repeat'>Repeat Password</label>
+                  <input
+                    className='sign-up-page-form-input'
+                    name='repeat'
+                    type='password'
+                    value={repeatPassword}
+                    onChange={updateRepeatPassword}
+                  />
+                </div>
+
+                
+
                 <button className='button-comp' id='sign-up-page-form-submit' type='submit'>Sign In</button>
               </form>
             </div>
@@ -134,69 +150,6 @@ const SignUpForm = () => {
           </div>
         </div>
       </div>
-
-
-
-
-      {/* <form onSubmit={onSignUp}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-          ></input>
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <input
-          className='hide'
-          type='text'
-          name='pfp_url'
-          onChange={e => setPfp_url(e.target.value)}
-          value={pfp_url}
-        ></input>
-        <input
-          className='hide'
-          type='text'
-          name='description'
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-        ></input>
-        <button className='button-comp' type='submit'>Sign Up</button>
-      </form> */}
     </div>
   );
 };

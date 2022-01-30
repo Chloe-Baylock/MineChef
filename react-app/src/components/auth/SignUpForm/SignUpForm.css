@@ -19,7 +19,7 @@
 
 .sign-up-page-box {
   width: 560px;
-  height: 600px;
+  height: 800px;
   background-color: rgb(133, 133, 133);
   border-radius: .5rem;
 }
@@ -62,7 +62,7 @@
 }
 
 .sign-up-page-form-group {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .sign-up-page-form-label {
@@ -73,7 +73,7 @@
 
 .sign-up-page-form-input {
   display: block;
-  width: 100%;
+  width: 408px;
   height: 1rem;
   padding: 8px 14px;
   background-color: rgb(105, 105, 105);
@@ -82,6 +82,3 @@
   font-weight: bold;
   color: white;
 }
-
-/* .sign-up-page-form-input:hover {
-} */

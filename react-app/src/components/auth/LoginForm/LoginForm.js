@@ -63,8 +63,8 @@ const LoginForm = () => {
   }
 
   return (
-    <>
-      <div className='login-page-cover-nav'></div>
+    <div className='login-page-color'>
+      <div className='login-page-fill-space' />
       <div className='login-page-flex-area'>
         <div className='login-page-box'>
           <div className='login-page-box-top'>
@@ -118,7 +118,7 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
