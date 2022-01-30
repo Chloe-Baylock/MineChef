@@ -1,0 +1,87 @@
+.post-page-below-nav {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - 98px);
+  background-image:
+    linear-gradient(to top, rgba(37, 37, 37, 0.5), rgba(189, 189, 189, 0.5)),
+    url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
+}
+
+.post-page-centered-fill {
+  background-color: rgb(221, 221, 221);
+  width: 750px;
+}
+
+.post-page-top-part {
+  display: inline-block;
+  font-family: 'Roboto', Sans-Serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.post-page-top-line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-page-author-p {
+  padding-left: 2px;
+  width: fit-content;
+}
+
+.post-page-author-p:hover {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-page-form-div {
+  display: flex;
+  position: static;
+  height: 24px;
+}
+
+.post-page-form-div input{
+  margin-right: 5px;
+}
+
+.post-page-edit-delete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-page-owner {
+  width: 24px;
+  z-index: 2;
+}
+
+#post-page-pencil:hover {
+  color: rgb(0, 200, 0);
+  cursor: pointer;
+}
+
+#post-page-delete:hover {
+  color: rgb(200, 0, 0);
+  cursor: pointer;
+}
+
+.post-page-not-owner {
+  display: none;
+}
+
+.post-page-title-h1 {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.post-page-content {
+  padding: 15px;
+  font-size: 20px;
+  font-family: 'Roboto', Sans-Serif;
+  white-space: pre-wrap;
+}

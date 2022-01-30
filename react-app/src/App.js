@@ -5,13 +5,13 @@ import LoginForm from './components/auth/LoginForm/LoginForm';
 import SignUpForm from './components/auth/SignUpForm/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+import UserList from './components/UserList/UserList';
 import User from './components/User';
 import Profile from './components/Profile/Profile'
 import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
 import DeletedPage from './components/deleted';
-import PostPage from './components/Posts/PostPage';
+import PostPage from './components/Posts/PostPage/PostPage';
 import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 
@@ -41,7 +41,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UserList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

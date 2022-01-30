@@ -35,6 +35,11 @@ function EditPost(props) {
     props.setEditButton('Edit');
   }
 
+  const epCname = classN => {
+    if (props.cName) return `${props.cName}${classN}`;
+    else return `edit-post-${classN}`;
+  }
+
   return (
     <>
       {errors.length > 0 && (
@@ -43,18 +48,18 @@ function EditPost(props) {
         </div>
       )}
       <form onSubmit={editPost}>
-        <div className='edit-post-form-div'>
+        <div className={epCname('form-div')}>
           <input
             name='title'
             value={title}
             onChange={e => setTitle(e.target.value)}
           ></input>
-          <input
-          className='elevate'
+          <textarea
+            className='elevate'
             name='content'
             value={content}
             onChange={e => setContent(e.target.value)}
-          ></input>
+          ></textarea>
           <button className='check-button'>
             <CheckIcon className='check-icon' />
           </button>

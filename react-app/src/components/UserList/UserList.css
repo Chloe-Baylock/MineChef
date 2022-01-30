@@ -1,0 +1,64 @@
+
+.user-list-full-below-nav {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 98px);
+  background-image:
+    linear-gradient(to top, rgba(37, 37, 37, 0.5), rgba(189, 189, 189, 0.5)),
+    url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
+}
+
+.user-list-space-fill {
+  height: 15vh;
+  width: 100vw;
+}
+
+.user-list-container-div {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100px;
+}
+
+.user-list-filled-div {
+  max-width: 500px;
+  transform: scale(1.5)
+}
+
+.user-list-post-top-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: brown;
+  box-shadow: 0px 0px 3px brown;
+}
+
+.user-list-centering-div {
+  box-shadow: 0 0px 3px rgb(149, 149, 149);
+  background-color: rgb(104, 104, 104);
+  padding: 0px 10px;
+  display: flex;
+}
+
+.user-list-li {
+  list-style: none;
+}
+
+.user-list-ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-list-button-comp {
+  border-radius: 1rem;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  height: 21px;
+  transform: translateY(2px);
+}
+
+.user-list-button-comp:hover {
+  cursor: pointer;
+  background-color: rgb(206, 214, 195);
+  box-shadow: 0px 2px 30px rgb(206, 214, 195);
+}

@@ -48,6 +48,7 @@ p {
   margin-left: 5px;
   transform: translate(-3px, -3px);
   height: 25px;
+  z-index: 150;
 }
 
 .nav-button-comp:hover {
