@@ -20,6 +20,10 @@
   border-bottom: 1px solid black;
 }
 
+.post-page-top-line {
+  width: 100%;
+}
+
 .post-page-title-h1 {
   margin: 0;
   padding-left: 10px;
@@ -29,6 +33,7 @@
 
 .post-page-author-p {
   padding-left: 2px;
+  width: fit-content;
 }
 
 .post-page-author-p:hover {
@@ -41,4 +46,28 @@
   padding: 15px;
   font-size: 20px;
   font-family: 'Roboto', Sans-Serif;
+}
+
+.post-page-edit-delete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-page-owner {
+  width: 24px;
+  z-index: 2;
+}
+
+#post-page-pencil:hover {
+  color: rgb(0, 200, 0);
+  cursor: pointer;
+}
+
+#post-page-delete:hover {
+  color: rgb(200, 0, 0);
+  cursor: pointer;
+}
+
+.post-page-not-owner {
+  display: none;
 }
