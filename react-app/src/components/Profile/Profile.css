@@ -23,8 +23,8 @@ html {
 
 .grid-area-1 {
   display: grid;
-  grid-template-columns: 25% 1fr minmax(0, 2fr);
-  background-color: lightgrey;
+  background-color: lightskyblue;
+  /* background-color: lightgrey; */
   flex-shrink: 2;
 }
 
@@ -34,7 +34,6 @@ html {
 
 .inner-grid-area-2 {
   display: flex;
-  align-items: center;
   white-space: nowrap;
 }
 
@@ -99,9 +98,9 @@ html {
 
 
 
-.grid-area-2 {
+/* .grid-area-2 {
   background-color: lightgrey;
-}
+} */
 
 .edit-buttons-div {
   display: flex;
@@ -143,7 +142,7 @@ html {
 .grid-area-3 {
   display: flex;
   justify-content: center;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   border-bottom: 1px solid black;
 }
 
@@ -192,10 +191,10 @@ html {
 
 
 
-.grid-area-4 {
+/* .grid-area-4 {
   border-bottom: 1px solid black;
   background-color: lightgray;
-}
+} */
 
 .hide-new-post-button {
   display: none;

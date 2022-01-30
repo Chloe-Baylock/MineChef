@@ -1,0 +1,80 @@
+.profile-full-below-nav {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 98px);
+  background-image:
+    linear-gradient(to top, rgba(37, 37, 37, 0.5), rgba(189, 189, 189, 0.5)),
+    url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
+}
+
+.profile-top-left {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 120px;
+  background-color: white;
+}
+
+/* .profile-white-area {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 120px;
+  background-color: white;
+} */
+
+.profile-pfp-container {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 3px solid black;
+  cursor:pointer;
+}
+
+.profile-pfp-container:hover {
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.hide-profile-pfp-container {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.profile-pfp-container:hover .profile-pen-icon {
+  display: flex;
+}
+
+.profile-pfp-image {
+  mix-blend-mode: multiply;
+  border-radius: 50%;
+  width: 92px;
+  height: 92px;
+}
+
+.profile-pen-icon {
+  position:absolute;
+  display: none;
+  width: 32px;
+  color: white;
+  transform: translate(30px, -65px);
+}
+
+.profile-filey-thing {
+  display: none;
+}
+
+.profile-user-circle-icon {
+  position: absolute;
+  width: 120px;
+  transform: translate(-14px, -15px);
+  color: rgb(26, 26, 26);
+}
+
+.profile-username {
+  margin-left: 5px;
+}
+

@@ -36,8 +36,8 @@ function EditPost(props) {
   }
 
   const epCname = classN => {
-    if (props.cName) return props.cName.concat(classN)
-    else return 'edit-post-'.concat(classN)
+    if (props.cName) return `${props.cName}${classN}`;
+    else return `edit-post-${classN}`;
   }
 
   return (
