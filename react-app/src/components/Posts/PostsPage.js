@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ShowPosts from './ShowPosts'
 import NewPost from './NewPost';
 import { PlusIcon } from "@heroicons/react/solid";
-import ButtonComp from '../ButtonComponent/ButtonComp';
 
 function PostsPage() {
 
@@ -20,7 +19,6 @@ function PostsPage() {
               id='plus-button'
               className='button-comp'
               onClick={() => {
-                console.log('clicked')
                 setPostPopup(!postPopup)
               }}
             >
