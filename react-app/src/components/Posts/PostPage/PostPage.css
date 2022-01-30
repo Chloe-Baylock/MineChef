@@ -3,7 +3,9 @@
   justify-content: center;
   width: 100vw;
   height: calc(100vh - 98px);
-  background-color: gray;
+  background-image:
+    linear-gradient(to top, rgba(37, 37, 37, 0.5), rgba(189, 189, 189, 0.5)),
+    url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
 }
 
 .post-page-centered-fill {
@@ -41,6 +43,10 @@
   display: flex;
   position: static;
   height: 24px;
+}
+
+.post-page-form-div input{
+  margin-right: 5px;
 }
 
 .post-page-edit-delete {

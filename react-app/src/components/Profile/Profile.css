@@ -305,7 +305,6 @@ html {
 .space-fill {
   height: 15vh;
   width: 100vw;
-  background-color: chartreuse;
 }
 
 /* .post-h1-class {
@@ -318,7 +317,6 @@ html {
   justify-content: center;
   width: 100vw;
   height: 100px;
-  background-color: lime;
 }
 
 .filled-div {
