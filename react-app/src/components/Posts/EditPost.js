@@ -18,7 +18,6 @@ function EditPost(props) {
     content || errArr.push('Please enter the content for your post.')
 
     if (errArr.length) {
-      console.log('no go')
       setErrors(errArr);
       return 'unsuccessful';
     }

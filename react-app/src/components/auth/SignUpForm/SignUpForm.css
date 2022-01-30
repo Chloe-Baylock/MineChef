@@ -41,6 +41,7 @@
 .sign-up-page-h1-div {
   display:flex;
   align-items: center;
+  justify-content: center;
 }
 
 .sign-up-page-box-bot {
@@ -49,25 +50,35 @@
 
 .sign-up-page-register-h1 {
   margin-top: 0px;
+  margin-bottom: 15px;
   font-size: 40px;
   font-family: 'Roboto', Sans-Serif;
 }
 
 .sign-up-page-errors-div {
-  height: 100px;
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid black;
-  margin-bottom: 27px;
+  list-style: none;
+  color: pink;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sign-up-page-error-li {
+  padding-bottom: 2px;
 }
 
 .sign-up-page-form-group {
   margin-bottom: 2rem;
 }
 
+#sign-up-page-form-username {
+  padding-top:20px;
+}
+
 .sign-up-page-form-label {
   display: inline-block;
   margin-bottom: .5rem;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 

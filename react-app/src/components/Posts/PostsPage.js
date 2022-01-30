@@ -20,7 +20,6 @@ function PostsPage() {
               id='plus-button'
               className='button-comp'
               onClick={() => {
-                console.log('clicked')
                 setPostPopup(!postPopup)
               }}
             >

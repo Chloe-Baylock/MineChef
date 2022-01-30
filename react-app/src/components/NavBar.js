@@ -25,7 +25,6 @@ const NavBar = () => {
 
   //   let errors = await dispatch(login(dUsername, dPassword))
   //   if (errors) {
-  //     console.log('in data conditional');
   //     let num = Math.floor(Math.random() * 10000);
   //     let dUsername = `Demo${num}`;
   //     let dEmail = `Demo${num}@aa.io`;

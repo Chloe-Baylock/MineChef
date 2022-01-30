@@ -14,18 +14,36 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [pfp_url, setPfp_url] = useState('')
-  const [description, setDescription] = useState('')
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+
+    const validEmail = (gE) => {
+      if (gE.includes('@')) {
+        if (gE.split('@')[0] && gE.split('@')[1].length > 3) return true;
+      }
+    }
+
+    const errArr = [];
+
+    username || errArr.push('* Please enter a username');
+    validEmail(email) || errArr.push('* Please enter a valid email');
+    password || errArr.push('* Please enter a password');
+    password === repeatPassword || errArr.push('* Passwords do not match');
+
+    if (errArr.length) {
+      setErrors(errArr);
+    } else {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        setErrors(data)
+        for (let i = 0; i < data.length; i++) {
+          data[i].includes('username') && errArr.push('* That username is already in use')
+          data[i].includes('email') && errArr.push('* That email is already in use')
+        }
+        setErrors(errArr);
       }
     }
   };
@@ -36,7 +54,6 @@ const SignUpForm = () => {
 
     let errors = await dispatch(login(dUsername, dPassword))
     if (errors) {
-      console.log('in data conditional');
       let num = Math.floor(Math.random() * 10000);
       let dUsername = `Demo${num}`;
       let dEmail = `Demo${num}@aa.io`;
@@ -84,13 +101,13 @@ const SignUpForm = () => {
             </div>
             <div className='sign-up-page-errors-div'>
               {errors.map((error, ind) => (
-                <li key={ind}>{error}</li>
+                <li className='sign-up-page-error-li' key={ind}>{error}</li>
               ))}
             </div>
-            <div className='form-box'>
+            <div>
               <form onSubmit={onSignUp}>
                 <div className='sign-up-page-form-group'>
-                  <label className='sign-up-page-form-label' htmlFor='username'>Username</label>
+                  <label id='sign-up-page-form-username' className='sign-up-page-form-label'  htmlFor='username'>Username</label>
                   <input
                     className='sign-up-page-form-input'
                     name='username'
@@ -104,7 +121,7 @@ const SignUpForm = () => {
                   <input
                     className='sign-up-page-form-input'
                     name='email'
-                    type='email'
+                    type='text'
                     value={email}
                     onChange={updateEmail}
                   />
@@ -129,7 +146,7 @@ const SignUpForm = () => {
                     onChange={updateRepeatPassword}
                   />
                 </div>
-                <button className='button-comp' id='sign-up-page-form-submit' type='submit'>Sign In</button>
+                <button className='button-comp' id='sign-up-page-form-submit' type='submit'>Sign Up</button>
               </form>
             </div>
             <div className='sign-up-page-other-buttons'>
