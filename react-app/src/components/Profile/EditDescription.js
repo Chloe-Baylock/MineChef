@@ -10,6 +10,7 @@ function EditDescription(props) {
   const alterDescription = async e => {
     e.preventDefault();
     await dispatch(editUser({ 'description': description }));
+    document.getElementById('profile-description-content-box').style.display = 'block'
     props.setEditDesc('Edit');
     props.setFlicker(!props.flicker);
   }
