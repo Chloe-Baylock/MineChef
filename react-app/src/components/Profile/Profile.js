@@ -169,36 +169,38 @@ function Profile(props) {
         </div> */}
 
         {/* <div className='full-below-nav'> */}
-          {/* <div className='space-fill' /> */}
-          <div className='container-div'>
-            <div className='filled-div'>
-              <div className='profile-top-part'>
-                <h1>Posts</h1>
-                <button
-                  id='plus-button'
-                  className='button-comp'
-                  onClick={() => {
-                    setPostPopup(!postPopup)
-                  }}
-                >
-                  <PlusIcon className='plus-icon' />
-                </button>
-              </div>
-              <div className='centering-div'>
-                {postPopup && (<NewPost
-                  setPostPopup={setPostPopup}
+        {/* <div className='space-fill' /> */}
+        <div className='container-div'>
+          <div className='filled-div'>
+            <div className='profile-top-part'>
+              <h1>{owner.username}'s posts</h1>
+              <button
+                id='plus-button'
+                className='button-comp'
+                onClick={() => {
+                  setPostPopup(!postPopup)
+                }}
+              >
+                <PlusIcon className='plus-icon' />
+              </button>
+            </div>
+            <div className='centering-div'>
+              {postPopup && (<NewPost
+                setPostPopup={setPostPopup}
+                flicker={flicker}
+                setFlicker={setFlicker}
+              />)}
+              <ul>
+                <ShowPosts
+                  owner={owner}
                   flicker={flicker}
                   setFlicker={setFlicker}
-                />)}
-                <ul>
-                  <ShowPosts
-                    flicker={flicker}
-                    setFlicker={setFlicker}
-                  />
-                </ul>
-              </div>
+                  inProfile={inProfile}
+                />
+              </ul>
             </div>
           </div>
+        </div>
         {/* </div> */}
 
 
