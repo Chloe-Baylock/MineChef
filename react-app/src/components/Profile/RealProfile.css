@@ -1,5 +1,7 @@
 .profile-full-below-nav {
   position: absolute;
+  display: flex;
+  flex-direction: row;
   width: 100vw;
   height: calc(100vh - 98px);
   background-image:
@@ -7,23 +9,35 @@
     url('https://minechef.s3.amazonaws.com/557dbfdef3df4d0aab20b977fa6d5e23.png');
 }
 
+.profile-button-comp {
+  border-radius: 1rem;
+  margin-left: 5px;
+  transform: translateY(2px);
+}
+
+.profile-button-comp:hover {
+  cursor: pointer;
+  background-color: rgb(206, 214, 195);
+  box-shadow: 0px 2px 30px rgb(206, 214, 195);
+}
+
+
+
+
+
+/* AREA ONE */
+
+
+
 .profile-top-left {
   padding: 0px 10px;
   display: flex;
   align-items: center;
-  width: fit-content;
+  /* width: fit-content; */
+  width: 580px;
   height: 120px;
   background-color: white;
 }
-
-/* .profile-white-area {
-  padding: 0px 10px;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  height: 120px;
-  background-color: white;
-} */
 
 .profile-pfp-container {
   width: 92px;
@@ -78,3 +92,229 @@
   margin-left: 5px;
 }
 
+
+
+/* DESCRIPTION */
+
+
+
+.profile-description-area {
+  display: flex;
+  width: 600px;
+  height: calc(100vh - 219px);
+  justify-content: center;
+  background-color: lightskyblue;
+  border-bottom: 1px solid black;
+}
+
+.profile-box-in-grid-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 50%;
+}
+
+.profile-description-flex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#hide-profile-edit-desc-button {
+  display: none;
+}
+
+.profile-description-title {
+  font-weight: bold;
+  font-size: 40px;
+  border-bottom: 2px solid black;
+}
+
+.profile-alter-description {
+  width: 500px;
+  max-width: 500px;
+  max-height: 600px;
+}
+
+#profile-description-content-box {
+  width: 25vw;
+  margin-top: 10px;
+  border-radius: .75rem;
+  background-color: white;
+}
+
+.profile-description-body {
+  margin: 2px 2px 0px 7px;
+  overflow-wrap: break-word;
+}
+
+
+
+/* POSTS */
+
+
+
+
+.profile-grid-area-4 {
+  border-bottom: 1px solid black;
+  background-color: rgb(173, 173, 173);
+}
+
+.hide-profile-new-post-button {
+  display: none;
+}
+
+.user-owns-post, .user-does-not-own-post {
+  display:none;
+  width: 23px;
+  cursor: pointer;
+}
+
+.inputs-class {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 5px;
+}
+.inputs-class > input, textarea{
+  margin-right: 5px;
+}
+
+.li-of-post {
+  display: flex;
+  justify-content: space-between;
+  width: 264px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  background-color: white;
+  padding-left: 5px;
+  margin-bottom: 2px;
+  margin-right: 4px;
+  height: 23px;
+}
+
+.li-of-post:hover .user-owns-post{
+  display: flex;
+  color: rgb(0, 184, 184);
+}
+
+.li-of-post + div {
+  border-bottom: 1px solid black;
+}
+
+.post-component {
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  max-height: 24px;
+  max-width: 255px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.li-of-post:hover .post-component {
+  max-width: 210px;
+}
+
+.edit-post-form-div {
+  display: flex;
+  position: relative;
+  height: 24px;
+  transform: translate(269px, -24px);
+  z-index: 1;
+}
+
+.edit-post-form-div input, button {
+  margin-right: 4px;
+}
+
+.check-button {
+  background-color: lime;
+}
+
+.x-button {
+  background-color: red;
+}
+
+.check-icon, .x-icon {
+  width: 20px;
+}
+
+.edit-delete-post-buttons {
+  display: flex;
+}
+
+
+
+
+
+/* OPTIONS */
+
+.profile-info-container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.edit-buttons-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-button-container {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.edit-info-button {
+  background-color: rgb(110, 110, 110);
+  border: none;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+  margin-top: 1px;
+  margin-right: 1px;
+  z-index: 15;
+  border-radius: 5px;
+}
+
+.edit-info-button:hover {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hide-edit-info-button {
+  display: none;
+}
+
+.cog-icon {
+  width: 32px;
+  padding: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.edit-type-button {
+  display:flex;
+  justify-content: flex-start;
+  width: 130px;
+  padding-left: 0px;
+}
+
+
+
+
+
+
+#delete-account {
+  background-color: red;
+}

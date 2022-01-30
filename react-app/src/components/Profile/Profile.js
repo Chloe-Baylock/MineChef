@@ -71,118 +71,130 @@ function Profile(props) {
   return (
     <>
       <div className='profile-full-below-nav'>
-        <div className='profile-top-left'>
-          <div className={showOrHide('profile-pfp-container')}
-            onClick={() => {
-              let x = document.getElementById('testRun')
-              x.click();
-            }}>
-            <input
-              className={'profile-filey-thing'}
-              id='profile-testRun'
-              name='image'
-              type={showOrHide('file')}
-              accept="image/*"
-              onChange={updateImage}
-            />
-            {owner.pfp_url === '' && (
-              <UserCircleIcon className='profile-user-circle-icon' />
-            )}
-            {owner.pfp_url !== '' && (
-              <img
-                className="profile-pfp-image"
-                src={owner.pfp_url}
-                alt="pfp"
-              ></img>
-            )}
-            <PencilIcon className='profile-pen-icon' style={stylePen()} />
-          </div>
-          <div className='profile-username'>
-            <h1>{owner.username}</h1>
-          </div>
-
-          <div className='grid-area-2'>
-            <div className="info-container">
-              <div className='edit-button-container'>
-                <button
-                  className={showOrHide('edit-info-button')}
-                  onMouseDown={e => e.currentTarget.style.backgroundColor = 'rgb(140, 140, 140)'}
-                  onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgb(150, 150, 150)'}
-                  onMouseUp={e => e.currentTarget.style.backgroundColor = 'rgb(160, 160, 160)'}
-                  onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgb(160, 160, 160)'}
-                  onClick={() => {
-                    if (editPopup === "Edit Profile") {
-                      setEditPopup("Cancel")
-                      setEdit('none')
-                    }
-                    else setEditPopup("Edit Profile");
-                  }}
-                ><CogIcon className='cog-icon' /></button>
-              </div>
-              <div className='popup-div'>
-                <EditProfile
-                  trigger={editPopup}
-                  setTrigger={setEditPopup}
-                  edit={edit}
-                  setEdit={setEdit}
-                  flicker={flicker}
-                  setFlicker={setFlicker}
-                />
-              </div>
+        <div className='profile-pro-desc-div'>
+          <div className='profile-top-left'>
+            <div className={showOrHide('profile-pfp-container')}
+              onClick={() => {
+                let x = document.getElementById('testRun')
+                x.click();
+              }}>
+              <input
+                className={'profile-filey-thing'}
+                id='profile-testRun'
+                name='image'
+                type={showOrHide('file')}
+                accept="image/*"
+                onChange={updateImage}
+              />
+              {owner.pfp_url === '' && (
+                <UserCircleIcon className='profile-user-circle-icon' />
+              )}
+              {owner.pfp_url !== '' && (
+                <img
+                  className="profile-pfp-image"
+                  src={owner.pfp_url}
+                  alt="pfp"
+                ></img>
+              )}
+              <PencilIcon className='profile-pen-icon' style={stylePen()} />
+            </div>
+            <div className='profile-username'>
+              <h1>{owner.username}</h1>
             </div>
           </div>
 
-          <div className='grid-area-3'>
-            <div className='box-in-grid-3'>
-              <p className='description-title'>
-                Description:
-              </p>
-              <div className='description-content-box'>
-                {editDesc === 'Cancel' && <EditDescription
-                  flicker={flicker}
-                  setFlicker={setFlicker}
-                  owner={owner}
-                  setEditDesc={setEditDesc}
-                />
-                }
+
+          <div className='profile-description-area'>
+            <div className='profile-box-in-grid-3'>
+              <div className='profile-description-flex'>
+                <button
+                  className='profile-button-comp'
+                  id={showOrHide('profile-edit-desc-button')}
+                  onClick={() => {
+                    if (editDesc === 'Cancel') {
+                      document.getElementById('profile-description-content-box').style.display = 'block'
+                      setEditDesc('Edit')
+                    } else {
+                      document.getElementById('profile-description-content-box').style.display = 'none'
+                      setEditDesc('Cancel')
+                    }
+                  }}
+                >{editDesc}</button>
+                <p className='profile-description-title'>
+                  Description:
+                </p>
+                <div />
+              </div>
+              {editDesc === 'Cancel' && <EditDescription
+                flicker={flicker}
+                setFlicker={setFlicker}
+                owner={owner}
+                setEditDesc={setEditDesc}
+              />
+              }
+              <div id='profile-description-content-box'>
                 {editDesc === 'Edit' && (
                   <>
-                    <p className='description-body'>
+                    <p className='profile-description-body'>
                       {owner.description || 'none'}
                     </p>
                   </>
                 )}
-                <button
-                  className={showOrHide('edit-desc-button')}
-                  onClick={() => {
-                    if (editDesc === 'Cancel') setEditDesc('Edit')
-                    else setEditDesc('Cancel')
-                  }}
-                >{editDesc}</button>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className='grid-area-4'>
-            <div className='posts-div'>
-              <h1>{owner.username}'s posts <button
-                className={showOrHide('new-post-button')}
-                onClick={() => setPostPopup(!postPopup)}
-              >+</button>
-              </h1>
-              {postPopup && (
-                <NewPost
-                  setPostPopup={setPostPopup}
-                  flicker={flicker}
-                  setFlicker={setFlicker}
-                />)}
-              <ShowPosts
-                owner={owner}
+
+        <div className='profile-grid-area-4'>
+          <div className='posts-div'>
+            <h1>{owner.username}'s posts <button
+              className={showOrHide('profile-new-post-button')}
+              onClick={() => setPostPopup(!postPopup)}
+            >+</button>
+            </h1>
+            {postPopup && (
+              <NewPost
+                setPostPopup={setPostPopup}
                 flicker={flicker}
                 setFlicker={setFlicker}
-                inProfile={inProfile}
-              />
-            </div>
+              />)}
+            <ShowPosts
+              owner={owner}
+              flicker={flicker}
+              setFlicker={setFlicker}
+              inProfile={inProfile}
+            />
+          </div>
+        </div>
+
+
+        <div className="profile-info-container">
+          <div className='edit-button-container'>
+            <button
+              className={showOrHide('edit-info-button')}
+              onMouseDown={e => e.currentTarget.style.backgroundColor = 'rgb(90, 90, 90)'}
+              onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgb(100, 100, 100)'}
+              onMouseUp={e => e.currentTarget.style.backgroundColor = 'rgb(110, 110, 110)'}
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgb(110, 110, 110)'}
+              onClick={() => {
+                if (editPopup === "Edit Profile") {
+                  setEditPopup("Cancel")
+                  setEdit('none')
+                }
+                else setEditPopup("Edit Profile");
+              }}
+            ><CogIcon className='cog-icon' /></button>
+          </div>
+          <div className='popup-div'>
+            <EditProfile
+              trigger={editPopup}
+              setTrigger={setEditPopup}
+              edit={edit}
+              setEdit={setEdit}
+              flicker={flicker}
+              setFlicker={setFlicker}
+            />
           </div>
         </div>
       </div>
