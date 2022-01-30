@@ -119,7 +119,7 @@ const SignUpForm = () => {
                     onChange={updatePassword}
                   />
                 </div>
-                <div className='sign-up-page-form-group'>
+                <div id ='sign-up-page-repeat' className='sign-up-page-form-group'>
                   <label className='sign-up-page-form-label' htmlFor='repeat'>Repeat Password</label>
                   <input
                     className='sign-up-page-form-input'
@@ -129,24 +129,21 @@ const SignUpForm = () => {
                     onChange={updateRepeatPassword}
                   />
                 </div>
-
-                
-
                 <button className='button-comp' id='sign-up-page-form-submit' type='submit'>Sign In</button>
               </form>
             </div>
-            {/* <div className='login-page-other-buttons'>
+            <div className='sign-up-page-other-buttons'>
               <button
-                id='login-page-sign-up'
+                id='sign-up-page-login'
                 className='button-comp'
-                onClick={() => history.push('/sign-up')}
-              >Sign Up</button>
+                onClick={() => history.push('/login')}
+              >Log In</button>
               <button
-                id='login-page-demo'
+                id='sign-up-page-demo'
                 className='button-comp'
                 onClick={() => onDemo()}
               >Demo</button>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

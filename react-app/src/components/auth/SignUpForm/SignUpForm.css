@@ -6,7 +6,7 @@
 }
 
 .sign-up-page-fill-space {
-  height: 50px;
+  height: 40px;
 }
 
 .sign-up-page-flex-area {
@@ -19,7 +19,7 @@
 
 .sign-up-page-box {
   width: 560px;
-  height: 800px;
+  height: 850px;
   background-color: rgb(133, 133, 133);
   border-radius: .5rem;
 }
@@ -44,7 +44,7 @@
 }
 
 .sign-up-page-box-bot {
-  padding: 24px 60px;
+  padding: 24px 60px 0px 60px;
 }
 
 .sign-up-page-register-h1 {
@@ -81,4 +81,27 @@
   caret-color: rgb(226, 226, 226);
   font-weight: bold;
   color: white;
+}
+
+#sign-up-page-form-submit {
+  font-size: 40px;
+  background-color: rgb(87, 243, 87);
+  margin: 10px 0px 60px 150px;
+}
+
+#sign-up-page-repeat {
+  margin-bottom: 0;
+}
+
+.sign-up-page-other-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sign-up-page-login {
+  font-size: 20px;
+}
+
+#sign-up-page-demo {
+  font-size: 20px;
 }
