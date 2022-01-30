@@ -57,44 +57,46 @@ function PostPage() {
       <div className='post-page-below-nav'>
         <div className='post-page-centered-fill'>
           <div className='post-page-top-part'>
-            <div className='post-page-edit-delete'>
-              <PencilIcon
-                className={isRightUser(post)}
-                id='post-page-pencil'
-                onClick={e => {
-                  if (retEdit(post)) {
-                    setEditButton('Edit');
-                    setTrigger(-4);
-                  }
-                  else if (editButton === 'Edit') {
-                    setEditButton({ postId: post.id });
-                    setTrigger(1);
-                  }
-                  else {
-                    setEditButton({ postId: post.id });
-                    setTrigger(1);
-                  }
-                }}
-              />
-              <TrashIcon
-                className={isRightUser(post)}
-                id='post-page-delete'
-                onClick={() => deletePost(post)}
-              />
+            <div className='post-page-top-line'>
+              <p className='post-page-author-p'
+                onClick={() => history.push(`/users/${author.id}`)}
+              >{author.username}:</p>
+              {+trigger > 0 && (
+                <EditPost
+                  post={post}
+                  cName='post-page-'
+                  setEditButton={setEditButton}
+                  setTrigger={setTrigger}
+                  flicker={flicker}
+                  setFlicker={setFlicker}
+                />
+              )}
+              <div className='post-page-edit-delete'>
+                <PencilIcon
+                  className={isRightUser(post)}
+                  id='post-page-pencil'
+                  onClick={e => {
+                    if (retEdit(post)) {
+                      setEditButton('Edit');
+                      setTrigger(-4);
+                    }
+                    else if (editButton === 'Edit') {
+                      setEditButton({ postId: post.id });
+                      setTrigger(1);
+                    }
+                    else {
+                      setEditButton({ postId: post.id });
+                      setTrigger(1);
+                    }
+                  }}
+                />
+                <TrashIcon
+                  className={isRightUser(post)}
+                  id='post-page-delete'
+                  onClick={() => deletePost(post)}
+                />
+              </div>
             </div>
-            {+trigger > 0 && (
-              <EditPost
-                post={post}
-                setEditButton={setEditButton}
-                setTrigger={setTrigger}
-                flicker={flicker}
-                setFlicker={setFlicker}
-              />
-            )}
-            <p
-              className='post-page-author-p'
-              onClick={() => history.push(`/users/${author.id}`)}
-            >{author.username}:</p>
             <h1 className='post-page-title-h1'>
               {post.title}
             </h1>
