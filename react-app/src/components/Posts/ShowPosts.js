@@ -61,10 +61,18 @@ function ShowPosts(props) {
             <div className='happy-div' key={post.id}>
               <li className='li-of-post'>
                 <div>
-                  <p
-                    className='post-component'
-                    onClick={() => history.push(`/posts/${post.id}`)}
-                  >{post.title}</p>
+                  {currentUser.id === post.author_id && (
+                    <p
+                      className='post-component'
+                      onClick={() => history.push(`/posts/${post.id}`)}
+                    >{post.title}</p>
+                  )}
+                  {currentUser.id === post.author_id || (
+                    <p
+                      className='unowned-post-component'
+                      onClick={() => history.push(`/posts/${post.id}`)}
+                    >{post.title}</p>
+                  )}
                   {+trigger === post.id && (
                     <EditPost
                       cName={passedName()}
