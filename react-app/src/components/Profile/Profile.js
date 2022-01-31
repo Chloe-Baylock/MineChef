@@ -145,46 +145,25 @@ function Profile(props) {
         </div>
 
 
-        {/* <div className='profile-posts'>
-          <div className='posts-div'>
-            <h1>{owner.username}'s posts <button
-              className={showOrHide('profile-new-post-button')}
-              onClick={() => setPostPopup(!postPopup)}
-            >+</button>
-            </h1>
-            {postPopup && (
-              <NewPost
-                setPostPopup={setPostPopup}
-                flicker={flicker}
-                setFlicker={setFlicker}
-              />)}
-            <ShowPosts
-              owner={owner}
-              flicker={flicker}
-              setFlicker={setFlicker}
-              inProfile={inProfile}
-            />
-          </div>
-        </div> */}
-
-        {/* <div className='full-below-nav'> */}
-        {/* <div className='space-fill' /> */}
         <div className='container-div'>
           <div className='filled-div'>
             <div className='profile-top-part'>
               <h1>{owner.username}'s posts</h1>
-              <button
-                id='plus-button'
-                className='button-comp'
-                onClick={() => {
-                  setPostPopup(!postPopup)
-                }}
-              >
-                <PlusIcon className='plus-icon' />
-              </button>
+              {owner.id === currentUser.id && (
+                <button
+                  id='plus-button'
+                  className='button-comp'
+                  onClick={() => {
+                    setPostPopup(!postPopup)
+                  }}
+                >
+                  <PlusIcon className='plus-icon' />
+                </button>
+              )}
             </div>
-            <div className='centering-div'>
+            <div id='centering-div'>
               {postPopup && (<NewPost
+                theName='inProfile'
                 setPostPopup={setPostPopup}
                 flicker={flicker}
                 setFlicker={setFlicker}
@@ -200,7 +179,6 @@ function Profile(props) {
             </div>
           </div>
         </div>
-        {/* </div> */}
 
 
         <div className="profile-info-container">

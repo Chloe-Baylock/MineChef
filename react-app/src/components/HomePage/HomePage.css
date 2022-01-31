@@ -3,6 +3,11 @@
   background-color: rgb(41, 220, 236);
 }
 
+.home-page-chloe {
+  position: absolute;
+  transform: translate(260px, -25px);
+}
+
 .home-flex-div {
   height: 100%;
   display: flex;

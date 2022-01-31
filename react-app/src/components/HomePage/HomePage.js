@@ -14,6 +14,7 @@ function HomePage() {
       <Redirect to="/profile" />
     )}
       <div className='home-page-fill'>
+        <p className='home-page-chloe'>by Chloe Baylock</p>
         <div className='home-flex-div'>
           <button
             className='home-button-comp'
