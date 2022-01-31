@@ -7,25 +7,20 @@ function EditPost(props) {
 
   const dispatch = useDispatch();
 
-  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState([]);
   const [title, setTitle] = useState(props.post.title)
   const [content, setContent] = useState(props.post.content)
 
   const editPost = async e => {
     e.preventDefault();
-    const errArr = []
 
-    content || errArr.push('Please enter the content for your post.')
-
-    if (errArr.length) {
-      setErrors(errArr);
-      return 'unsuccessful';
-    }
-    else {
+    if (content) {
       await dispatch(updatePost(props.post.id, title, content));
       props.setFlicker(!props.flicker);
       props.setTrigger(-5);
       props.setEditButton('Edit');
+    } else {
+      setError('Please enter content for your post.')
     }
   }
 
@@ -41,14 +36,12 @@ function EditPost(props) {
   }
 
   return (
-    <>
-      {errors.length > 0 && (
-        <div className='errors-fill'>
-          <p className='errors-for-edit-post'>{errors[0]}</p>
-        </div>
-      )}
+    <div>
       <form onSubmit={editPost}>
         <div className={epCname('form-div')}>
+          {error && (
+            <p className='post-error-message2'>{error}</p>
+          )}
           <input
             name='title'
             value={title}
@@ -66,7 +59,7 @@ function EditPost(props) {
           <button onClick={e => cancelFn(e)} className='x-button'><XIcon className='x-icon' /></button>
         </div>
       </form>
-    </>
+    </div>
   )
 }
 

@@ -379,3 +379,15 @@ ul {
   transform: translateX(180px);
   color: rgb(255, 67, 214)
 }
+
+.post-error-message {
+  color: pink;
+}
+
+.post-error-message2 {
+  background-color: rgb(49, 49, 49);
+  height: 20px;
+  color: pink;
+  position: absolute;
+  transform: translateY(-25px);
+}
