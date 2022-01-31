@@ -47,6 +47,11 @@ function ShowPosts(props) {
     else return 'user-does-not-own-post';
   }
 
+  const passedName = () => {
+    if (props.inProfile) return 'profile-show-posts-'
+    else return 'show-posts-'
+  }
+
   return (
     <>
       <ul className='posts-ul'>
@@ -62,7 +67,7 @@ function ShowPosts(props) {
                   >{post.title}</p>
                   {+trigger === post.id && (
                     <EditPost
-                      className='edit-post'
+                      cName={passedName()}
                       post={post}
                       setEditButton={setEditButton}
                       setTrigger={setTrigger}

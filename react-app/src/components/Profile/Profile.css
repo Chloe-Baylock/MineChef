@@ -391,3 +391,92 @@ ul {
   position: absolute;
   transform: translateY(-25px);
 }
+
+
+/* Show Posts Form Div (to edit posts) */
+
+
+.show-posts-form-div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+
+  width: 700px;
+  height: 450px;
+  background-color: pink;
+  padding-left: 10px;
+  padding-top: 10px;
+  z-index: 1;
+
+  box-shadow: 0px 0px 3px black;
+}
+
+.show-posts-form-div .elevate {
+  min-width: 400px;
+  max-width: 400px;
+  max-height: 400px;
+  width: 400px;
+  height: 100px;
+}
+
+.show-posts-form-div button {
+  position: absolute;
+  top:34px;
+}
+
+.show-posts-form-div .x-button {
+  transform: translateX(40px);
+}
+
+.show-posts-form-div input {
+  width: 398px;
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+
+/* Profile form-div (to edit posts) */
+
+.profile-show-posts-form-div {
+  position: absolute;
+  top: 80px;
+  left: -20px;
+
+
+  width: 700px;
+  height: 450px;
+  background-color: pink;
+  padding-left: 10px;
+  padding-top: 10px;
+  z-index: 1;
+
+  box-shadow: 0px 0px 3px black;
+}
+
+.profile-show-posts-form-div .elevate {
+  min-width: 400px;
+  max-width: 400px;
+  max-height: 400px;
+  width: 400px;
+  height: 100px;
+}
+
+.profile-show-posts-form-div button {
+  position: absolute;
+  top:36px;
+}
+
+.profile-show-posts-form-div .x-button {
+  transform: translateX(40px);
+}
+
+.profile-show-posts-form-div input {
+  width: 398px;
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
