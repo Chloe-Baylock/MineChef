@@ -258,6 +258,24 @@ html {
   max-width: 210px;
 }
 
+.unowned-post-component {
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  max-height: 24px;
+  max-width: 255px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.unowned-post-component:hover {
+  color: rgb(0, 0, 255);
+  text-decoration: underline;
+}
+
+
 .word-by {
   padding-right: 5px;
   padding-bottom: 1px;
