@@ -45,7 +45,7 @@ const LoginForm = () => {
       let dUsername = `Demo${num}`;
       let dEmail = `Demo${num}@aa.io`;
       let dPassword = 'password';
-      dispatch(signUp(dUsername, dEmail, dPassword))
+      await dispatch(signUp(dUsername, dEmail, dPassword))
     }
   }
 
@@ -58,7 +58,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/profile' />;
   }
 
   return (
@@ -68,10 +68,21 @@ const LoginForm = () => {
         <div className='login-page-box'>
           <div className='login-page-box-top'>
             <div className='login-page-mine-with-a-hat'>
-              <img src={minewithahat} alt='minewithahat'></img>
+              <img
+                className='happy-mine'
+                src={minewithahat}
+                alt='minewithahat'
+                onClick={() => history.push('/')}
+              ></img>
             </div>
             <div className='login-page-h1-div'>
-              <h1>MineChef</h1>
+              <h1 id='login-page-minechef'>MineChef</h1>
+              <a href='https://github.com/Chloe-Baylock'>
+                <img
+                  className='login-page-github-icon'
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                ></img>
+              </a>
             </div>
           </div>
           <div className='login-page-box-bot'>

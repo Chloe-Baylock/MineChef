@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { LogoutIcon } from "@heroicons/react/solid";
 import { logout } from '../store/session';
 
@@ -26,44 +26,19 @@ const NavBar = () => {
       <div className='outer-nav'>
         <div className='nav-left-side'>
           <p className='one'>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              <img className='minewithahat' src={minewithahat} alt='minewithahat'></img>
-            </NavLink>
+            <img className='minewithahat' src={minewithahat} alt='minewithahat'></img>
           </p>
           <p className='MineChef'>
             MineChef
           </p>
         </div>
         <div className='nav-right-side'>
-          {x || (
-            <>
-            {/* <button className='nav-button-comp' onClick={() => onDemo()}>
-                <p>
-                  Demo
-                </p>
-              </button>
-              <button
-                className='nav-button-comp'
-                onClick={() => document.getElementById('slash-login').click()}
-              >
-                <p>
-                  <NavLink id='slash-login' className='noDecorate' to='/login' exact={true} activeClassName='active'>
-                    Login
-                  </NavLink>
-                </p>
-              </button> */}
-              <button
-                className='nav-button-comp'
-                onClick={() => document.getElementById('slash-sign-up').click()}
-              >
-                <p>
-                  <NavLink id='slash-sign-up' className='noDecorate' to='/sign-up' exact={true} activeClassName='active'>
-                    Sign Up
-                  </NavLink>
-                </p>
-              </button>
-            </>
-          )}
+          <a href='https://github.com/Chloe-Baylock'>
+            <img
+              className='nav-github-icon'
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            ></img>
+          </a>
           {x && (
             <>
               <button

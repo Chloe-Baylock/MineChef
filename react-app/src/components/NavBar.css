@@ -29,6 +29,13 @@ body {
   padding-bottom: 4px;
 }
 
+.nav-github-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 40px;
+}
+
 .MineChef {
   font-weight: bold;
   font-size: 40px;

@@ -24,7 +24,7 @@
 
 .login-page-box-top {
   display: grid;
-  grid-template-columns: 125px 275px;
+  grid-template-columns: 100px 300px;
   background-color: rgb(245, 245, 245);
   box-sizing: border-box;
   border-bottom: 1px solid black;
@@ -36,9 +36,23 @@
   margin-left: 3px;
 }
 
+.happy-mine:hover {
+  cursor: pointer;
+}
+
 .login-page-h1-div {
   display:flex;
-  align-items: center;
+  justify-content: space-between;
+}
+
+#login-page-minechef {
+  padding-top: 25px;
+  font-size: 50px;
+  margin: 0px;
+}
+
+.login-page-github-icon {
+  height: 40px;
 }
 
 .login-page-errors-div {

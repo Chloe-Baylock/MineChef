@@ -25,6 +25,7 @@
 }
 
 .sign-up-page-box-top {
+  position: relative;
   display: grid;
   grid-template-columns: 125px 275px;
   background-color: rgb(245, 245, 245);
@@ -38,10 +39,21 @@
   margin-left: 3px;
 }
 
+.happy-mine:hover {
+  cursor: pointer;
+}
+
 .sign-up-page-h1-div {
   display:flex;
   align-items: center;
   justify-content: center;
+}
+
+.sign-up-page-github-icon {
+  position: absolute;
+  height:40px;
+  top: 0px;
+  right: 0px;
 }
 
 .sign-up-page-box-bot {

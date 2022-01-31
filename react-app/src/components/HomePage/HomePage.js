@@ -1,9 +1,41 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import './HomePage.css'
 
 function HomePage() {
 
-  return (<Redirect to='/profile'/>)
+  const history = useHistory();
+  const currentUser = useSelector(state => state.session.user)
+
+  return (
+    <>
+    {currentUser && (
+      <Redirect to="/profile" />
+    )}
+      <div className='home-page-fill'>
+        <p className='home-page-chloe'>by Chloe Baylock</p>
+        <div className='home-flex-div'>
+          <button
+            className='home-button-comp'
+            onClick={() => history.push('/login')}
+          >
+            <p>
+              Login
+            </p>
+          </button>
+          <button
+            className='home-button-comp'
+            onClick={() => history.push('/sign-up')}
+          >
+            <p>
+              Sign Up
+            </p>
+          </button>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default HomePage;

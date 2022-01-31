@@ -10,10 +10,9 @@ import User from './components/User';
 import Profile from './components/Profile/Profile'
 import PostsPage from './components/Posts/PostsPage';
 import { authenticate } from './store/session';
-import DeletedPage from './components/deleted';
 import PostPage from './components/Posts/PostPage/PostPage';
-import HomePage from './components/HomePage/HomePage';
-// import Footer from './components/Footer/Footer';
+import HomePage from './components/HomePage/HomePage'
+import Error404Page from './components/Error404Page/Error404page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +33,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <HomePage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -55,14 +57,10 @@ function App() {
         <ProtectedRoute path='/posts/:postId' exact={true} >
           <PostPage />
         </ProtectedRoute>
-        <Route path='/deleted' exact={true} >
-          <DeletedPage />
-        </Route>
-        <ProtectedRoute path='/' exact={true} >
-          <HomePage />
+        <ProtectedRoute path='/' >
+          <Error404Page />
         </ProtectedRoute>
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
