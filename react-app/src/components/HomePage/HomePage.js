@@ -1,9 +1,15 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import './HomePage.css'
 
 function HomePage() {
 
-  return (<Redirect to='/profile'/>)
+  return (
+    <>
+      <div className='home-page-fill'>
+
+      </div>
+    </>
+  )
 }
 
 export default HomePage;

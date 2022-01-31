@@ -1,0 +1,4 @@
+.home-page-fill {
+  height: calc(100vh - 97px);
+  background-color: rgb(41, 220, 236);
+}

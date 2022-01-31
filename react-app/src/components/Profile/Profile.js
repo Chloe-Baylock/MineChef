@@ -75,7 +75,7 @@ function Profile(props) {
           <div className='profile-top-left'>
             <div className={showOrHide('profile-pfp-container')}
               onClick={() => {
-                let x = document.getElementById('testRun')
+                let x = document.getElementById('profile-testRun')
                 x.click();
               }}>
               <input
