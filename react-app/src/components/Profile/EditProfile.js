@@ -28,10 +28,10 @@ function EditProfile(props) {
     }
   }
 
-  const handleDelete = () => {
-    dispatch(destroyUser(currentUser));
-    dispatch(logout());
-    history.push('/deleted');
+  const handleDelete = async () => {
+    await dispatch(destroyUser(currentUser));
+    await dispatch(logout());
+    history.push('/');
   }
 
   return props.trigger === "Cancel" ? (
