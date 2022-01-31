@@ -93,6 +93,12 @@ const SignUpForm = () => {
             </div>
             <div className='sign-up-page-h1-div'>
               <h1>MineChef</h1>
+              <a href='https://github.com/Chloe-Baylock'>
+                <img
+                  className='sign-up-page-github-icon'
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                ></img>
+              </a>
             </div>
           </div>
           <div className='sign-up-page-box-bot'>

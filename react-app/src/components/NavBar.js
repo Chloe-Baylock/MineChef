@@ -35,37 +35,14 @@ const NavBar = () => {
           </p>
         </div>
         <div className='nav-right-side'>
-          {x || (
-            <>
-            {/* <button className='nav-button-comp' onClick={() => onDemo()}>
-                <p>
-                  Demo
-                </p>
-              </button>
-              <button
-                className='nav-button-comp'
-                onClick={() => document.getElementById('slash-login').click()}
-              >
-                <p>
-                  <NavLink id='slash-login' className='noDecorate' to='/login' exact={true} activeClassName='active'>
-                    Login
-                  </NavLink>
-                </p>
-              </button> */}
-              <button
-                className='nav-button-comp'
-                onClick={() => document.getElementById('slash-sign-up').click()}
-              >
-                <p>
-                  <NavLink id='slash-sign-up' className='noDecorate' to='/sign-up' exact={true} activeClassName='active'>
-                    Sign Up
-                  </NavLink>
-                </p>
-              </button>
-            </>
-          )}
           {x && (
             <>
+              <a href='https://github.com/Chloe-Baylock'>
+                <img
+                  className='nav-github-icon'
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                ></img>
+              </a>
               <button
                 className='nav-button-comp'
                 onClick={() => document.getElementById('slash-users').click()}

@@ -71,7 +71,13 @@ const LoginForm = () => {
               <img src={minewithahat} alt='minewithahat'></img>
             </div>
             <div className='login-page-h1-div'>
-              <h1>MineChef</h1>
+              <h1 id='login-page-minechef'>MineChef</h1>
+              <a href='https://github.com/Chloe-Baylock'>
+                <img
+                  className='login-page-github-icon'
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                ></img>
+              </a>
             </div>
           </div>
           <div className='login-page-box-bot'>
