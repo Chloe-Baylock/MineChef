@@ -161,7 +161,7 @@ function Profile(props) {
                 </button>
               )}
             </div>
-            <div id='centering-div'>
+            <div className='centering-div'>
               {postPopup && (<NewPost
                 theName='inProfile'
                 setPostPopup={setPostPopup}
