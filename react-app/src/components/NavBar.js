@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { LogoutIcon } from "@heroicons/react/solid";
 import { logout } from '../store/session';
 
@@ -9,6 +9,7 @@ import './NavBar.css'
 const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const NavBar = () => {
+  const thePath = useParams();
   const dispatch = useDispatch()
 
   const currentUser = useSelector(state => state.session.user)
@@ -35,14 +36,14 @@ const NavBar = () => {
           </p>
         </div>
         <div className='nav-right-side'>
+          <a href='https://github.com/Chloe-Baylock'>
+            <img
+              className='nav-github-icon'
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            ></img>
+          </a>
           {x && (
             <>
-              <a href='https://github.com/Chloe-Baylock'>
-                <img
-                  className='nav-github-icon'
-                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                ></img>
-              </a>
               <button
                 className='nav-button-comp'
                 onClick={() => document.getElementById('slash-users').click()}

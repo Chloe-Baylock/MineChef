@@ -7,7 +7,6 @@ import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
 import './RealProfile.css'
-// import './Profile.css'
 
 function Profile(props) {
 
