@@ -89,7 +89,12 @@ const SignUpForm = () => {
         <div className='sign-up-page-box'>
           <div className='sign-up-page-box-top'>
             <div className='sign-up-page-mine-with-a-hat'>
-              <img src={minewithahat} alt='minewithahat'></img>
+              <img
+                className='happy-mine'
+                src={minewithahat}
+                alt='minewithahat'
+                onClick={() => history.push('/')}
+              ></img>
             </div>
             <div className='sign-up-page-h1-div'>
               <h1>MineChef</h1>

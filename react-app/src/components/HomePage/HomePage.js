@@ -1,12 +1,18 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import './HomePage.css'
 
 function HomePage() {
+
   const history = useHistory();
+  const currentUser = useSelector(state => state.session.user)
 
   return (
     <>
+    {currentUser && (
+      <Redirect to="/profile" />
+    )}
       <div className='home-page-fill'>
         <div className='home-flex-div'>
           <button

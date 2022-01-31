@@ -39,6 +39,10 @@
   margin-left: 3px;
 }
 
+.happy-mine:hover {
+  cursor: pointer;
+}
+
 .sign-up-page-h1-div {
   display:flex;
   align-items: center;

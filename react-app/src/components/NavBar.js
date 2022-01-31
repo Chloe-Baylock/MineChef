@@ -9,7 +9,6 @@ import './NavBar.css'
 const minewithahat = 'https://i.ibb.co/SsYtLQN/minewithahat.png';
 
 const NavBar = () => {
-  const thePath = useParams();
   const dispatch = useDispatch()
 
   const currentUser = useSelector(state => state.session.user)
@@ -27,9 +26,7 @@ const NavBar = () => {
       <div className='outer-nav'>
         <div className='nav-left-side'>
           <p className='one'>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              <img className='minewithahat' src={minewithahat} alt='minewithahat'></img>
-            </NavLink>
+            <img className='minewithahat' src={minewithahat} alt='minewithahat'></img>
           </p>
           <p className='MineChef'>
             MineChef

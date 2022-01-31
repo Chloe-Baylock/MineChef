@@ -36,6 +36,10 @@
   margin-left: 3px;
 }
 
+.happy-mine:hover {
+  cursor: pointer;
+}
+
 .login-page-h1-div {
   display:flex;
   justify-content: space-between;
