@@ -9,6 +9,7 @@ class Post(db.Model):
   content = db.Column(db.Text, nullable=False)
 
   user = db.relationship('User', back_populates="post")
+  vote = db.relationship('Vote', back_populates="post")
 
   def to_dict(self):
     return {

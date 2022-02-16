@@ -1,6 +1,6 @@
 // constants
 const SET_USER = 'session/SET_USER';
-const SET_PFP = 'session/SET_PFP'
+const SET_PFP = 'session/SET_PFP';
 const UPDATE_USER = 'session/EDIT_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const DELETE_USER = 'session/DELETE_USER';
