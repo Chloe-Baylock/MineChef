@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import { CogIcon, PencilIcon, UserCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
+import { getMyFriends, askFriend } from '../../store/friends';
 import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
@@ -14,7 +15,7 @@ function Profile(props) {
 
   const currentUser = useSelector(state => state.session.user)
 
-  const [owner, setOwner] = useState(props.profileForId || 'profilePage')
+  const [owner, setOwner] = useState(props.profileForId || 'profilePage');
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
@@ -22,6 +23,7 @@ function Profile(props) {
   const [postPopup, setPostPopup] = useState(false);
   const [flicker, setFlicker] = useState(false)
   const inProfile = true;
+  const [friend, setFriend] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -48,6 +50,9 @@ function Profile(props) {
     }
   }, [dispatch, image])
 
+  useEffect(() => {
+    dispatch(getMyFriends())
+  }, [dispatch, friend])
 
 
   const updateImage = e => {
@@ -56,6 +61,15 @@ function Profile(props) {
       setImage(file);
     }
   };
+
+  const handleAddFriend = async (toUserId) => {
+    await dispatch(askFriend(toUserId));
+    setFriend(!friend);
+  }
+
+  const handleRemoveFriend = () => {
+    return false;
+  }
 
   const showOrHide = (cName) => {
     if (owner.id === currentUser.id) return cName;
@@ -99,6 +113,16 @@ function Profile(props) {
             </div>
             <div className='profile-username'>
               <h1>{owner.username}</h1>
+            </div>
+            <div>
+              <button
+                className='profile-add-friend-button button-comp'
+                onClick={() => handleAddFriend(owner.id)}
+              >+</button>
+              <button
+                className='profile-remove-friend-button button-comp'
+                onClick={() => handleRemoveFriend(owner.id)}
+              >remove</button>
             </div>
           </div>
 

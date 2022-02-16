@@ -6,7 +6,6 @@ friends = db.Table(
     "friends",
     db.Column('sender_id', db.Integer, db.ForeignKey('users.id'), nullable=False),
     db.Column('receiver_id', db.Integer, db.ForeignKey('users.id'), nullable=False),
-    db.Column('is_pending', db.Boolean, nullable=False)
 )
 
 class User(db.Model, UserMixin):
