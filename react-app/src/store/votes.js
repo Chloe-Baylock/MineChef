@@ -23,7 +23,7 @@ const deleteVote = vote => ({
   payload: vote,
 })
 
-export const getVotes = () => async dispatch => {
+export const getAllVotes = () => async dispatch => {
   const response = await fetch('/api/votes');
   if (response.ok) {
     const votes = await response.json();
@@ -32,11 +32,29 @@ export const getVotes = () => async dispatch => {
   }
 }
 
+export const postVote = (is_up) => async dispatch => {
+  console.log('is up is', is_up)
+  const response = await fetch('/api/votes/new', {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(is_up),
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(makeVote(data));
+    return data;
+  } else return 'response is not okay';
+
+}
+
 
 export default function votesReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_VOTES:
       return action.payload.votes;
+    case MAKE_VOTE:
+      return { votes: action.payload, ...state }
     default:
       return state;
   }

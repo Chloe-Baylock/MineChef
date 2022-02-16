@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getAllPosts, destroyPost } from '../../store/posts';
+import { getAllVotes, postVote} from '../../store/votes';
 import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 import EditPost from './EditPost'
 
@@ -20,6 +21,10 @@ function ShowPosts(props) {
   const deletePost = async post => {
     await dispatch(destroyPost(post));
     props.setFlicker(!props.flicker)
+  }
+
+  const createVote = async is_up => {
+    await dispatch(postVote(is_up));
   }
 
   useEffect(() => {
@@ -59,13 +64,20 @@ function ShowPosts(props) {
           if (props.inProfile && post.author_id !== props.owner.id) return '';
           else return (
             <div className='happy-div' key={post.id}>
+                  <button
+                    className='button-comp'
+                    onClick={() => createVote(true)}
+                  >up</button>
+                  <button className='button-comp'>down</button>
               <li className='li-of-post'>
                 <div>
                   {currentUser.id === post.author_id && (
-                    <p
-                      className='post-component'
-                      onClick={() => history.push(`/posts/${post.id}`)}
-                    >{post.title}</p>
+                    <>
+                      <p
+                        className='post-component'
+                        onClick={() => history.push(`/posts/${post.id}`)}
+                      >{post.title}</p>
+                    </>
                   )}
                   {currentUser.id === post.author_id || (
                     <p
