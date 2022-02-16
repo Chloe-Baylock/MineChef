@@ -16,12 +16,13 @@ def load_votes():
 def post_vote():
 
   # follower_id = request.get_json()['follower_id']
-  is_up = request.get_json()
+  postId = request.get_json()['postId']
+  is_up = request.get_json()['is_up']
   print('                       ******** is up is', is_up)
   vote = Vote(
     is_up = is_up,
     voter_id = current_user.id,
-    post_id = 1
+    post_id = postId
   )
 
   db.session.add(vote)

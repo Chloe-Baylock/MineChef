@@ -32,12 +32,12 @@ export const getAllVotes = () => async dispatch => {
   }
 }
 
-export const postVote = (is_up) => async dispatch => {
+export const postVote = (postId, is_up) => async dispatch => {
   console.log('is up is', is_up)
   const response = await fetch('/api/votes/new', {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(is_up),
+    body: JSON.stringify({ 'postId': postId, 'is_up': is_up }),
   })
 
   if (response.ok) {

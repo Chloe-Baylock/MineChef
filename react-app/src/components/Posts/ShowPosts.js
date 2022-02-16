@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getAllPosts, destroyPost } from '../../store/posts';
 import { getAllVotes, postVote} from '../../store/votes';
-import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon, ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/solid";
 import EditPost from './EditPost'
 
 function ShowPosts(props) {
@@ -14,6 +14,8 @@ function ShowPosts(props) {
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState('')
+  const [votes, setVotes] = useState([])
+  const [voteAct, setVoteAct] = useState(false)
   const [users, setUsers] = useState('')
   const [trigger, setTrigger] = useState(-2)
   const [editButton, setEditButton] = useState('Edit')
@@ -23,8 +25,9 @@ function ShowPosts(props) {
     props.setFlicker(!props.flicker)
   }
 
-  const createVote = async is_up => {
-    await dispatch(postVote(is_up));
+  const createVote = async (postId, is_up) => {
+    await dispatch(postVote(postId, is_up));
+    setVoteAct(!voteAct);
   }
 
   useEffect(() => {
@@ -42,6 +45,14 @@ function ShowPosts(props) {
     fetchData();
   }, [dispatch, users, props.flicker])
 
+  useEffect(() => {
+    const fetchVotes = async function () {
+      let votes = await dispatch(getAllVotes());
+      setVotes(votes);
+    }
+    fetchVotes();
+  }, [voteAct])
+
   const retEdit = post => {
     if (editButton.postId === post.id) return true
     else return false;
@@ -57,6 +68,15 @@ function ShowPosts(props) {
     else return 'show-posts-'
   }
 
+  const filterVotes = (post, is_up) => {
+    return votes.filter(vote => vote.post_id === post.id && vote.is_up === is_up);
+  }
+
+  const voteByUser = (post, is_up) => {
+    if (filterVotes(post, is_up).filter(vote => vote.voter_id === currentUser.id).length) return `${is_up}-vote-by-user`;
+    else return 'no-vote-by-user';
+  }
+
   return (
     <>
       <ul className='posts-ul'>
@@ -65,10 +85,13 @@ function ShowPosts(props) {
           else return (
             <div className='happy-div' key={post.id}>
                   <button
-                    className='button-comp'
-                    onClick={() => createVote(true)}
-                  >up</button>
-                  <button className='button-comp'>down</button>
+                    className={`button-comp ${voteByUser(post, true)}`}
+                    onClick={() => createVote(post.id, true)}
+                  ><ArrowUpIcon className='arrow-icon'/> {filterVotes(post, true).length}</button>
+                  <button
+                    className={`button-comp ${voteByUser(post, false)}`}
+                    onClick={() => createVote(post.id, false)}
+                  ><ArrowDownIcon className='arrow-icon'/> {filterVotes(post, false).length}</button>
               <li className='li-of-post'>
                 <div>
                   {currentUser.id === post.author_id && (
