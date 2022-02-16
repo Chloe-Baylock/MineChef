@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     description = db.Column(db.Text)
 
     post = db.relationship('Post', back_populates="user", cascade="all, delete")
+    vote = db.relationship('Vote', back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
