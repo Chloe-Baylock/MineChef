@@ -11,7 +11,10 @@ def load_friends():
   user = User.query.get(current_user.id)
   all_sent_to = user.senders.all()
   all_from = user.receivers.all()
-  return {'friends': {'all_sent_to': [recept.id for recept in all_sent_to], 'all_from': [sendant.id for sendant in all_from]}}
+  return {'friends': {
+    'all_sent_to': [recept.to_dict() for recept in all_sent_to],
+    'all_from': [sendant.to_dict() for sendant in all_from]}
+  }
 
 @friend_routes.route("/send", methods=["POST"])
 @login_required

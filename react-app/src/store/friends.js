@@ -27,7 +27,7 @@ export const getMyFriends = () => async dispatch => {
   const response = await fetch('/api/friends');
   if (response.ok) {
     const friends = await response.json();
-    dispatch(loadFriends(friends));
+    await dispatch(loadFriends(friends));
     return friends.friends;
   }
 }
