@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.post_routes import post_routes
 from .api.vote_routes import vote_routes
+from .api.friend_routes import friend_routes
 
 from app.forms import LoginForm
 
@@ -37,6 +38,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(vote_routes, url_prefix='/api/votes')
+app.register_blueprint(friend_routes, url_prefix='/api/friends')
 db.init_app(app)
 Migrate(app, db)
 
