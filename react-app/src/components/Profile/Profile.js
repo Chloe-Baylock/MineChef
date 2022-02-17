@@ -69,7 +69,6 @@ function Profile(props) {
         else return true;
       })
 
-      console.log('Object.values(obj)', Object.values(obj))
       // let x = Array.from(Object.values(obj))
       let x = Object.values(obj)
       let y = sent_from_XX;
@@ -95,8 +94,18 @@ function Profile(props) {
   }
 
   const handleRemoveFriend = async () => {
-    await dispatch(destroyFriend(owner))
-  }
+
+    let cf = completeFriends.filter(friend => friend.id === owner.id)
+    let st = sentFrom.filter(friend => friend.id === owner.id)
+    let sf = sentTo.filter(friend => friend.id === owner.id)
+    await dispatch(destroyFriend(
+      {
+        'cf': cf,
+        'st': st,
+        'sf': sf,
+      }))
+      setFlickFriends(!flickFriends);
+    }
 
   const showOrHide = (cName) => {
     if (owner.id === currentUser.id) return cName;

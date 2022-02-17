@@ -3,7 +3,7 @@ const SEND_FRIEND = 'friends/SEND_FRIEND';
 const ACCEPT_FRIEND = 'friends/ACCEPT_FRIEND';
 const DELETE_FRIEND = 'friends/DELETE_FRIEND';
 
-const filterThrough = (arr, action) => arr.filter(friend => friend.id !== action.payload.id)
+const filterThrough = (arr, action) =>arr.filter(friend => friend.id !== action.payload.id);
 
 const loadFriends = friends => ({
   type: LOAD_FRIENDS,
@@ -49,11 +49,11 @@ export const askFriend = (toUserId) => async dispatch => {
 
 
 
-export const destroyFriend = (sad_user) => async dispatch => {
+export const destroyFriend = obj => async dispatch => {
   const response = await fetch('/api/friends/delete', {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'sad_user': sad_user })
+    body: JSON.stringify({ 'obj': obj })
   })
   if (response.ok) {
     const data = await response.json();
@@ -74,7 +74,6 @@ export default function friendsReducer(state = {}, action) {
         'all_from': filterThrough(deleting.all_from, action),
         'all_sent_to': filterThrough(deleting.all_sent_to, action)
       }
-      // let z = { 'all_from': deleting.all_from, 'all_sent_to': deleting.all_sent_to.filter(friend => friend.id !== action.payload.id) };
       return z;
     default:
       return state;

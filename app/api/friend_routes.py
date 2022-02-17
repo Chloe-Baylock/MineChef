@@ -35,15 +35,36 @@ def send_friend():
 
 @friend_routes.route("/delete", methods=["DELETE"])
 @login_required
-def remove_friend():
+def remove_send():
 
-  sad_user = request.get_json()['sad_user']
+  current = User.query.get(current_user.id)
 
-  # theId = sad_user.id
+  obj = request.get_json()['obj']
+  if (len(obj['cf'])):
+    otherUser = User.query.get(obj['cf'][0]['id'])
+    current.senders.remove(otherUser)
+    current.receivers.remove(otherUser)
+  elif (len(obj['sf'])):
+    otherUser = User.query.get(obj['sf'][0]['id'])
+    otherUser.receivers.remove(current)
+  else:
+    otherUser = User.query.get(obj['st'][0]['id'])
+    current.receivers.remove(otherUser)
 
-  # decider = User.query.get(current_user.id)
-  lonely = User.query.get(sad_user['id'])
-  print('           ******** lonely', lonely)
-  current_user.receivers.remove(current_user)
+  db.session.commit()
 
-  return lonely.to_dict()
+  return otherUser.to_dict()
+
+# @friend_routes.route("/delete-receive", methods=["DELETE"])
+# @login_required
+# def remove_receive():
+
+#   receiver = request.get_json()['sad_user']
+
+#   sender_user = User.query.get(current_user.id)
+#   receiver_user = User.query.get(receiver['id'])
+#   receiver_user.receivers.remove(sender_user)
+
+#   db.session.commit()
+
+#   return lonely.to_dict()
