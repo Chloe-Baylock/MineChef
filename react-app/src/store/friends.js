@@ -40,7 +40,22 @@ export const askFriend = (toUserId) => async dispatch => {
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(sendFriend(data));
+    await dispatch(sendFriend(data));
+    return data;
+  }
+}
+
+
+
+export const destroyFriend = (sad_user) => async dispatch => {
+  const response = await fetch('/api/friends/delete', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'sad_user': sad_user })
+  })
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(deleteFriend(data));
     return data;
   }
 }
@@ -50,7 +65,11 @@ export default function friendsReducer(state = {}, action) {
     case LOAD_FRIENDS:
       return action.payload.friends;
     case SEND_FRIEND:
-      return { friends: action.payload, ...state }
+      return { friends: action.payload, ...state };
+    case DELETE_FRIEND:
+      const deleting = {...state};
+      let z = {'all_from': deleting.all_from, 'all_sent_to': deleting.all_sent_to.filter(friend => friend.id !== action.payload.id)};
+      return z;
     default:
       return state;
   }

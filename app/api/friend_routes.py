@@ -33,6 +33,17 @@ def send_friend():
 # @login_required
 # def decide_friend():
 
-# @friend.routes.route("/remove", methods=["DELETE"])
-# @login_required
-# def remove_friend():
+@friend_routes.route("/delete", methods=["DELETE"])
+@login_required
+def remove_friend():
+
+  sad_user = request.get_json()['sad_user']
+
+  # theId = sad_user.id
+
+  # decider = User.query.get(current_user.id)
+  lonely = User.query.get(sad_user['id'])
+  print('           ******** lonely', lonely)
+  current_user.receivers.remove(current_user)
+
+  return lonely.to_dict()

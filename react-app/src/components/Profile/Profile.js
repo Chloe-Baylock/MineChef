@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import { CogIcon, PencilIcon, UserCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
-import { getMyFriends, askFriend } from '../../store/friends';
+import { getMyFriends, askFriend, destroyFriend } from '../../store/friends';
 import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
@@ -11,7 +11,7 @@ import './RealProfile.css'
 
 function Profile(props) {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user)
 
@@ -94,8 +94,8 @@ function Profile(props) {
     setFlickFriends(!flickFriends);
   }
 
-  const handleRemoveFriend = () => {
-    return false;
+  const handleRemoveFriend = async () => {
+    await dispatch(destroyFriend(owner))
   }
 
   const showOrHide = (cName) => {
@@ -148,7 +148,7 @@ function Profile(props) {
               >+</button>
               <button
                 className='profile-remove-friend-button button-comp'
-                onClick={() => handleRemoveFriend(owner.id)}
+                onClick={() => handleRemoveFriend()}
               >remove</button>
             </div>
           </div>
