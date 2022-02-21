@@ -11,9 +11,16 @@ def load_friends():
   user = User.query.get(current_user.id)
   all_sent_to = user.senders.all()
   all_from = user.receivers.all()
+
+  x = [sent for sent in all_sent_to if sent in all_from]
+  sents = [sent for sent in all_sent_to if sent not in x]
+  froms = [fromUser for fromUser in all_from if fromUser not in x]
+
   return {'friends': {
-    'all_sent_to': [recept.to_dict() for recept in all_sent_to],
-    'all_from': [sendant.to_dict() for sendant in all_from]}
+    'all_sent_to': [recept.to_dict() for recept in sents],
+    'all_from': [sendant.to_dict() for sendant in froms],
+    'true_friends': [truth.to_dict() for truth in x],
+    }
   }
 
 @friend_routes.route("/send", methods=["POST"])
