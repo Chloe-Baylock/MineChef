@@ -34,11 +34,11 @@ export const getMyFriends = () => async dispatch => {
   }
 }
 
-export const askFriend = (toUserId) => async dispatch => {
+export const askFriend = (toUserId, incoming) => async dispatch => {
   const response = await fetch('/api/friends/send', {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'toUserId': toUserId })
+    body: JSON.stringify({ toUserId, incoming })
   })
   if (response.ok) {
     const data = await response.json();

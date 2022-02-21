@@ -55,21 +55,21 @@ const NavBar = () => {
               </button>
               <button
                 className='nav-button-comp'
-                onClick={() => document.getElementById('slash-profile').click()}
-              >
-                <p>
-                  <NavLink id='slash-profile' className='noDecorate' to='/profile' exact={true} activeClassName='active'>
-                    Profile
-                  </NavLink>
-                </p>
-              </button>
-              <button
-                className='nav-button-comp'
                 onClick={() => document.getElementById('slash-posts').click()}
               >
                 <p>
                   <NavLink id='slash-posts' className='noDecorate' to='/posts' exact={true} activeClassName='active'>
                     Posts
+                  </NavLink>
+                </p>
+              </button>
+              <button
+                className='nav-button-comp'
+                onClick={() => document.getElementById('slash-profile').click()}
+              >
+                <p>
+                  <NavLink id='slash-profile' className='noDecorate' to='/profile' exact={true} activeClassName='active'>
+                    Profile
                   </NavLink>
                 </p>
               </button>

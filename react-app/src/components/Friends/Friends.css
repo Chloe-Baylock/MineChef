@@ -1,12 +1,22 @@
-.friend-position {
+.friends-position {
   position: fixed;
   font-size: 20px;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 3px;
   border-radius: .25rem;
   width: fit-content;
   height: 25px;
   background-color: rgb(216, 216, 216);
   right: 0;
   bottom: 0;
+}
+
+.friends-position:hover {
+  cursor: pointer;
+}
+
+.friends-chevron-up-icon {
+  width: 20px;
+  transform: translateY(3px)
 }

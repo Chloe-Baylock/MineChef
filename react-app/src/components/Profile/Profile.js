@@ -9,10 +9,12 @@ import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
 import Friends from '../Friends/Friends';
 import './RealProfile.css'
+import { useHistory } from 'react-router-dom';
 
 function Profile(props) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const currentUser = useSelector(state => state.session.user)
   const friends = useSelector(state => state.friendsReducer)
@@ -24,10 +26,8 @@ function Profile(props) {
   const [editDesc, setEditDesc] = useState('Edit');
   const [postPopup, setPostPopup] = useState(false);
   const [flicker, setFlicker] = useState(false)
-  const [nnn, setNnn] = useState(false);
-  const inProfile = true;
-  const [sentTo, setSentTo] = useState([]);
-  const [sentFrom, setSentFrom] = useState([]);
+  const [nnn, setNnn] = useState(false); // just to trigger rerender
+  // const inProfile = true;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -67,7 +67,7 @@ function Profile(props) {
   };
 
   const handleAddFriend = async (toUserId) => {
-    await dispatch(askFriend(toUserId));
+    await dispatch(askFriend(toUserId, friends.all_from));
     setNnn(!nnn);
   }
 
@@ -126,16 +126,25 @@ function Profile(props) {
             <div className='profile-username'>
               <h1>{owner.username}</h1>
             </div>
+            {/* {owner.id === currentUser.id || ( */}
             <div>
-              <button
-                className='profile-add-friend-button button-comp'
-                onClick={() => handleAddFriend(owner.id)}
-              >+</button>
+              {friends.true_friends?.filter(friend => friend.id === owner.id).length === 0 &&
+                friends.all_sent_to?.filter(friend => friend.id === owner.id).length === 0 ? (
+
+                  <button
+                    className='profile-add-friend-button button-comp'
+                    onClick={() => handleAddFriend(owner.id)}
+                  >Add Friend
+                  </button>
+                ) : (
+                  <p>Friend</p>
+                )}
               <button
                 className='profile-remove-friend-button button-comp'
                 onClick={() => handleRemoveFriend()}
-              >remove</button>
+              >Remove Friend</button>
             </div>
+            {/* )} */}
           </div>
 
 
@@ -176,30 +185,47 @@ function Profile(props) {
                   </>
                 )}
               </div>
-              <h1>True Friends</h1>
-              <ul>
-                {friends.true_friends?.map(friend => (
-                  <li key={friend.id}>
-                    {friend.username}
-                  </li>
-                ))}
-              </ul>
-              <h1>sent friend requests</h1>
-              <ul>
-                {friends.all_sent_to?.map(friend => (
-                  <li key={friend.id}>
-                    {friend.username}
-                  </li>
-                ))}
-              </ul>
-              <h1>incoming requests</h1>
-              <ul>
-                {friends.all_from?.map(friend => (
-                  <li key={friend.id}>
-                    {friend.username}
-                  </li>
-                ))}
-              </ul>
+              {owner.id === currentUser.id && (
+                <>
+                  <h1>Friends</h1>
+                  <ul>
+                    {friends.true_friends?.map(friend => (
+                      <li key={friend.id} onClick={async () => {
+                        setNnn(!nnn);
+                        await history.push('/profile')
+                        return history.push(`/users/${friend.id}`)
+                      }}>
+                        {friend.username}
+                      </li>
+                    ))}
+                  </ul>
+                  <h1>sent friend requests</h1>
+                  <ul>
+                    {friends.all_sent_to?.map(friend => (
+                      <li key={friend.id} onClick={async () => {
+                        setNnn(!nnn);
+                        await history.push('/profile')
+                        return history.push(`/users/${friend.id}`)
+                      }}>
+                        {friend.username}
+                      </li>
+                    ))}
+                  </ul>
+                  <h1>incoming requests</h1>
+                  <ul>
+                    {friends.all_from?.map(friend => (
+                      <li key={friend.id} onClick={async () => {
+                        setNnn(!nnn);
+                        // I honestly cannot find a way around this.
+                        await history.push('/profile')
+                        return history.push(`/users/${friend.id}`)
+                      }}>
+                        {friend.username}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -233,7 +259,8 @@ function Profile(props) {
                   owner={owner}
                   flicker={flicker}
                   setFlicker={setFlicker}
-                  inProfile={inProfile}
+                  inProfile={true}
+                // inProfile={inProfile}
                 />
               </ul>
             </div>
@@ -269,7 +296,7 @@ function Profile(props) {
             />
           </div>
         </div>
-        <Friends />
+        <Friends friends={friends} />
       </div>
     </>
   )

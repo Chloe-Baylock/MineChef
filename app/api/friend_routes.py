@@ -28,6 +28,7 @@ def load_friends():
 def send_friend():
 
   toUserId = request.get_json()['toUserId']
+  incoming = request.get_json()['incoming']
 
   receiver = User.query.get(toUserId)
   sender = User.query.get(current_user.id)
@@ -35,7 +36,11 @@ def send_friend():
 
   db.session.commit()
   
-  if receiver.senders:
+  print('incoming is', incoming)
+
+  requesters = [requester['id'] for requester in incoming]
+
+  if toUserId in requesters:
     return {'true': receiver.to_dict()}
   else:
     return receiver.to_dict()

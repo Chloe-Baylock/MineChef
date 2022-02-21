@@ -1,14 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ChevronUpIcon } from "@heroicons/react/solid";
 import './Friends.css'
 
-function Friends() {
+function Friends(props) {
 
   // const friends = useSelector(state => state.friendsReducer)
 
   return (
-    <p className='friend-position'>
-      Friends: {}
+    <p className='friends-position'>
+      Friends:
+      {' ' + props.friends.true_friends?.length + ' '}
+      <ChevronUpIcon className='friends-chevron-up-icon'/>
     </p>
   )
 }
