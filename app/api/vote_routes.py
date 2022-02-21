@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Vote
 
@@ -35,16 +35,10 @@ def edit_vote():
   voteId = request.get_json()['voteId']
   is_up = request.get_json()['is_up']
 
-  print('                   ***** is_up is', is_up)
-  print('                   ***** voteId is', voteId)
 
   vote = Vote.query.get(voteId)
   vote.is_up = is_up
-  print('                   ***** vote is', vote)
-  print('                   ***** vote.is_up is', vote.is_up)
   db.session.commit()
-  print('                   ***** vote.to_dict() is', vote.to_dict())
-
   return vote.to_dict()
 
 

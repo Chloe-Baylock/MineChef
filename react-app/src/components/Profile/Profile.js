@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
 import { CogIcon, PencilIcon, UserCircleIcon, PlusIcon } from "@heroicons/react/solid";
 import { postImage } from '../../store/session';
+import { getMyFriends, askFriend, destroyFriend } from '../../store/friends';
 import EditDescription from './EditDescription';
 import NewPost from '../Posts/NewPost';
 import ShowPosts from '../Posts/ShowPosts';
@@ -10,11 +11,11 @@ import './RealProfile.css'
 
 function Profile(props) {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user)
 
-  const [owner, setOwner] = useState(props.profileForId || 'profilePage')
+  const [owner, setOwner] = useState(props.profileForId || 'profilePage');
   const [editPopup, setEditPopup] = useState("Edit Profile");
   const [edit, setEdit] = useState("none");
   const [image, setImage] = useState(null);
@@ -22,6 +23,10 @@ function Profile(props) {
   const [postPopup, setPostPopup] = useState(false);
   const [flicker, setFlicker] = useState(false)
   const inProfile = true;
+  const [flickFriends, setFlickFriends] = useState(false);
+  const [completeFriends, setCompleteFriends] = useState([]);
+  const [sentTo, setSentTo] = useState([]);
+  const [sentFrom, setSentFrom] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -48,6 +53,32 @@ function Profile(props) {
     }
   }, [dispatch, image])
 
+  useEffect(() => {
+    const fetchFriends = async () => {
+      let theFriends = await dispatch(getMyFriends())
+      let fullFriends = [];
+      let obj = {};
+      for (let i = 0; i < theFriends.all_sent_to.length; i++) {
+        obj[theFriends.all_sent_to[i].id] = theFriends.all_sent_to[i];
+      }
+      let sent_from_XX = theFriends.all_from.filter(from => {
+        if (obj[from.id]) {
+          fullFriends.push(obj[from.id]);
+          delete obj[from.id];
+        }
+        else return true;
+      })
+
+      // let x = Array.from(Object.values(obj))
+      let x = Object.values(obj)
+      let y = sent_from_XX;
+
+      setCompleteFriends(fullFriends);
+      setSentTo(x);
+      setSentFrom(y);
+    }
+    fetchFriends();
+  }, [dispatch, flickFriends])
 
 
   const updateImage = e => {
@@ -56,6 +87,25 @@ function Profile(props) {
       setImage(file);
     }
   };
+
+  const handleAddFriend = async (toUserId) => {
+    await dispatch(askFriend(toUserId));
+    setFlickFriends(!flickFriends);
+  }
+
+  const handleRemoveFriend = async () => {
+
+    let cf = completeFriends.filter(friend => friend.id === owner.id)
+    let st = sentFrom.filter(friend => friend.id === owner.id)
+    let sf = sentTo.filter(friend => friend.id === owner.id)
+    await dispatch(destroyFriend(
+      {
+        'cf': cf,
+        'st': st,
+        'sf': sf,
+      }))
+      setFlickFriends(!flickFriends);
+    }
 
   const showOrHide = (cName) => {
     if (owner.id === currentUser.id) return cName;
@@ -100,6 +150,16 @@ function Profile(props) {
             <div className='profile-username'>
               <h1>{owner.username}</h1>
             </div>
+            <div>
+              <button
+                className='profile-add-friend-button button-comp'
+                onClick={() => handleAddFriend(owner.id)}
+              >+</button>
+              <button
+                className='profile-remove-friend-button button-comp'
+                onClick={() => handleRemoveFriend()}
+              >remove</button>
+            </div>
           </div>
 
 
@@ -140,6 +200,30 @@ function Profile(props) {
                   </>
                 )}
               </div>
+              <h1>True Friends</h1>
+              <ul>
+                {completeFriends.map(friend => (
+                  <li key={friend.id}>
+                    {friend.username}
+                  </li>
+                ))}
+              </ul>
+              <h1>sent friend requests</h1>
+              <ul>
+                {sentTo.length && sentTo.map(friend => (
+                  <li key={friend.id}>
+                    {friend.username}
+                  </li>
+                ))}
+              </ul>
+              <h1>incoming requests</h1>
+              <ul>
+                {sentFrom.map(friend => (
+                  <li key={friend.id}>
+                    {friend.username}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
