@@ -3,7 +3,7 @@ const SEND_FRIEND = 'friends/SEND_FRIEND';
 // const ACCEPT_FRIEND = 'friends/ACCEPT_FRIEND';
 const DELETE_FRIEND = 'friends/DELETE_FRIEND';
 
-const filterThrough = (arr, action) =>arr.filter(friend => friend.id !== action.payload.id);
+const filterThrough = (arr, action) => arr.filter(friend => friend.id !== action.payload.id);
 
 const loadFriends = friends => ({
   type: LOAD_FRIENDS,
@@ -67,7 +67,10 @@ export default function friendsReducer(state = {}, action) {
     case LOAD_FRIENDS:
       return action.payload.friends;
     case SEND_FRIEND:
-      state.all_sent_to.push(action.payload)
+      if (action.payload.true) {
+        state.all_from = state.all_from.filter(from => from.id !== action.payload.true.id);
+        state.true_friends.push(action.payload.true);
+      } else state.all_sent_to.push(action.payload);
       return state;
     case DELETE_FRIEND:
       const deleting = { ...state };
