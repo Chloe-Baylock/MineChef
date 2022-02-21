@@ -24,9 +24,8 @@ function Profile(props) {
   const [editDesc, setEditDesc] = useState('Edit');
   const [postPopup, setPostPopup] = useState(false);
   const [flicker, setFlicker] = useState(false)
+  const [nnn, setNnn] = useState(false);
   const inProfile = true;
-  const [flickFriends, setFlickFriends] = useState(false);
-  // const [completeFriends, setCompleteFriends] = useState([]);
   const [sentTo, setSentTo] = useState([]);
   const [sentFrom, setSentFrom] = useState([]);
 
@@ -56,32 +55,8 @@ function Profile(props) {
   }, [dispatch, image])
 
   useEffect(() => {
-    const fetchFriends = async () => {
-      await dispatch(getMyFriends());
-      // let theFriends = await dispatch(getMyFriends());
-      // let fullFriends = [];
-      // let obj = {};
-      // for (let i = 0; i < theFriends.all_sent_to.length; i++) {
-      //   obj[theFriends.all_sent_to[i].id] = theFriends.all_sent_to[i];
-      // }
-      // let sent_from_XX = theFriends.all_from.filter(from => {
-      //   if (obj[from.id]) {
-      //     fullFriends.push(obj[from.id]);
-      //     delete obj[from.id];
-      //   }
-      // else return true;
-      // })
-
-      // let x = Array.from(Object.values(obj))
-      // let x = Object.values(obj)
-      // let y = sent_from_XX;
-
-      // setCompleteFriends(fullFriends);
-      // setSentTo(x);
-      // setSentFrom(y);
-    }
-    fetchFriends();
-  }, [dispatch, flickFriends])
+    dispatch(getMyFriends());
+  }, [dispatch])
 
 
   const updateImage = e => {
@@ -93,25 +68,19 @@ function Profile(props) {
 
   const handleAddFriend = async (toUserId) => {
     await dispatch(askFriend(toUserId));
-    setFlickFriends(!flickFriends);
+    setNnn(!nnn);
   }
 
   const handleRemoveFriend = async () => {
-
-    // let cf = completeFriends.filter(friend => friend.id === owner.id)
-    // let st = sentFrom.filter(friend => friend.id === owner.id)
-    // let sf = sentTo.filter(friend => friend.id === owner.id)
-
     let cf = friends.true_friends.filter(friend => friend.id === owner.id)
     let st = friends.all_sent_to.filter(friend => friend.id === owner.id)
     let sf = friends.all_from.filter(friend => friend.id === owner.id)
     await dispatch(destroyFriend(
       {
-        'cf': cf,
-        'st': st,
-        'sf': sf,
+        cf,
+        st,
+        sf,
       }))
-    setFlickFriends(!flickFriends);
   }
 
   const showOrHide = (cName) => {

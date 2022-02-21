@@ -34,7 +34,7 @@ def send_friend():
   receiver.receivers.append(sender)
 
   db.session.commit()
-  return sender.to_dict()
+  return receiver.to_dict()
 
 # @friend.routes.route("/accept", methods=["PUT"])
 # @login_required
@@ -47,16 +47,21 @@ def remove_send():
   current = User.query.get(current_user.id)
 
   obj = request.get_json()['obj']
+  print('             ****************obj is', obj)
+  print('             ****************here okay')
   if (len(obj['cf'])):
+    print('             ****************here okay1')
     otherUser = User.query.get(obj['cf'][0]['id'])
     current.senders.remove(otherUser)
     current.receivers.remove(otherUser)
   elif (len(obj['sf'])):
+    print('             ****************here okay2')
     otherUser = User.query.get(obj['sf'][0]['id'])
     otherUser.receivers.remove(current)
   else:
+    print('             ****************here okay3')
     otherUser = User.query.get(obj['st'][0]['id'])
-    current.receivers.remove(otherUser)
+    otherUser.receivers.remove(current)
 
   db.session.commit()
 

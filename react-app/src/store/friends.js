@@ -67,7 +67,8 @@ export default function friendsReducer(state = {}, action) {
     case LOAD_FRIENDS:
       return action.payload.friends;
     case SEND_FRIEND:
-      return { friends: action.payload, ...state };
+      state.all_sent_to.push(action.payload)
+      return state;
     case DELETE_FRIEND:
       const deleting = { ...state };
       let z = {
