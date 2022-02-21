@@ -52,14 +52,15 @@ def remove_send():
   current = User.query.get(current_user.id)
 
   obj = request.get_json()['obj']
-  if (len(obj['cf'])):
+  print('         obj is', obj)
+  if (len(obj['cf'])):    # current friend
     otherUser = User.query.get(obj['cf'][0]['id'])
     current.senders.remove(otherUser)
     current.receivers.remove(otherUser)
-  elif (len(obj['sf'])):
+  elif (len(obj['sf'])):  #sent from
     otherUser = User.query.get(obj['sf'][0]['id'])
-    otherUser.receivers.remove(current)
-  else:
+    current.receivers.remove(otherUser)
+  else:   #sent to
     otherUser = User.query.get(obj['st'][0]['id'])
     otherUser.receivers.remove(current)
 

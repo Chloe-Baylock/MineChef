@@ -126,10 +126,10 @@ function Profile(props) {
             <div className='profile-username'>
               <h1>{owner.username}</h1>
             </div>
-            {/* {owner.id === currentUser.id || ( */}
-            <div>
-              {friends.true_friends?.filter(friend => friend.id === owner.id).length === 0 &&
-                friends.all_sent_to?.filter(friend => friend.id === owner.id).length === 0 ? (
+            {owner.id === currentUser.id || (
+              <div>
+                {friends.true_friends?.filter(friend => friend.id === owner.id).length === 0 &&
+                  friends.all_sent_to?.filter(friend => friend.id === owner.id).length === 0 ? (
 
                   <button
                     className='profile-add-friend-button button-comp'
@@ -139,12 +139,17 @@ function Profile(props) {
                 ) : (
                   <p>Friend</p>
                 )}
-              <button
-                className='profile-remove-friend-button button-comp'
-                onClick={() => handleRemoveFriend()}
-              >Remove Friend</button>
-            </div>
-            {/* )} */}
+                {(friends.true_friends?.filter(friend => friend.id === owner.id).length > 0 ||
+                  friends.all_sent_to?.filter(friend => friend.id === owner.id).length > 0 ||
+                  friends.all_from?.filter(friend => friend.id === owner.id).length > 0) && (
+                    <button
+                      className='profile-remove-friend-button button-comp'
+                      onClick={() => handleRemoveFriend()}
+                    >Remove Friend
+                    </button>
+                  )}
+              </div>
+            )}
           </div>
 
 
