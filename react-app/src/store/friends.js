@@ -1,9 +1,9 @@
 const LOAD_FRIENDS = 'friends/LOAD_FRIENDS';
 const SEND_FRIEND = 'friends/SEND_FRIEND';
-const ACCEPT_FRIEND = 'friends/ACCEPT_FRIEND';
+// const ACCEPT_FRIEND = 'friends/ACCEPT_FRIEND';
 const DELETE_FRIEND = 'friends/DELETE_FRIEND';
 
-const filterThrough = (arr, action) =>arr.filter(friend => friend.id !== action.payload.id);
+const filterThrough = (arr, action) => arr.filter(friend => friend.id !== action.payload.id);
 
 const loadFriends = friends => ({
   type: LOAD_FRIENDS,
@@ -15,10 +15,10 @@ const sendFriend = friend => ({
   payload: friend,
 })
 
-const acceptFriend = friend => ({
-  type: ACCEPT_FRIEND,
-  payload: friend,
-})
+// const acceptFriend = friend => ({
+//   type: ACCEPT_FRIEND,
+//   payload: friend,
+// })
 
 const deleteFriend = friend => ({
   type: DELETE_FRIEND,
@@ -34,11 +34,11 @@ export const getMyFriends = () => async dispatch => {
   }
 }
 
-export const askFriend = (toUserId) => async dispatch => {
+export const askFriend = (toUserId, incoming) => async dispatch => {
   const response = await fetch('/api/friends/send', {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'toUserId': toUserId })
+    body: JSON.stringify({ toUserId, incoming })
   })
   if (response.ok) {
     const data = await response.json();
@@ -67,12 +67,17 @@ export default function friendsReducer(state = {}, action) {
     case LOAD_FRIENDS:
       return action.payload.friends;
     case SEND_FRIEND:
-      return { friends: action.payload, ...state };
+      if (action.payload.true) {
+        state.all_from = state.all_from.filter(from => from.id !== action.payload.true.id);
+        state.true_friends.push(action.payload.true);
+      } else state.all_sent_to.push(action.payload);
+      return state;
     case DELETE_FRIEND:
       const deleting = { ...state };
       let z = {
         'all_from': filterThrough(deleting.all_from, action),
-        'all_sent_to': filterThrough(deleting.all_sent_to, action)
+        'all_sent_to': filterThrough(deleting.all_sent_to, action),
+        'true_friends': filterThrough(deleting.true_friends, action)
       }
       return z;
     default:
