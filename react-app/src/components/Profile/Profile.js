@@ -195,7 +195,7 @@ function Profile(props) {
                   <h1>Friends</h1>
                   <ul>
                     {friends.true_friends?.map(friend => (
-                      <li key={friend.id} onClick={async () => {
+                      <li key={friend.id} className='profile-friending-link' onClick={async () => {
                         setNnn(!nnn);
                         await history.push('/profile')
                         return history.push(`/users/${friend.id}`)
@@ -207,7 +207,7 @@ function Profile(props) {
                   <h1>sent friend requests</h1>
                   <ul>
                     {friends.all_sent_to?.map(friend => (
-                      <li key={friend.id} onClick={async () => {
+                      <li key={friend.id} className='profile-friending-link' onClick={async () => {
                         setNnn(!nnn);
                         await history.push('/profile')
                         return history.push(`/users/${friend.id}`)
@@ -219,7 +219,7 @@ function Profile(props) {
                   <h1>incoming requests</h1>
                   <ul>
                     {friends.all_from?.map(friend => (
-                      <li key={friend.id} onClick={async () => {
+                      <li key={friend.id} className='profile-friending-link' onClick={async () => {
                         setNnn(!nnn);
                         // I honestly cannot find a way around this.
                         await history.push('/profile')
