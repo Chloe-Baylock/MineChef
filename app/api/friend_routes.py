@@ -36,7 +36,6 @@ def send_friend():
 
   db.session.commit()
   
-  print('incoming is', incoming)
 
   requesters = [requester['id'] for requester in incoming]
 
@@ -52,7 +51,6 @@ def remove_send():
   current = User.query.get(current_user.id)
 
   obj = request.get_json()['obj']
-  print('         obj is', obj)
   if (len(obj['cf'])):    # current friend
     otherUser = User.query.get(obj['cf'][0]['id'])
     current.senders.remove(otherUser)
