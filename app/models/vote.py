@@ -5,7 +5,7 @@ class Vote(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   is_up = db.Column(db.Boolean, nullable=False)
-  voter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  voter_id = db.Column(db.Integer, db.ForeignKey('us3rs.id'), nullable=False)
   post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
 
   user = db.relationship('User', back_populates="vote")

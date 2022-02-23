@@ -4,12 +4,12 @@ from flask_login import UserMixin
 
 friends = db.Table(
     "friends",
-    db.Column('sender_id', db.Integer, db.ForeignKey('users.id'), nullable=False),
-    db.Column('receiver_id', db.Integer, db.ForeignKey('users.id'), nullable=False),
+    db.Column('sender_id', db.Integer, db.ForeignKey('us3rs.id'), nullable=False),
+    db.Column('receiver_id', db.Integer, db.ForeignKey('us3rs.id'), nullable=False),
 )
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = 'us3rs'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
