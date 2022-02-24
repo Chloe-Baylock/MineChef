@@ -64,8 +64,8 @@ export const updateVote = (voteId, is_up) => async dispatch => {
 export const undoVote = (voteId) => async dispatch => {
   const response = await fetch('/api/votes/delete', {
     method: "DELETE",
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({'voteId': voteId})
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'voteId': voteId })
   })
 
   if (response.ok) {
@@ -78,15 +78,19 @@ export const undoVote = (voteId) => async dispatch => {
 export default function votesReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_VOTES:
-      return action.payload.votes;
+      return {entries: action.payload.votes};
     case MAKE_VOTE:
-      return { votes: action.payload, ...state };
+      return { entries: [...state.entries, action.payload] };
+      // { "entries": [...state.entries, action.review] };
     case EDIT_VOTE:
-      return {...state, [action.payload.id]: action.payload};
+      for (let i = 0; i < state.entries.length; i++) {
+        if (state.entries[i].id === action.payload.id) state.entries[i] = action.payload;
+      }
+      return state;
     case DELETE_VOTE:
-      const deleting = {...state};
-      delete deleting[action.payload.id];
-      return deleting;
+      const deleting = { ...state };
+      let entries = deleting.entries.filter(vote => vote.id !== action.payload.id)
+      return { entries };
     default:
       return state;
   }

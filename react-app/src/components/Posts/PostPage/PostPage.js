@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, destroyPost } from '../../../store/posts';
 import { useHistory, useParams } from 'react-router-dom';
-import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon, ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/solid";
+import { getAllVotes, postVote, updateVote, undoVote } from '../../../store/votes';
+
 import EditPost from '../EditPost';
 import './PostPage.css'
 
 function PostPage() {
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user)
+  const votes = useSelector(state => state.votes.entries)
 
   const dispatch = useDispatch();
   const { postId } = useParams();
@@ -17,6 +20,8 @@ function PostPage() {
   const [trigger, setTrigger] = useState(-2)
   const [editButton, setEditButton] = useState('Edit')
   const [flicker, setFlicker] = useState(false)
+
+  const [voteAct, setVoteAct] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +40,46 @@ function PostPage() {
       })();
     }
   }, [post])
+
+  useEffect(() => {
+    const fetchVotes = async function () {
+      await dispatch(getAllVotes());
+    }
+    fetchVotes();
+  }, [])
+
+  const filterVotes = (post, is_up) => {
+    return votes?.filter(vote => vote.post_id === post.id && vote.is_up === is_up);
+  }
+
+  const handleVote = (post, is_up) => {
+    let thisVote = votes?.filter(vote => post.id === vote.post_id && vote.voter_id === +currentUser.id)
+    if (thisVote.length) {
+      if (thisVote[0].is_up === is_up) destroyVote(thisVote[0].id);
+      else if (thisVote[0].is_up === !is_up) changeVote(thisVote[0].id, is_up);
+    }
+    else createVote(post, is_up)
+  }
+
+  const voteByUser = (post, is_up) => {
+    if (filterVotes(post, is_up)?.filter(vote => vote.voter_id === currentUser.id).length) return `${is_up}-vote-by-user`;
+    else return 'no-vote-by-user';
+  }
+
+  const createVote = async (post, is_up) => {
+    await dispatch(postVote(post.id, is_up));
+    setVoteAct(!voteAct);
+  }
+
+  const changeVote = async (voteId, is_up) => {
+    await dispatch(updateVote(voteId, is_up))
+    setVoteAct(!voteAct);
+  }
+
+  const destroyVote = async (voteId) => {
+    await dispatch(undoVote(voteId));
+    setVoteAct(!voteAct);
+  }
 
 
   const deletePost = async post => {
@@ -97,9 +142,21 @@ function PostPage() {
                 />
               </div>
             </div>
-            <h1 className='post-page-title-h1'>
-              {post.title}
-            </h1>
+            <div className='post-page-title-div'>
+              <h1 className='post-page-title-h1'>
+                {post.title}
+              </h1>
+              <div>
+                <button
+                  className={`button-comp ${voteByUser(post, true)}`}
+                  onClick={() => handleVote(post, true)}
+                ><ArrowUpIcon className='arrow-icon' /> {filterVotes(post, true)?.length}</button>
+                <button
+                  className={`button-comp ${voteByUser(post, false)}`}
+                  onClick={() => handleVote(post, false)}
+                ><ArrowDownIcon className='arrow-icon' /> {filterVotes(post, false)?.length}</button>
+              </div>
+            </div>
           </div>
           <p className='post-page-content'>
             {post.content}
