@@ -9,12 +9,13 @@ import EditPost from './EditPost'
 function ShowPosts(props) {
 
   const history = useHistory()
+  
+  const currentUser = useSelector(state => state.session.user);
+  const votes = useSelector(state => state.votes.entries);
 
-  const currentUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState('')
-  const [votes, setVotes] = useState([])
   const [voteAct, setVoteAct] = useState(false)
   const [users, setUsers] = useState('')
   const [trigger, setTrigger] = useState(-2)
@@ -26,7 +27,7 @@ function ShowPosts(props) {
   }
 
   const handleVote = (post, is_up) => {
-      let thisVote = votes.filter(vote => post.id === vote.post_id && vote.voter_id === +currentUser.id)
+      let thisVote = votes?.filter(vote => post.id === vote.post_id && vote.voter_id === +currentUser.id)
       if (thisVote.length) {
         if (thisVote[0].is_up === is_up) destroyVote(thisVote[0].id);     
         else if (thisVote[0].is_up === !is_up) changeVote(thisVote[0].id, is_up);
@@ -66,11 +67,10 @@ function ShowPosts(props) {
 
   useEffect(() => {
     const fetchVotes = async function () {
-      let votes = await dispatch(getAllVotes());
-      setVotes(votes);
+      await dispatch(getAllVotes());
     }
     fetchVotes();
-  }, [voteAct])
+  }, [])
 
   const retEdit = post => {
     if (editButton.postId === post.id) return true
@@ -88,7 +88,7 @@ function ShowPosts(props) {
   }
 
   const filterVotes = (post, is_up) => {
-    return votes.filter(vote => vote.post_id === post.id && vote.is_up === is_up);
+    return votes?.filter(vote => vote.post_id === post.id && vote.is_up === is_up);
   }
 
   const voteByUser = (post, is_up) => {

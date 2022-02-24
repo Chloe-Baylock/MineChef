@@ -8,7 +8,7 @@ import friendsReducer from './friends';
 const rootReducer = combineReducers({
   session,
   postsReducer,
-  votesReducer,
+  votes: votesReducer,
   friendsReducer,
 });
 

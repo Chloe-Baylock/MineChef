@@ -73,6 +73,11 @@
   display: none;
 }
 
+.post-page-title-div {
+  display: flex;
+  justify-content: space-between;
+}
+
 .post-page-title-h1 {
   margin: 0;
   padding-left: 10px;
